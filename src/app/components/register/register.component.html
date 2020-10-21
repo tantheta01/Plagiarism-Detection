@@ -1,0 +1,47 @@
+<!-- <mat-toolbar color="primary" class="header">
+  <div><a target="_blank" class="bytedemons">Byte Demons</a></div>
+  <span class="nav-tool-items">
+    <a mat-button style="margin-right: -5px; color: white; font-family: monospace; font-size: 25px;" disabled>Red</a>
+    <a mat-button mat-raised-button style="margin-left: -5px; background-color: crimson; color: white; font-family: monospace; font-size: 25px;" disabled>Plag</a>
+  </span>
+</mat-toolbar> -->
+
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+
+    <p style="font-size: small; text-align: center;">Please fill in this form to create an account.</p>
+    <!-- <form class="example-form"> -->
+    <form class="example-form" action="action_page.php" method="post" [formGroup]="userSignupForm">
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Name" formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" formControlName="email">
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Username" formControlName="username">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" formControlName="password">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Confirm Password" formControlName="confirm_password">
+        </mat-form-field>
+      </mat-card-content>
+      <label>
+        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+      </label>
+      <p class="spacing"></p>
+      <p style="font-size: x-small; text-align: center;">By creating an account you agree to our <a href="register" style="color:dodgerblue">Terms & Privacy</a>.</p>
+      <button mat-stroked-button color="accent" class="btn-block">Register</button>
+    </form>
+  </mat-card>
+</div>

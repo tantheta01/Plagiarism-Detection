@@ -1,0 +1,46 @@
+<!-- <mat-toolbar color="primary" class="header">
+  <div><a target="_blank" class="bytedemons">Byte Demons</a></div>
+  <span class="nav-tool-items">
+    <a mat-button style="margin-right: -5px; color: white; font-family: monospace; font-size: 25px;" disabled>Red</a>
+    <a mat-button mat-raised-button style="margin-left: -5px; background-color: crimson; color: white; font-family: monospace; font-size: 25px;" disabled>Plag</a>
+  </span>
+</mat-toolbar> -->
+
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Log in</mat-card-title>
+      </mat-card-header>
+  
+      <!-- <form class="example-form"> -->
+      <form class="example-form" action="action_page.php" method="post" [formGroup]="userLoginForm">
+        <div class="imgcontainer">
+          <img src="img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
+        <mat-card-content>
+          <mat-form-field class="example-full-width m-5">
+            Username: <!--input matInput placeholder="" formControlName="username"-->
+            <input  placeholder="" formControlName="username">
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width m-5">
+            Password: <input type="password" placeholder="" formControlName="password">
+          </mat-form-field>
+        </mat-card-content>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+        <p class="spacing"></p>
+        <button mat-stroked-button color="accent" class="btn-block"><a href="../../mainpage">Login</a></button>
+        <p class="spacing"></p>
+        <div class="container" style="text-align: right;">
+          <span class="psw"><a href="#">Forgot password?</a></span>
+        </div>
+        <div class="container" style="text-align: right;">
+          <span><a href="register">Don't have an account?</a></span>
+        </div>
+      </form>
+    </mat-card>
+
+</div>

@@ -1,0 +1,79 @@
+
+<div id="sc-edprofile">
+    <h1>Edit Profile</h1>
+    <form class=" sc-container"  [formGroup]="user">
+
+        <div>
+            <label class="one">
+                <span>Name:</span><br>
+            </label>
+            <input class="one"
+            type="text"
+            placeholder="Name"
+            formControlName="name">
+        </div>
+
+        <div>
+            <label class="one">
+                <span>Email:</span><br>
+            </label>
+            <input class="one"
+            type="email"
+            placeholder="Email"
+            formControlName="email">
+        </div>
+
+        <div>
+            <label class="one">
+                <span>Username:</span><br>
+            </label>
+            <input class="one"
+            type="text"
+            placeholder="username"
+            formControlName="username">
+        </div>
+
+        <div>
+            <label class="one">
+                <span>Password:</span><br>
+            </label>
+            <input class="one"
+            type="password"
+            placeholder="Password"
+            formControlName="Password">
+        </div>
+
+        <div>
+            <label  for="gender">Gender</label><br>
+            <select>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+
+
+        <!--div>
+            <label class="one" for="feedback">Feedback:</label><br>
+                <input class="one" [(ngModel)]="postData.feedback" id="Great" type="radio" value="Great" name="feedback" formControlName="feedback">
+                <label class="four" for="Great">Great</label>
+                <input [(ngModel)]="postData.feedback" id="Okay" type="radio" value="Okay" name="feedback" formControlName="feedback">
+                <label class="four" for="Okay">Okay</label>
+                <input [(ngModel)]="postData.feedback" id="Not good" type="radio" value="Not good" name="feedback" formControlName="feedback">
+                <label class="four" for="Not good">Not good</label>
+        </div-->
+
+
+        <div>
+            <label class="one">
+                <span>Institution:</span><br>
+            </label>
+            <textarea
+            type="text"
+            placeholder="Institution"
+            formControlName="Institution" class="textarea"></textarea>
+        </div>
+
+        <p><button class="button" type="submit" (click)="onSubmit()">Update</button></p>
+    </form>
+</div>
+  

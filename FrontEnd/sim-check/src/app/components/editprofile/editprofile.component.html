@@ -1,0 +1,39 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Edit Profile</mat-card-title>
+      </mat-card-header>
+  
+      <p style="font-size: small; text-align: center;">Update your details</p>
+      <!-- <form class="example-form"> -->
+      <form class="example-form" action="action_page.php" method="post" [formGroup]="userDetails">
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Name" formControlName="name">
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Email" formControlName="email">
+          </mat-form-field>
+        
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Username" formControlName="username">
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Password" formControlName="password">
+          </mat-form-field>
+  
+          <div>
+            <label  for="gender">Gender</label><br>
+            <select>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+          </div>
+        </mat-card-content>
+        <button mat-stroked-button color="accent" class="btn-block" routerLink="/mainpage">Update</button>
+      </form>
+    </mat-card>
+  </div>
+  

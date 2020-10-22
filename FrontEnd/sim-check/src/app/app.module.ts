@@ -1,24 +1,37 @@
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularMaterialModule } from './angular-material.module';
 import { AppRoutingModule } from './app-routing.module';
+import { FlexLayoutModule } from "@angular/flex-layout";
 import { AppComponent } from './app.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { LoginComponent } from './login/login.component';
+import { LogInComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { GetstartedComponent } from './components/getstarted/getstarted.component';
+import { MainpageComponent } from './components/mainpage/mainpage.component';
+import { EditprofileComponent } from './components/editprofile/editprofile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignUpComponent,
-    LoginComponent
+    LogInComponent,
+    RegisterComponent,
+    GetstartedComponent,
+    MainpageComponent,
+    EditprofileComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule, ReactiveFormsModule,
+    AngularMaterialModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    FlexLayoutModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
+
 export class AppModule { }

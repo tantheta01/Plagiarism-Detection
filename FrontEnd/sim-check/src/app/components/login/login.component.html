@@ -1,0 +1,37 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Log in</mat-card-title>
+      </mat-card-header>
+  
+      <!-- <form class="example-form"> -->
+      <form class="example-form" action="action_page.php" method="post" [formGroup]="userLoginForm">
+        <div class="imgcontainer">
+          <img src="img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <input matInput type="text" placeholder="Username" required formControlName="username">
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput type="password" placeholder="Password" required formControlName="password">
+          </mat-form-field>
+        </mat-card-content>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+        <p class="spacing"></p>
+        <button mat-stroked-button color="accent" class="btn-block" routerLink="/mainpage" (click)="onSubmit()">Login</button>
+        <p class="spacing"></p>
+        <div class="container" style="text-align: right;">
+          <span class="psw"><a routerLink="/login">Forgot password?</a></span>
+        </div>
+        <div class="container" style="text-align: right;">
+          <span><a routerLink="/register">Don't have an account?</a></span>
+        </div>
+      </form>
+    </mat-card>
+
+</div>

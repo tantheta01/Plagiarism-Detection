@@ -22,6 +22,12 @@
     "@angular/platform-browser": "~10.1.4",
     "@angular/platform-browser-dynamic": "~10.1.4",
     "@angular/router": "~10.1.4",
+    "canvasjs": "^1.8.3",
+    "chartist": "^0.11.4",
+    "highcharts": "^8.2.0",
+    "highcharts-angular": "^2.8.0",
+    "highcharts-ng": "^1.2.1",
+    "ng-chartist": "^4.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

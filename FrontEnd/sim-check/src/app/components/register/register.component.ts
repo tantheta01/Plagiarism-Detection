@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import { CommunicationService } from '../../communication.service';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -19,21 +21,44 @@ export class RegisterComponent implements OnInit {
 		confirm_password : new FormControl('', [Validators.required])
   })
   
-  // userSignupForm = this.fb.group({
-  //   name : [, [Validators.required]],
-  //   username : [, [Validators.required]],
-	// 	email : [, [Validators.email, Validators.required]],
-	// 	password : [, [Validators.required]],
-	// 	confirm_password : [, [Validators.required]]
-  // });
+  
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, public cservice : CommunicationService) { }
 
   ngOnInit() {
+
+
+
   }
 
   onSubmit() {
-    if (this.userSignupForm.valid) {}
+    if (this.userSignupForm.valid) {
+      if(this.userSignupForm.controls['password'].value != this.userSignupForm.controls['confirm_password'].value){
+        window.alert("Passwords do not match")
+        this.userSignupForm.setValue({
+          name : "",
+          username : "",
+          email : "",
+          password : "",
+          confirm_password : ""
+        })
+
+      }
+      else{
+        // window.alert("Naacho bc")
+        // var new22=1;
+        this.cservice.signUp(this.userSignupForm.controls['username'].value, this.userSignupForm.controls['password'].value, this.userSignupForm.controls['email'].value).subscribe(
+        {
+          next : answer => {
+            window.alert(JSON.stringify(answer))
+          },
+          error: error => {
+            window.alert(JSON.stringify(error))
+          }
+        }
+        )
+      }
+    }
     else window.alert("Submission failed!");
   }
 

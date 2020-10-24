@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder,  Validators } from '@angular/forms';
+import { CommunicationService } from '../../communication.service';
 
 @Component({
   selector: 'app-editprofile',
@@ -16,9 +17,22 @@ export class EditprofileComponent implements OnInit {
     gender : new FormControl('', [Validators.required]),
   })
 
-  constructor() { }
+  constructor(public cservice : CommunicationService) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
+    if (this.userDetails.valid) {
+      this.cservice.changepass(this.userDetails.controls['password'].value).subscribe({
+        next : answer => {
+          window.alert(JSON.stringify(answer));
+        },
+        error: error => {
+          JSON.stringify(error);
+        }
+      })
+    }
   }
 
 }

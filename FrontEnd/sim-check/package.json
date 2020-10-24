@@ -11,26 +11,6 @@
   },
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-    "@angular/animation": "^4.0.0-beta.8",
-    "@angular/animations": "~10.1.4",
-    "@angular/cdk": "^10.2.4",
-    "@angular/common": "~10.1.4",
-    "@angular/compiler": "~10.1.4",
-    "@angular/core": "~10.1.4",
-    "@angular/forms": "~10.1.4",
-    "@angular/material": "^10.2.4",
-    "@angular/platform-browser": "~10.1.4",
-    "@angular/platform-browser-dynamic": "~10.1.4",
-    "@angular/router": "~10.1.4",
-    "canvasjs": "^1.8.3",
-    "chartist": "^0.11.4",
-    "highcharts": "^8.2.0",
-    "highcharts-angular": "^2.8.0",
-    "highcharts-ng": "^1.2.1",
-    "ng-chartist": "^4.1.0",
-    "rxjs": "~6.6.0",
-=======
     "@angular/animations": "~10.0.6",
     "@angular/cdk": "^10.2.1",
     "@angular/common": "~10.0.6",
@@ -43,7 +23,6 @@
     "@angular/platform-browser-dynamic": "~10.0.6",
     "@angular/router": "~10.0.6",
     "rxjs": "~6.5.5",
->>>>>>> 2d8adfe6dc8bd91d406a97656dea39b219fdf47d
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },

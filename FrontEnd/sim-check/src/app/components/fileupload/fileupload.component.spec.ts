@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FileUploadComponent } from './fileupload.component';
 
 describe('MaterialFileUploadComponent', () => {

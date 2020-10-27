@@ -13,7 +13,7 @@ import { MainpageComponent } from './components/mainpage/mainpage.component';
 import { EditprofileComponent } from './components/editprofile/editprofile.component';
 import {
   HttpClientModule,
-  
+
 } from "@angular/common/http";
 
 
@@ -35,7 +35,7 @@ import {
     AppRoutingModule,
     FlexLayoutModule,
     HttpClientModule,
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent],

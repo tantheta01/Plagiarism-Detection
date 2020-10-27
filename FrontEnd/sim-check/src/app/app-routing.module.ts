@@ -5,6 +5,7 @@ import { LogInComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { MainpageComponent } from './components/mainpage/mainpage.component';
 import { EditprofileComponent } from './components/editprofile/editprofile.component';
+import { FileUploadComponent } from './components/fileupload/fileupload.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'getstarted' },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'mainpage', component: MainpageComponent },
-  { path: 'editprofile', component: EditprofileComponent }
+  { path: 'editprofile', component: EditprofileComponent },
+  { path: 'fileupload', component: FileUploadComponent }
 ];
 
 @NgModule({

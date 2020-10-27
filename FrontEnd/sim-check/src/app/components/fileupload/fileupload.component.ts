@@ -140,7 +140,7 @@ export class FileUploadComponent implements OnInit {
     }
   }
 
-  private dropHandler(ev: DragEvent) {
+  public dropHandler(ev: DragEvent) {
     // console.log('File(s) dropped');
 
     // Prevent default behavior (Prevent file from being opened)
@@ -183,7 +183,7 @@ export class FileUploadComponent implements OnInit {
     this.uploadFiles();
   }
 
-  private dragOverHandler(ev: DragEvent) {
+  public dragOverHandler(ev: DragEvent) {
     // console.log('File(s) in drop zone');
 
     // Prevent default behavior (Prevent file from being opened)

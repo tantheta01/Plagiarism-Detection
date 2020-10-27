@@ -16,6 +16,9 @@ import {
 
 } from "@angular/common/http";
 
+import {MatIconModule} from '@angular/material/icon'; 
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -35,6 +38,9 @@ import {
     AppRoutingModule,
     FlexLayoutModule,
     HttpClientModule,
+    MatIconModule,
+    MatButtonModule,
+
 
   ],
   providers: [],

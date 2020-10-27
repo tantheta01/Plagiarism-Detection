@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable, throwError } from "rxjs";
+import { Inject, Injectable } from '@angular/core';
+import { Observable, throwError, of } from "rxjs";
 import {
   HttpClient,
   HttpHeaders,
@@ -7,6 +7,7 @@ import {
   HttpParams
 } from "@angular/common/http";
 import { catchError, map } from "rxjs/operators";
+
 
 
 const httpOptions = {
@@ -30,10 +31,10 @@ const passchange : string = 'http://localhost:8000/api/password/';
 export class CommunicationService {
 
 	isLoggedin: boolean = false;
-	username: string = '';
-	password: string = '';
-	email : string = '';
-	token : string = '';
+	// username: string = '';
+	// password: string = '';
+	// email : string = '';
+	// token : string = '';
 
 
 
@@ -57,11 +58,11 @@ export class CommunicationService {
 		}, httpOptions);
 	}
 
-	changepass(newpass : string): Observable<any>{
+	changepass(oldpass : string, newpass : string): Observable<any>{
 		if (this.isLoggedin) {
-			const httpOptions_ = { headers: new HttpHeaders({ "Content-Type" : "multipart/form-data", "Authorization" : "Token " + this.token })}
+			const httpOptions_ = { headers: new HttpHeaders({ "Content-Type" : "multipart/form-data", "Authorization" : "Token fkgfd"})}
 
-			return this.httpClient.post(passchange, {'newpassword' : newpass}, httpOptions_)
+			return this.httpClient.put(passchange, {'old_password' : oldpass, 'new_password' : newpass})
 		}
 	}
 	

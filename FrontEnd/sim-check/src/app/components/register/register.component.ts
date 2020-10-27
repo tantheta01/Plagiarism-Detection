@@ -50,10 +50,10 @@ export class RegisterComponent implements OnInit {
         this.cservice.signUp(this.userSignupForm.controls['username'].value, this.userSignupForm.controls['password'].value, this.userSignupForm.controls['email'].value).subscribe(
         {
           next : answer => {
-            window.alert(JSON.stringify(answer))
+            window.alert("User is signed up")
           },
           error: error => {
-            window.alert(JSON.stringify(error))
+            window.alert("Sorry there was a problem")
           }
         }
         )

@@ -13,6 +13,8 @@ import {
   HttpEventType,
   HttpErrorResponse
 } from '@angular/common/http';
+import { MatIcon } from '@angular/material/icon';
+import { MatButton } from '@angular/material/button';
 import { Subscription, of } from 'rxjs';
 import { catchError, last, map, tap } from 'rxjs/operators';
 

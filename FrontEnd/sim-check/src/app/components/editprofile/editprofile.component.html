@@ -9,28 +9,17 @@
       <form class="example-form" action="action_page.php" method="post" [formGroup]="userDetails">
         <mat-card-content>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Name" formControlName="name">
+            <input matInput placeholder="Old Password" formControlName="old_password">
           </mat-form-field>
   
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Email" formControlName="email">
+            <input matInput placeholder="New Password" formControlName="new_password">
           </mat-form-field>
         
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Username" formControlName="username">
+            <input matInput placeholder="Confirm New Password" formControlName="confirm_newpassword">
           </mat-form-field>
   
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Password" formControlName="password">
-          </mat-form-field>
-  
-          <div>
-            <label  for="gender">Gender</label><br>
-            <select>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select>
-          </div>
         </mat-card-content>
         <button mat-stroked-button color="accent" class="btn-block" routerLink="/mainpage" (click)="onSubmit()">Update</button>
       </form>

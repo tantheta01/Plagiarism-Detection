@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { CommunicationService } from '../../communication.service';
-
+// import { Router }
+import { AuthGuard } from '../../auth/auth.guard';
 
 
 @Component({
@@ -19,26 +20,25 @@ export class LogInComponent implements OnInit {
   })
   
 
-  constructor(private fb: FormBuilder, public commus : CommunicationService) { }
+  constructor(private fb: FormBuilder, public commus : CommunicationService, private router : Router, private guard : AuthGuard) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
     if (this.userLoginForm.valid) {
-
+      // var unam = this.userLoginForm.controls['username'].value;
+      // var pass = this.userLoginForm.controls['password'].value;
       this.commus.login(this.userLoginForm.controls['username'].value, this.userLoginForm.controls['password'].value).subscribe({
         next : answer => {
-          this.commus.isLoggedin=true;
-          this.commus.token=answer['token']
-          this.commus.email=answer['email']
-          this.commus.username=answer['username']
-          this.commus.password=this.userLoginForm.controls['password'].value;
-          window.alert("Logged in successfully")
-
+          // localStorage.setItem('username' , unam);
+          // localStorage.setItem('password', pass);
+          localStorage.setItem('bearer', answer['bearer']);
+          localStorage.setItem('refresh', answer['refresh']);
+          this.router.navigate(['/mainpage'])
         },
         error : error => {
-          window.alert(JSON.stringify(error))
+          window.alert('Username or password incorrect')
         }
 
       })

@@ -7,6 +7,7 @@ import {
   HttpParams
 } from "@angular/common/http";
 import { catchError, map } from "rxjs/operators";
+import { Router } from '@angular/router';
 
 
 const httpOptions = {
@@ -25,8 +26,6 @@ const passchange : string = 'http://localhost:8000/api/password/';
 })
 
 
-
-
 export class CommunicationService {
 
 	isLoggedin: boolean = false;
@@ -36,8 +35,7 @@ export class CommunicationService {
 	token : string = '';
 
 
-
-  constructor(private httpClient : HttpClient) {  }
+  constructor(private httpClient : HttpClient, private router: Router) {  }
 
   	signUp(uname: string, passwd : string, email: string): Observable<any> {
   		
@@ -49,7 +47,7 @@ export class CommunicationService {
 		} , httpOptions);
 	}
 
-	login(uname : string, passwd : string): Observable<any>{
+	login(uname : string, passwd : string): Observable<any> {
 		
 		return this.httpClient.post(loginurl, {
 			'username' : uname,
@@ -57,12 +55,20 @@ export class CommunicationService {
 		}, httpOptions);
 	}
 
-	changepass(newpass : string): Observable<any>{
+	changepass(newpass : string): Observable<any> {
+		
 		if (this.isLoggedin) {
 			const httpOptions_ = { headers: new HttpHeaders({ "Content-Type" : "multipart/form-data", "Authorization" : "Token " + this.token })}
-
 			return this.httpClient.post(passchange, {'newpassword' : newpass}, httpOptions_)
 		}
+	}
+
+	navigateToMain() {
+		this.router.navigate(['/mainpage']);
+	}
+
+	navigateToLogin() {
+		this.router.navigate(['/login']);
 	}
 	
 }

@@ -4,12 +4,13 @@ import { RouterLink } from '@angular/router';
 import { CommunicationService } from '../../communication.service';
 
 
-
 @Component({
   selector: 'app-log-in',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
+
 export class LogInComponent implements OnInit {
 
   userLoginForm = new FormGroup({
@@ -25,6 +26,7 @@ export class LogInComponent implements OnInit {
   }
 
   onSubmit() {
+
     if (this.userLoginForm.valid) {
 
       this.commus.login(this.userLoginForm.controls['username'].value, this.userLoginForm.controls['password'].value).subscribe({
@@ -34,18 +36,18 @@ export class LogInComponent implements OnInit {
           this.commus.email=answer['email']
           this.commus.username=answer['username']
           this.commus.password=this.userLoginForm.controls['password'].value;
-          window.alert("Logged in successfully")
-
+          window.alert("Login Successful");
+          this.commus.navigateToMain()
         },
         error : error => {
           window.alert(JSON.stringify(error))
         }
-
       })
 
-
     }
+
     else window.alert("Submission failed!");
+  
   }
 
 }

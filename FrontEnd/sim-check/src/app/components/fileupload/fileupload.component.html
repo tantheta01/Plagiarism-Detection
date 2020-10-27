@@ -9,7 +9,10 @@
   </p>
 </div>
 <button mat-button color="warn" (click)="onClick()" type="button">
-  <mat-icon>file_upload</mat-icon>
+  <!-- <mat-icon>file_upload</mat-icon> -->
+  <ul *ngFor="">
+          <mat-icon>file_upload</mat-icon>
+  </ul>
   {{ text }}
 </button>
 <br />

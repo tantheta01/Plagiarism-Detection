@@ -16,7 +16,7 @@ import {
   HttpClientModule,
 
 } from "@angular/common/http";
-
+import { MaterialFileUploadComponent } from './components/material-file-upload/material-file-upload.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +26,7 @@ import {
     GetstartedComponent,
     MainpageComponent,
     EditprofileComponent,
+    MaterialFileUploadComponent,
 
   ],
   

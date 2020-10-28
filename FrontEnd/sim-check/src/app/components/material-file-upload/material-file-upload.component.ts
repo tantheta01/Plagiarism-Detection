@@ -17,9 +17,9 @@ import { Subscription, of } from 'rxjs';
 import { catchError, last, map, tap } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-fileupload',
-  templateUrl: './fileupload.component.html',
-  styleUrls: ['./fileupload.component.css'],
+  selector: 'app-material-file-upload',
+  templateUrl: './material-file-upload.component.html',
+  styleUrls: ['./material-file-upload.component.css'],
   animations: [
     trigger('fadeInOut', [
       state('in', style({ opacity: 100 })),
@@ -27,8 +27,7 @@ import { catchError, last, map, tap } from 'rxjs/operators';
     ])
   ]
 })
-
-export class FileUploadComponent implements OnInit {
+export class MaterialFileUploadComponent implements OnInit {
   /** Link text */
   @Input() text = 'Upload';
   /** Name used in form which will be sent in HTTP request. */
@@ -44,9 +43,9 @@ export class FileUploadComponent implements OnInit {
 
   files: Array<FileUploadModel> = [];
 
-  constructor(private _http: HttpClient) { }
+  constructor(public _http: HttpClient) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   onClick() {
     const fileUpload = document.getElementById(
@@ -83,7 +82,7 @@ export class FileUploadComponent implements OnInit {
     file.canRetry = false;
   }
 
-  private uploadFile(file: FileUploadModel) {
+  public uploadFile(file: FileUploadModel) {
     const fd = new FormData();
     fd.append(this.param, file.data);
 
@@ -104,7 +103,7 @@ export class FileUploadComponent implements OnInit {
               return event;
           }
         }),
-        tap(message => { }),
+        tap(message => {}),
         last(),
         catchError((error: HttpErrorResponse) => {
           file.inProgress = false;
@@ -120,7 +119,7 @@ export class FileUploadComponent implements OnInit {
       });
   }
 
-  private uploadFiles() {
+  public uploadFiles() {
     const fileUpload = document.getElementById(
       'fileUpload'
     ) as HTMLInputElement;
@@ -133,7 +132,7 @@ export class FileUploadComponent implements OnInit {
     });
   }
 
-  private removeFileFromArray(file: FileUploadModel) {
+  public removeFileFromArray(file: FileUploadModel) {
     const index = this.files.indexOf(file);
     if (index > -1) {
       this.files.splice(index, 1);

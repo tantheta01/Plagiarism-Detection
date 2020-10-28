@@ -7,6 +7,7 @@ import {
   HttpParams
 } from "@angular/common/http";
 import { catchError, map } from "rxjs/operators";
+import { Router } from '@angular/router';
 
 
 
@@ -26,8 +27,6 @@ const passchange : string = 'http://localhost:8000/api/password/';
 })
 
 
-
-
 export class CommunicationService {
 
 	isLoggedin: boolean = false;
@@ -37,8 +36,7 @@ export class CommunicationService {
 	// token : string = '';
 
 
-
-  constructor(private httpClient : HttpClient) {  }
+  constructor(private httpClient : HttpClient, private router: Router) {  }
 
   	signUp(uname: string, passwd : string, email: string): Observable<any> {
   		
@@ -50,7 +48,7 @@ export class CommunicationService {
 		} , httpOptions);
 	}
 
-	login(uname : string, passwd : string): Observable<any>{
+	login(uname : string, passwd : string): Observable<any> {
 		
 		return this.httpClient.post(loginurl, {
 			'username' : uname,
@@ -58,12 +56,26 @@ export class CommunicationService {
 		}, httpOptions);
 	}
 
-	changepass(oldpass : string, newpass : string): Observable<any>{
-		if (this.isLoggedin) {
-			const httpOptions_ = { headers: new HttpHeaders({ "Content-Type" : "multipart/form-data", "Authorization" : "Token fkgfd"})}
 
-			return this.httpClient.put(passchange, {'old_password' : oldpass, 'new_password' : newpass})
+	changepass(oldpass : string, newpass : string): Observable<any>{
+		if (sessionStorage['token'] != null) {
+			const httpOptions_ = { headers: new HttpHeaders({ "Content-Type" : "application/json", "Authorization" : "Token " + sessionStorage['token']})}
+
+			return this.httpClient.put(passchange, {'old_password' : oldpass, 'new_password' : newpass}, httpOptions_)
 		}
 	}
-	
+
+	navigateToMain() {
+		this.router.navigate(['/mainpage']);
+	}
+
+	navigateToLogin() {
+		this.router.navigate(['/login']);
+	}
+	uploadFile(body: any): Observable<any>{
+		console.log(JSON.stringify(body));
+		var httpoptions = { headers : new HttpHeaders({"Content-Type" : "multipart/form-data", "Authorization" : "Token " + sessionStorage['token']}) };
+		console.log(JSON.stringify(httpoptions))
+		return this.httpClient.post("http://localhost:8000/api/files/upload/ans.csv", body, httpoptions);
+	}
 }

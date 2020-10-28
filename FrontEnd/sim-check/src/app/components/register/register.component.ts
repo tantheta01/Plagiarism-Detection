@@ -11,7 +11,6 @@ import { CommunicationService } from '../../communication.service';
 
 export class RegisterComponent implements OnInit {
 
-  // Roles: any = ['Instructor', 'Student'];
 
   userSignupForm = new FormGroup({
     name : new FormControl('', Validators.required),
@@ -22,13 +21,9 @@ export class RegisterComponent implements OnInit {
   })
   
   
-
   constructor(private fb: FormBuilder, public cservice : CommunicationService) { }
 
   ngOnInit() {
-
-
-
   }
 
   onSubmit() {
@@ -50,7 +45,10 @@ export class RegisterComponent implements OnInit {
         this.cservice.signUp(this.userSignupForm.controls['username'].value, this.userSignupForm.controls['password'].value, this.userSignupForm.controls['email'].value).subscribe(
         {
           next : answer => {
-            window.alert("User is signed up")
+            window.alert("Registration Successful")
+            this.cservice.navigateToLogin()
+            JSON.stringify(answer)
+
           },
           error: error => {
             window.alert("Sorry there was a problem")

@@ -23,12 +23,21 @@ export class EditprofileComponent implements OnInit {
 
   onSubmit() {
     if (this.userDetails.valid) {
+      console.log(sessionStorage['token']);
       this.cservice.changepass(this.userDetails.controls['old_password'].value, this.userDetails.controls['new_password'].value).subscribe({
         next : answer => {
-          window.alert(JSON.stringify(answer));
+          if(answer.status =="success"){
+            window.alert("password changed successfully");
+            this.cservice.navigateToMain();
+          }
+          else{
+            window.alert("oops there was an error please try again");
+            this.cservice.navigateToMain();
+          }
         },
         error: error => {
-          window.alert(JSON.stringify(error));
+          window.alert("oops there was an error. please try again");
+          this.cservice.navigateToMain();
         }
       })
     }

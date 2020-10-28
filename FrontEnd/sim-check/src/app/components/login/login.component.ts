@@ -9,6 +9,8 @@ import { CommunicationService } from '../../communication.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
+
 export class LogInComponent implements OnInit {
 
   userLoginForm = new FormGroup({
@@ -24,6 +26,7 @@ export class LogInComponent implements OnInit {
   }
 
   onSubmit() {
+
     if (this.userLoginForm.valid) {
       // var unam = this.userLoginForm.controls['username'].value;
       // var pass = this.userLoginForm.controls['password'].value;
@@ -40,12 +43,12 @@ export class LogInComponent implements OnInit {
         error : error => {
           window.alert('Username or password incorrect')
         }
-
       })
 
-
     }
+
     else window.alert("Submission failed!");
+  
   }
 
 }

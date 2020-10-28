@@ -54,14 +54,17 @@ class UserLogin(APIView):
 
 class FileUploadView(APIView):
     """The Upload File view should be availale to users only."""
-    parser_classes = (MultiPartParser, FormParser)
+    parser_classes = (MultiPartParser)
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated, )
 
     def post(self, request, filename="file.jpg", format=None):
         print("Hello")
+        print(request.data.keys())
         file = request.data.get('file', None)
+
         if file:
+            print("filelala")
             print("TATa")
             user = request.user
             uname = str(user.username)
@@ -101,6 +104,7 @@ class PassChangeView(generics.UpdateAPIView):
         """
         serializer_class = ChangePasswordSerializer
         model = User
+        authentication_classes = (TokenAuthentication,)
         permission_classes = (IsAuthenticated,)
 
         def get_object(self, queryset=None):

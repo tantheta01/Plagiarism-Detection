@@ -31,8 +31,11 @@
       <label>
         <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
       </label>
-      <p class="spacing"></p>
+      <div class="container" style="text-align: right;">
+        <span><a routerLink="/login">Already have an account?</a></span>
+      </div>
       <p style="font-size: x-small; text-align: center;">By creating an account you agree to our <a routerLink="/register" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
       <button mat-stroked-button color="accent" class="btn-block" routerLink="/getstarted" (click)="onSubmit()">Register</button>
     </form>
   </mat-card>

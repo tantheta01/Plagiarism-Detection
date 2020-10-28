@@ -10,11 +10,11 @@ import { CommunicationService } from '../../communication.service';
 export class EditprofileComponent implements OnInit {
 
   userDetails = new FormGroup({
-		name : new FormControl('', [Validators.required]),
-		email : new FormControl('', [Validators.required]),
-		username : new FormControl('', [Validators.required]),
-    password : new FormControl('', [Validators.required]),
-    gender : new FormControl('', [Validators.required]),
+		name : new FormControl(''),
+		email : new FormControl(''),
+		username : new FormControl(''),
+    old_password : new FormControl('', [Validators.required]),
+    new_password : new FormControl('', [Validators.required]),
   })
 
   constructor(public cservice : CommunicationService) { }
@@ -24,7 +24,7 @@ export class EditprofileComponent implements OnInit {
 
   onSubmit() {
     if (this.userDetails.valid) {
-      this.cservice.changepass(this.userDetails.controls['password'].value).subscribe({
+      this.cservice.changepass(this.userDetails.controls['new_password'].value).subscribe({
         next : answer => {
           window.alert(JSON.stringify(answer));
         },

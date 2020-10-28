@@ -11,21 +11,10 @@ import {
   HttpResponse,
   HttpRequest,
   HttpEventType,
-  HttpErrorResponse,
-  HttpHeaders,
-
+  HttpErrorResponse
 } from '@angular/common/http';
-import { MatIcon } from '@angular/material/icon';
-import { MatButton } from '@angular/material/button';
 import { Subscription, of } from 'rxjs';
 import { catchError, last, map, tap } from 'rxjs/operators';
-
-import { CommunicationService } from '../../communication.service';
-
-const httpOptions = {
-  headers: new HttpHeaders({ "Content-Type": "multipart/form-data", "Authorization" : "Token " + sessionStorage['token']}), 
-};
-
 
 @Component({
   selector: 'app-fileupload',
@@ -39,16 +28,15 @@ const httpOptions = {
   ]
 })
 
-
 export class FileUploadComponent implements OnInit {
   /** Link text */
   @Input() text = 'Upload';
   /** Name used in form which will be sent in HTTP request. */
   @Input() param = 'file';
   /** Target URL for file uploading. */
-  @Input() target = 'http://localhost:8000/api/files/upload/ans.csv';
+  @Input() target = 'https://file.io';
   /** File extension that accepted, same as 'accept' of <input type="file" />. By the default, it's set to 'image/*'. */
-  @Input() accept = 'text/*';
+  @Input() accept = 'image/*';
   /** Allow you to configure drag and drop area shown or not. */
   @Input() ddarea = false;
   /** Allow you to add handler after its completion. Bubble up response text from remote. */
@@ -56,7 +44,7 @@ export class FileUploadComponent implements OnInit {
 
   files: Array<FileUploadModel> = [];
 
-  constructor(private _http: HttpClient, public comms : CommunicationService) { }
+  constructor(private _http: HttpClient) { }
 
   ngOnInit() { }
 
@@ -96,49 +84,40 @@ export class FileUploadComponent implements OnInit {
   }
 
   private uploadFile(file: FileUploadModel) {
-    var fd = new FormData();
-    console.log(file.data)
-    fd.append('file', file.data);
-    const httpOptions = { headers : new HttpHeaders({"Content-Type" : "multipart/form-data", "Authorization" : "Token " + sessionStorage['token']}) };
-    this._http.post("http://localhost:8000/api/files/upload/new.txt", fd, httpOptions);
+    const fd = new FormData();
+    fd.append(this.param, file.data);
 
-    // const req = new HttpRequest('POST', this.target, fd, httpOptions);
+    const req = new HttpRequest('POST', this.target, fd, {
+      reportProgress: true
+    });
 
-    // file.inProgress = true;
-    // file.sub = this._http
-    //   .request(req)
-    //   .pipe(
-    //     map(event => {
-    //       switch (event.type) {
-    //         case HttpEventType.UploadProgress:
-    //           file.progress = Math.round((event.loaded * 100) / event.total);
-    //           break;
-    //         case HttpEventType.Response:
-    //           return event;
-    //       }
-    //     }),
-    //     tap(message => { }),
-    //     last(),
-    //     catchError((error: HttpErrorResponse) => {
-    //       file.inProgress = false;
-    //       file.canRetry = true;
-    //       return of(`${file.data.name} upload failed.`);
-    //     })
-    //   )
-    //   .subscribe((event: any) => {
-    //     if (typeof event === 'object') {
-    //       this.removeFileFromArray(file);
-    //       this.complete.emit(event.body);
-    //     }
-    //   });
-    // this.comms.uploadFile(fd).subscribe({
-    //   next: answer => {
-    //     window.alert(JSON.stringify(answer));
-    //   },
-    //   error: error => {
-    //     window.alert(JSON.stringify(error));
-    //   }
-    // })
+    file.inProgress = true;
+    file.sub = this._http
+      .request(req)
+      .pipe(
+        map(event => {
+          switch (event.type) {
+            case HttpEventType.UploadProgress:
+              file.progress = Math.round((event.loaded * 100) / event.total);
+              break;
+            case HttpEventType.Response:
+              return event;
+          }
+        }),
+        tap(message => { }),
+        last(),
+        catchError((error: HttpErrorResponse) => {
+          file.inProgress = false;
+          file.canRetry = true;
+          return of(`${file.data.name} upload failed.`);
+        })
+      )
+      .subscribe((event: any) => {
+        if (typeof event === 'object') {
+          this.removeFileFromArray(file);
+          this.complete.emit(event.body);
+        }
+      });
   }
 
   private uploadFiles() {

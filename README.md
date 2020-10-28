@@ -1,25 +1,7 @@
 # Plagiarism-Detection
 A simple client to detect source code plagiarism detection using various techniques
 
-<<<<<<< HEAD
 
-## Core Logic
-
-
-## Frontend : (Picture daal denge front end ki)
-The front end has been implemented in Angular and allows 	
-
-
-## Backend
-
-
-
-
-
-
-
-## The Big Picture
-=======
 ## Project implemented so far
 ### Frontend
 
@@ -29,17 +11,16 @@ All the pages apart from the “View Result” page have been implemented in the
 #image to be added
 
 ### Backend
-To be added
+Endpoints  : 
+- Login -> returns the username and the Authentication Token for the user
+- SignUp -> Returns the username and email of the user
+- ChangePassword -> Takes the old password, new password of the user (Authentication is done using Token). If the old password matches the user's password, the password is updated
+- File Upload -> Takes the File to be uploaded and the token for getting the user and authentication. Every File is linked to a user object and to facilitate organization and showing previous results(something we plan to do) the file is saved at /media/username/filename. The response is the contents of the same file at the moment and shall be changed to the results once we implement core logic. 
+ 
 
 ## Technologies and Frameworks used
 The frontend is implemented in Angular and backend with Django framework and Django REST framework. 
 
-### API Used
-Four APIs have been used:
-- Login
-- Register/Sign up
-- File Upload
-- Change password
 
 ## Project Setup
 
@@ -66,21 +47,25 @@ Four APIs have been used:
 ## Project Plan Ahead
 We would majorily be working to implement the core logic in the next half of the evaluation and would be following these steps in a coherent manner. 
 
-We’ll start off with text preprocessing by removing the blank lines, comments, variable tokenization, etc.
-- Divide the document into n-grams and hash these n-grams.
+We’ll start off with text preprocessing by removing the blank lines, variable tokenization.
+- Divide the document into n-grams and hash the n-grams.
 - Make windows of certain length over the hash values. In each window select the minimum hash value (There are several subtle variations. One has been stated here). If there is more than one hash with the minimum value, select the rightmost occurrence. 
 - Now save all selected hashes as the signature vector for the document.
 - Normalize the signature vectors after padding and measure their cosine similarity pairwise. 
+- We are studying about tSNE and PCA for visualization of results
+t-Distributed Stochastic Neighbor Embedding (t-SNE) is an unsupervised, non-linear technique primarily used for data exploration and visualizing high-dimensional data. In simpler terms, t-SNE gives you a feel or intuition of how the data is arranged in a high-dimensional space. 
 
 ## The Bigger Picture
 We plan to implement the following bonus features
 ### Language Specific Functionality for C++
 - Making our tool more robust to c++
-- Will try to make functions inline (except recursive ones).
-- Count the number of simple blocks, number of control edges, number of critical control edges, etc.
-
+#### Approach
+- Inline all the functions(except the recursive ones) during preprocessing
+- Tokenize all controls blocks (All loops be changed to token LOOP and all if else blocks to be changed with CONDITION). 
+- The file signature is a vector - number of control blocks, number of simple blocks, number of simple blocks with one successor, number of simple blocks with two successors, etc. 
+- Normalization
+- Comparison
 ### Stub code
 Dealing with the stub-code and “removing” its influence over the signature vector.
 
 
->>>>>>> f8702cf97ebf435a779800777ee074d5d953da66

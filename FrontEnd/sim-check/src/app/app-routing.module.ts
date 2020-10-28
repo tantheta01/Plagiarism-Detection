@@ -7,13 +7,12 @@ import { MainpageComponent } from './components/mainpage/mainpage.component';
 import { EditprofileComponent } from './components/editprofile/editprofile.component';
 import { FileUploadComponent } from './components/fileupload/fileupload.component';
 
-
-import { AuthGuard } from './auth/auth.guard';
+import { AuthGuard } from './auth-guard.service';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'getstarted' },
   { path: 'getstarted', component: GetstartedComponent },
-  { path: 'login', component: LogInComponent },
+  { path: 'login', component: LogInComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'mainpage', component: MainpageComponent, canActivate : [AuthGuard] },
   { path: 'editprofile', component: EditprofileComponent, canActivate : [AuthGuard] },

@@ -18,6 +18,7 @@ import { MatButton } from '@angular/material/button';
 import { Subscription, of } from 'rxjs';
 import { catchError, last, map, tap } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-fileupload',
   templateUrl: './fileupload.component.html',
@@ -36,7 +37,7 @@ export class FileUploadComponent implements OnInit {
   /** Name used in form which will be sent in HTTP request. */
   @Input() param = 'file';
   /** Target URL for file uploading. */
-  @Input() target = 'https://file.io';
+  @Input() target = 'http://localhost:8000/api/files/upload/';
   /** File extension that accepted, same as 'accept' of <input type="file" />. By the default, it's set to 'image/*'. */
   @Input() accept = 'image/*';
   /** Allow you to configure drag and drop area shown or not. */
@@ -142,7 +143,7 @@ export class FileUploadComponent implements OnInit {
     }
   }
 
-  private dropHandler(ev: DragEvent) {
+  public dropHandler(ev: DragEvent) {
     // console.log('File(s) dropped');
 
     // Prevent default behavior (Prevent file from being opened)
@@ -185,7 +186,7 @@ export class FileUploadComponent implements OnInit {
     this.uploadFiles();
   }
 
-  private dragOverHandler(ev: DragEvent) {
+  public dragOverHandler(ev: DragEvent) {
     // console.log('File(s) in drop zone');
 
     // Prevent default behavior (Prevent file from being opened)

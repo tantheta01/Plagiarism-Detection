@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from './angular-material.module';
+import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { AppComponent } from './app.component';
@@ -30,6 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
     EditprofileComponent,
 
   ],
+  
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -40,9 +42,9 @@ import { MatButtonModule } from '@angular/material/button';
     HttpClientModule,
     MatIconModule,
     MatButtonModule,
-
-
+    CommonModule,
   ],
+
   providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

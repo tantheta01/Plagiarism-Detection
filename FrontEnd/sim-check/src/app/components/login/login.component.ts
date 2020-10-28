@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { CommunicationService } from '../../communication.service';
-// import { Router }
-import { AuthGuard } from '../../auth/auth.guard';
 
 
 @Component({
@@ -20,7 +18,7 @@ export class LogInComponent implements OnInit {
   })
   
 
-  constructor(private fb: FormBuilder, public commus : CommunicationService, private router : Router, private guard : AuthGuard) { }
+  constructor(private fb: FormBuilder, public commus : CommunicationService, private router : Router) { }
 
   ngOnInit(): void {
   }
@@ -33,8 +31,10 @@ export class LogInComponent implements OnInit {
         next : answer => {
           // localStorage.setItem('username' , unam);
           // localStorage.setItem('password', pass);
-          localStorage.setItem('bearer', answer['bearer']);
-          localStorage.setItem('refresh', answer['refresh']);
+          sessionStorage.setItem('username', answer['username']);
+          sessionStorage.setItem('token', answer['token']);
+          window.alert(sessionStorage['token']);
+
           this.router.navigate(['/mainpage'])
         },
         error : error => {

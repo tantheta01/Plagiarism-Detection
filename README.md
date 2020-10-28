@@ -8,7 +8,7 @@ A simple client to detect source code plagiarism detection using various techniq
 The frontend is implemented in Angular, Javascript library. On loading the application directs to a Get Started page which has a small description about the project and a link to the login page. The login page asks the user for the username and password. If the user doesn’t have an account already they can be directed to the registration page. After a successful login, the user is directed to the mainpage which has all the features in a single dashboard. It displays the user profile and has a description for (how to use the webapp) like a link. It has options for file uploading which directs the user to a file upload page where the user can upload the file(s) to be checked and then view the result in the form of graphs and visualization. It also has an option for the user to view previous results for the file(s) that have been checked before. The person can also edit the profile using the “Edit profile” option on the mainpage.
 All the pages apart from the “View Result” page have been implemented in the current version.
 
-![](./images/image.png)
+![](./image.png)
 
 ### Backend
 Endpoints  : 

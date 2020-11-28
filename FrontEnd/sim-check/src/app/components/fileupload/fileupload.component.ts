@@ -1,202 +1,62 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from '@angular/animations';
-import {
-  HttpClient,
-  HttpResponse,
-  HttpRequest,
-  HttpEventType,
-  HttpErrorResponse
-} from '@angular/common/http';
-import { Subscription, of } from 'rxjs';
-import { catchError, last, map, tap } from 'rxjs/operators';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { CommunicationService } from 'src/app/communication.service';
 
 @Component({
   selector: 'app-fileupload',
   templateUrl: './fileupload.component.html',
   styleUrls: ['./fileupload.component.css'],
-  animations: [
-    trigger('fadeInOut', [
-      state('in', style({ opacity: 100 })),
-      transition('* => void', [animate(300, style({ opacity: 0 }))])
-    ])
-  ]
 })
 
 export class FileUploadComponent implements OnInit {
-  /** Link text */
-  @Input() text = 'Upload';
-  /** Name used in form which will be sent in HTTP request. */
-  @Input() param = 'file';
-  /** Target URL for file uploading. */
-  @Input() target = 'https://file.io';
-  /** File extension that accepted, same as 'accept' of <input type="file" />. By the default, it's set to 'image/*'. */
-  @Input() accept = 'image/*';
-  /** Allow you to configure drag and drop area shown or not. */
-  @Input() ddarea = false;
-  /** Allow you to add handler after its completion. Bubble up response text from remote. */
-  @Output() complete = new EventEmitter<string>();
+  
+  formGroup = this.fb.group({
+    file: [null]
+  });
+  
 
-  files: Array<FileUploadModel> = [];
-
-  constructor(private _http: HttpClient) { }
+  constructor(private commus: CommunicationService, private fb: FormBuilder, public cd : ChangeDetectorRef) { }
 
   ngOnInit() { }
 
-  onClick() {
-    const fileUpload = document.getElementById(
-      'fileUpload'
-    ) as HTMLInputElement;
-    fileUpload.onchange = () => {
-      for (let index = 0; index < fileUpload.files.length; index++) {
-        const file = fileUpload.files[index];
-        this.files.push({
-          data: file,
-          state: 'in',
-          inProgress: false,
-          progress: 0,
-          canRetry: false,
-          canCancel: true
-        });
-      }
-      this.uploadFiles();
-    };
-    fileUpload.click();
-  }
-
-  cancelFile(file: FileUploadModel) {
-    if (file) {
-      if (file.sub) {
-        file.sub.unsubscribe();
-      }
-      this.removeFileFromArray(file);
-    }
-  }
-
-  retryFile(file: FileUploadModel) {
-    this.uploadFile(file);
-    file.canRetry = false;
-  }
-
-  private uploadFile(file: FileUploadModel) {
-    const fd = new FormData();
-    fd.append(this.param, file.data);
-
-    const req = new HttpRequest('POST', this.target, fd, {
-      reportProgress: true
+  onFileChange(event) {
+  let reader = new FileReader();
+  console.log("ATEEE")
+ 
+  if(event.target.files && event.target.files.length) {
+    const [file] = event.target.files;
+    // reader.readAsDataURL(file);
+    this.formGroup.patchValue({
+      file: file
     });
-
-    file.inProgress = true;
-    file.sub = this._http
-      .request(req)
-      .pipe(
-        map(event => {
-          switch (event.type) {
-            case HttpEventType.UploadProgress:
-              file.progress = Math.round((event.loaded * 100) / event.total);
-              break;
-            case HttpEventType.Response:
-              return event;
-          }
-        }),
-        tap(message => { }),
-        last(),
-        catchError((error: HttpErrorResponse) => {
-          file.inProgress = false;
-          file.canRetry = true;
-          return of(`${file.data.name} upload failed.`);
-        })
-      )
-      .subscribe((event: any) => {
-        if (typeof event === 'object') {
-          this.removeFileFromArray(file);
-          this.complete.emit(event.body);
-        }
-      });
-  }
-
-  private uploadFiles() {
-    const fileUpload = document.getElementById(
-      'fileUpload'
-    ) as HTMLInputElement;
-    fileUpload.value = '';
-
-    this.files.forEach(file => {
-      if (!file.inProgress) {
-        this.uploadFile(file);
-      }
-    });
-  }
-
-  private removeFileFromArray(file: FileUploadModel) {
-    const index = this.files.indexOf(file);
-    if (index > -1) {
-      this.files.splice(index, 1);
-    }
-  }
-
-  public dropHandler(ev: DragEvent) {
-    // console.log('File(s) dropped');
-
-    // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
-
-    if (ev.dataTransfer.items) {
-      // Use DataTransferItemList interface to access the file(s)
-      for (let i = 0; i < ev.dataTransfer.items.length; i++) {
-        // If dropped items aren't files, reject them
-        if (ev.dataTransfer.items[i].kind === 'file') {
-          const file = ev.dataTransfer.items[i].getAsFile();
-          this.files.push({
-            data: file,
-            state: 'in',
-            inProgress: false,
-            progress: 0,
-            canRetry: false,
-            canCancel: true
-          });
-          // console.log('... file[' + i + '].name = ' + file.name);
-        }
-      }
-    } else {
-      // Use DataTransfer interface to access the file(s)
-      for (let i = 0; i < ev.dataTransfer.files.length; i++) {
-        this.files.push({
-          data: ev.dataTransfer.files[i],
-          state: 'in',
-          inProgress: false,
-          progress: 0,
-          canRetry: false,
-          canCancel: true
-        });
-        // console.log(
-        //   '... file[' + i + '].name = ' + ev.dataTransfer.files[i].name
-        // );
-      }
-    }
-
-    this.uploadFiles();
-  }
-
-  public dragOverHandler(ev: DragEvent) {
-    // console.log('File(s) in drop zone');
-
-    // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
+    // reader.onload = () => {
+    //   this.formGroup.patchValue({
+    //     file: reader.result
+    //   });
+      
+    //   // need to run CD since file load runs outside of zone
+    //   this.cd.markForCheck();
+    // };
   }
 }
 
-export class FileUploadModel {
-  data: File;
-  state: string;
-  inProgress: boolean;
-  progress: number;
-  canRetry: boolean;
-  canCancel: boolean;
-  sub?: Subscription;
+  onSubmit() {
+    // console.log(this.formGroup.controls['file'].value)
+    // var httpOptions = {
+    //   headers: new HttpHeaders({ 
+    //     "Content-Type": "multipart/form-data",
+    //     "Authorization": "Token " + this.commus.token
+    //   }), 
+    // };
+    // this._http.post('http://localhost:8000/api/users/', {'test.cpp': this.fileUpload.controls['file'].value})
+    this.commus.fileUpload(this.formGroup.controls['file'].value).subscribe({
+      next: answer => {
+        console.log(JSON.stringify(answer))
+      },
+      error: error => {
+        console.log(JSON.stringify(error))
+      }
+    })
+    // console.log(JSON.stringify(this.fileUpload.controls['file'].value))
+  }
 }

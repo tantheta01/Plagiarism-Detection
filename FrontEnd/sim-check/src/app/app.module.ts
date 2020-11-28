@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { AppComponent } from './app.component';
 import { LogInComponent } from './components/login/login.component';
+import { FileUploadComponent } from './components/fileupload/fileupload.component';
 import { RegisterComponent } from './components/register/register.component';
 import { GetstartedComponent } from './components/getstarted/getstarted.component';
 import { MainpageComponent } from './components/mainpage/mainpage.component';
@@ -19,6 +20,7 @@ import {
 
 import {MatIconModule} from '@angular/material/icon'; 
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -29,6 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
     GetstartedComponent,
     MainpageComponent,
     EditprofileComponent,
+    FileUploadComponent
 
   ],
   
@@ -43,6 +46,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatButtonModule,
     CommonModule,
+    MatCardModule
   ],
 
   providers: [],

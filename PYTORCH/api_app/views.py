@@ -52,19 +52,18 @@ class UserLogin(APIView):
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 
+
+
 class FileUploadView(APIView):
     """The Upload File view should be availale to users only."""
-    parser_classes = (MultiPartParser)
+    parser_classes = (MultiPartParser, FormParser)
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated, )
 
     def post(self, request, filename="file.jpg", format=None):
         print("Hello")
-        print(request.data.keys())
         file = request.data.get('file', None)
-
         if file:
-            print("filelala")
             print("TATa")
             user = request.user
             uname = str(user.username)

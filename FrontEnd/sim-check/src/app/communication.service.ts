@@ -72,10 +72,19 @@ export class CommunicationService {
 	navigateToLogin() {
 		this.router.navigate(['/login']);
 	}
-	uploadFile(body: any): Observable<any>{
-		console.log(JSON.stringify(body));
-		var httpoptions = { headers : new HttpHeaders({"Content-Type" : "multipart/form-data", "Authorization" : "Token " + sessionStorage['token']}) };
-		console.log(JSON.stringify(httpoptions))
-		return this.httpClient.post("http://localhost:8000/api/files/upload/ans.csv", body, httpoptions);
+	fileUpload(file: any): Observable<any> {
+		var httpOptions1 = {
+			headers: new HttpHeaders({ 
+			  // "Content-Type": 'multipart/form-data',
+			  "Authorization": "Token " + sessionStorage['token'],
+			}), 
+		  };
+		const formData: FormData = new FormData();
+		formData.append('file', file);
+		return this.httpClient
+		  .post('http://localhost:8000/api/files/upload/test.cpp', formData, httpOptions1)
+		//   .map(() => { return true; })
+		//   .catch((e) => this.handleError(e));
 	}
+
 }

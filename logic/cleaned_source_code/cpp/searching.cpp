@@ -1,0 +1,1 @@
+#include <iostream>#include <vector>#include "searching.h"using namespace std;bool search_custom(vector<int> array, int num,int startidx, int endidx)// input guaranteed to be in sorted orderbool  0;int max(0, startidx), min(endidx, array.size()-1);while(low<=high){int (low+high)/2;if(array[mid]<num) mid+1;else if(array[mid]>num) mid-1;else return 1;return 0;

@@ -1,0 +1,1 @@
+#include <iostream>using namespace  std;int main(int argc, char const *argv[])long long 1, 1;int 0;while(a < 1e18){long long a;a += b;temp;power+=1;cout<<power<<endl;return 0;

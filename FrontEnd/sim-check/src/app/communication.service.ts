@@ -82,7 +82,7 @@ export class CommunicationService {
 		const formData: FormData = new FormData();
 		formData.append('file', file);
 		return this.httpClient
-		  .post('http://localhost:8000/api/files/upload/test.cpp', formData, httpOptions1)
+		  .post('http://localhost:8000/api/files/upload/' + file.name, formData, httpOptions1)
 		//   .map(() => { return true; })
 		//   .catch((e) => this.handleError(e));
 	}

@@ -29,6 +29,7 @@ export class FileUploadComponent implements OnInit {
     this.formGroup.patchValue({
       file: file
     });
+    console.log(JSON.stringify(this.formGroup.controls))
     // reader.onload = () => {
     //   this.formGroup.patchValue({
     //     file: reader.result

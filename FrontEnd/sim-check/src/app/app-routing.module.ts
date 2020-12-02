@@ -6,7 +6,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { MainpageComponent } from './components/mainpage/mainpage.component';
 import { EditprofileComponent } from './components/editprofile/editprofile.component';
 import { FileUploadComponent } from './components/fileupload/fileupload.component';
-
+import { OutputPageComponent } from './output-page/output-page.component';
 import { AuthGuard } from './auth-guard.service';
 
 const routes: Routes = [
@@ -16,7 +16,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'mainpage', component: MainpageComponent, canActivate : [AuthGuard] },
   { path: 'editprofile', component: EditprofileComponent, canActivate : [AuthGuard] },
-  { path: 'fileupload', component: FileUploadComponent, canActivate : [AuthGuard] }
+  { path: 'fileupload', component: FileUploadComponent, canActivate : [AuthGuard] },
+  { path: 'outp', component: OutputPageComponent},
 ];
 
 @NgModule({

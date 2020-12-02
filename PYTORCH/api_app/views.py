@@ -30,7 +30,12 @@ from django.shortcuts import render, redirect
 
 import os
 import time
+import sys
+sys.path.append('moss_winnowing')
 
+
+# Importing the main logic functions
+from driver import *
 
 
 
@@ -60,7 +65,7 @@ class FileUploadView(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated, )
 
-    def post(self, request, filename="file.jpg", format=None):
+    def post(self, request, filename, format=None):
         print("Hello")
         file = request.data.get('file', None)
         if file:
@@ -79,10 +84,13 @@ class FileUploadView(APIView):
             
             uploadFile = UploadFile(path=path, user=user)
             uploadFile.save()
+            
 
 
             file_path = "api_app/media/" + uname + "/" + filename
-            with open(file_path, 'r') as g:
+            extract_and_process(file_path)
+
+            with open("api_app/views.py", 'r') as g:
                 FilePointer = g.read()
 
             response = FileResponse(FilePointer,content_type='text/csv')

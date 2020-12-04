@@ -59,6 +59,7 @@ export class FileUploadComponent implements OnInit {
         
         sessionStorage.setItem('datta', JSON.stringify(answer.data));
         sessionStorage.setItem('names', answer.names);
+        sessionStorage.setItem("csvfile", answer.csv);
         console.log(sessionStorage['names']);
         // console.log(Object.keys(JSON.parse(sessionStorage['datta'])));
       },

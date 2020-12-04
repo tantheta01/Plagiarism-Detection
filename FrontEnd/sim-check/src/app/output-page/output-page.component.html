@@ -1,3 +1,4 @@
+
 <div>
   <div>
     <div class="chart-container float-right grow:hover" style="position: absolute;left: 1000px; top: 400px; height:40vh; width:40vw; border: 3px solid #cecece; ">
@@ -9,4 +10,44 @@
       </canvas>
     </div>
   </div>
+</div>
+
+<div style="padding: 100px; padding-left: 50px" >
+  <mat-form-field>
+    <mat-select name="firstFileName" [formControl]="firstFileControl" placeholder="First File">
+      <mat-option *ngFor="let name of fnames" [value]="name">{{name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <mat-form-field>
+    <mat-select name="secondFileName" [formControl]="secondFileControl" placeholder="Second File" >
+      <mat-option *ngFor="let name of fnames" [value]="name">{{name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+
+<div class="container" style="position: absolute; top: 140px; left: 50px; width: 20vw;height: 40vw; overflow-y: scroll; ">
+
+  <span *ngFor="let fd of firstCode[firstFileControl.value + ',' + secondFileControl.value]['first_file'];let i=index">
+    <pre><ng-template *ngIf="firstCode[pairname]['first_params'][i] then thenblock; else elseblock"></ng-template><ng-template #thenblock><mark>{{fd}}</mark></ng-template><ng-template #elseblock>{{fd}}</ng-template></pre>
+  </span>
+  
+</div>
+
+<div class="container" style="position: absolute; top: 140px; left: 500px; width: 20vw;height: 40vw; overflow-y: scroll; ">
+
+  <span *ngFor="let fd of firstCode[firstFileControl.value + ',' + secondFileControl.value]['second_file'];let i=index">
+    <pre><ng-template *ngIf="firstCode[pairname]['second_params'][i] then thenblock; else elseblock"></ng-template><ng-template #thenblock><mark>{{fd}}</mark></ng-template><ng-template #elseblock>{{fd}}</ng-template></pre>
+  </span>
+  
+</div>
+
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+<mat-card class="box">
+<mat-card-header>
+<mat-card-title>Download File</mat-card-title>
+</mat-card-header>
+<a [href]="fileUrl" download="file.csv">Click here to download</a>
+</mat-card>
 </div>

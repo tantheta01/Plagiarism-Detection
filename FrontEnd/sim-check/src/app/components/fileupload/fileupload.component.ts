@@ -29,7 +29,7 @@ export class FileUploadComponent implements OnInit {
     this.formGroup.patchValue({
       file: file
     });
-    console.log(JSON.stringify(this.formGroup.controls))
+    // console.log(JSON.stringify(this.formGroup.controls))
     // reader.onload = () => {
     //   this.formGroup.patchValue({
     //     file: reader.result
@@ -50,14 +50,25 @@ export class FileUploadComponent implements OnInit {
     //   }), 
     // };
     // this._http.post('http://localhost:8000/api/users/', {'test.cpp': this.fileUpload.controls['file'].value})
+    console.log("Behenchod kaun hai ye a");
     this.commus.fileUpload(this.formGroup.controls['file'].value).subscribe({
       next: answer => {
-        console.log(JSON.stringify(answer))
+        console.log("fumck this not getting calledddd")
+        console.log(answer.data[Object.keys(answer.data)[0]]);
+        console.log("and here it ends")
+        
+        sessionStorage.setItem('datta', JSON.stringify(answer.data));
+        sessionStorage.setItem('names', answer.names);
+        console.log(sessionStorage['names']);
+        // console.log(Object.keys(JSON.parse(sessionStorage['datta'])));
       },
       error: error => {
         console.log(JSON.stringify(error))
+        console.log("aee madarchosssss")
       }
     })
+    console.log("yrr iske baad aa rha hai");
     // console.log(JSON.stringify(this.fileUpload.controls['file'].value))
+
   }
 }

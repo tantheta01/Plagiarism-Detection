@@ -1,8 +1,10 @@
 /*We need to add a download to this chart*/
 import { Component, OnInit } from '@angular/core';
-
+import { FormControl } from '@angular/forms';
 import { ChartDataSets, ChartType, ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
+import {​​​​​​​​ DomSanitizer }​​​​​​​​ from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-output-page',
@@ -12,9 +14,20 @@ import { Label } from 'ng2-charts';
 export class OutputPageComponent implements OnInit {
 
 
+  // panelOpenState=true;  
+  fileUrl;
+  public firstCode: any = JSON.parse(sessionStorage['datta']);
+  public file_keys = Object.keys(this.firstCode);
+  public fnames : any = sessionStorage['names'].split(',');
+  public firstFile : string = this.fnames[0];
+  public secondFile : string = this.fnames[1];
+  firstFileControl = new FormControl(this.firstFile);
+  secondFileControl = new FormControl(this.secondFile);
+  public pairname: string = this.firstFileControl.value + ',' + this.secondFileControl.value;
 
   
   public scatterChartLabels: Label[] = ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'];
+
 
   public scatterChartData: ChartDataSets[] = [
     {
@@ -74,14 +87,83 @@ export class OutputPageComponent implements OnInit {
 
 
 
-  constructor() { }
-  ngOnInit(){}
+  constructor(private sanitizer: DomSanitizer) { }
+  ngOnInit(){
+
+    const data = 'csv file';
+    const blob = new Blob([data], {​​​​​​​​ type: 'application/octet-stream' }​​​​​​​​);
+    this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+
+
+    console.log("Init occurs");
+    console.log(this.firstCode["test2.py,test3.py"]["first_file"]);
+
+    console.log(this.fnames);
+
+    for (var i = 0; i < this.file_keys.length; ++i) {
+      var fCdd = this.firstCode[this.file_keys[i]]['first_file'];
+      if (fCdd.substring(0, 6) == "<mark>") {
+        var j=1;
+        var bstring = fCdd.split("<mark>");
+        var bits=[];
+        for(var k=0;k<bstring.length;k++){
+          bits.push(j);
+          j ^= 1;
+        }
+        this.firstCode[this.file_keys[i]]['first_file'] = bstring;
+        this.firstCode[this.file_keys[i]]['first_params'] = bits;
+      }
+      else{
+        var j=0;
+        var bstring = fCdd.split("<mark>");
+        var bits=[];
+        for(var k=0;k<bstring.length;k++){
+          bits.push(j);
+          j ^= 1;
+        }
+        this.firstCode[this.file_keys[i]]['first_file'] = bstring;
+        this.firstCode[this.file_keys[i]]['first_params'] = bits;
+      }
+      fCdd = this.firstCode[this.file_keys[i]]['second_file'];
+      if (fCdd.substring(0, 6) == "<mark>") {
+        var j=1;
+        var bstring = fCdd.split("<mark>");
+        var bits=[];
+        for(var k=0;k<bstring.length;k++){
+          bits.push(j);
+          j ^= 1;
+        }
+        this.firstCode[this.file_keys[i]]['second_file'] = bstring;
+        this.firstCode[this.file_keys[i]]['second_params'] = bits;
+      }
+      else{
+        var j=0;
+        var bstring = fCdd.split("<mark>");
+        var bits=[];
+        for(var k=0;k<bstring.length;k++){
+          bits.push(j);
+          j ^= 1;
+        }
+        this.firstCode[this.file_keys[i]]['second_file'] = bstring;
+        this.firstCode[this.file_keys[i]]['second_params'] = bits;
+      }
+    }
+
+
+
+  }
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
+  }
+
+  public FileNameChange(event): void {
+    this.pairname = this.firstFileControl.value + ',' + this.secondFileControl.value;
+    console.log("this is such a dhit ititititi");
   }
 
   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
   }
+
 
 }

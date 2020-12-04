@@ -73,16 +73,17 @@ export class CommunicationService {
 		this.router.navigate(['/login']);
 	}
 	fileUpload(file: any): Observable<any> {
+		console.log("baat toh hai bhai")
 		var httpOptions1 = {
 			headers: new HttpHeaders({ 
 			  // "Content-Type": 'multipart/form-data',
 			  "Authorization": "Token " + sessionStorage['token'],
-			}), 
+			}) 
 		  };
 		const formData: FormData = new FormData();
 		formData.append('file', file);
 		return this.httpClient
-		  .post('http://localhost:8000/api/files/upload/' + file.name, formData, httpOptions1)
+		  .post('http://localhost:8000/api/files/upload/' + file.name, formData, httpOptions1,)
 		//   .map(() => { return true; })
 		//   .catch((e) => this.handleError(e));
 	}

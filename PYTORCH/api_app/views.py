@@ -88,15 +88,10 @@ class FileUploadView(APIView):
 
 
             file_path = "api_app/media/" + uname + "/" + filename
-            extract_and_process(file_path)
+            extracted, fnames, csv_list = extract_and_process(file_path)
 
-            with open("api_app/views.py", 'r') as g:
-                FilePointer = g.read()
-
-            response = FileResponse(FilePointer,content_type='text/csv')
-            response['Content-Disposition'] = 'attachment; filename=lmao'
-
-            return response
+            return Response({'data' : extracted, 'names' : fnames, 'csv' : csv_list}, HTTP_200_OK)
+            # return Response({'data' : DiCtNAME}, HTTP_200_OK)
             # return Response({
             #     "path": path,
             #     "user": user.username

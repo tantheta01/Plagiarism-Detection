@@ -55,9 +55,14 @@ To use **Red Plag** follow these steps:
 
 | File 1         | File 2       | Similarity   |
 | :------------- | :----------: | -----------: |
+    * Scatter plot to visualize high-dimensional signature vectors of the code files by performing dimensionality-reduction (**PCA**).
+    * Highlighted similar blocks between the files pairwise
 
-    * 
-    * 
+### Backend Endpoints
+- `UserLogin`: An endpoint for logging in. Returns the username and the authentication token for the user.
+- `UserCreate`: An endpoint for signing in. Returns the username and the email of the user.
+- `PassChangeView`: An endpoint for changing password. Takes the old password and the new password of the user (authentication is done using token). If the old password matches the user's password, the password is updated.
+- `FileUpload`: To upload the tarball. Takes the tar file to be uploaded and the authentication token of the user. Every file is linked to a user object and to facilitate organization and showing previous results, the file is saved at `/media/<username>/<filename>`.
 
 ## Contributors
 * [@tantheta01](https://github.com/tantheta01)
@@ -71,17 +76,6 @@ If you want to contact me you can reach me at greettanay@gmail.com.
 ## License
 This project uses the following license: **MIT**.
 
-### Backend
-Endpoints  : 
-- Login -> returns the username and the Authentication Token for the user
-- SignUp -> Returns the username and email of the user
-- ChangePassword -> Takes the old password, new password of the user (Authentication is done using Token). If the old password matches the user's password, the password is updated
-- File Upload -> Takes the File to be uploaded and the token for getting the user and authentication. Every File is linked to a user object and to facilitate organization and showing previous results(something we plan to do) the file is saved at /media/username/filename. The response is the contents of the same file at the moment and shall be changed to the results once we implement core logic. 
-
-
-## Technologies and Frameworks used
-The frontend is implemented in Angular and backend with Django framework and Django REST framework. 
-
 
 ## Project Plan Ahead
 We would majorily be working to implement the core logic in the next half of the evaluation and would be following these steps in a coherent manner. 
@@ -93,17 +87,3 @@ We’ll start off with text preprocessing by removing the blank lines, variable 
 - Normalize the signature vectors after padding and measure their cosine similarity pairwise. 
 - We are studying about tSNE and PCA for visualization of results
 t-Distributed Stochastic Neighbor Embedding (t-SNE) is an unsupervised, non-linear technique primarily used for data exploration and visualizing high-dimensional data. In simpler terms, t-SNE gives you a feel or intuition of how the data is arranged in a high-dimensional space. 
-
-## The Bigger Picture
-We plan to implement the following bonus features
-### Language Specific Functionality for C++
-- Making our tool more robust to c++
-#### Approach
-- Inline all the functions(except the recursive ones) during preprocessing
-- Tokenize all controls blocks (All loops be changed to token LOOP and all if else blocks to be changed with CONDITION). 
-- The file signature is a vector - number of control blocks, number of simple blocks, number of simple blocks with one successor, number of simple blocks with two successors, etc. 
-- Normalization
-- Comparison
-### Stub code
-Dealing with the stub-code and “removing” its influence over the signature vector.
-

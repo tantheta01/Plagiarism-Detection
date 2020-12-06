@@ -53,6 +53,8 @@ export class FileUploadComponent implements OnInit {
         sessionStorage.setItem('datta', JSON.stringify(answer.data));
         sessionStorage.setItem('names', answer.names);
         sessionStorage.setItem("csvfile", JSON.stringify(answer.csv));
+        sessionStorage.setItem('embeddings', answer.embeddings)
+        console.log(answer.embeddings.length)
         console.log(sessionStorage['names']);
         this.router.navigate(['/outp']);
         // console.log(Object.keys(JSON.parse(sessionStorage['datta'])));

@@ -89,7 +89,8 @@ export class OutputPageComponent implements OnInit {
 
   constructor(private sanitizer: DomSanitizer) { }
   ngOnInit(){
-
+    console.log(sessionStorage['embeddings'][0])
+    console.log("bhodaaaa")
     const data = sessionStorage['csvfile'];
     const blob = new Blob([data], {​​​​​​​​ type: 'application/octet-stream' }​​​​​​​​);
     this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));

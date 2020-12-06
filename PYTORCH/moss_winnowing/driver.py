@@ -1,9 +1,23 @@
 import tarfile
 import os
-from winnowing import *
-import os
+# import os
 import shutil
 import numpy as np
+from winnowing import *
+from plot import get_reduced_components
+
+def CountFrequency(my_list): 
+  
+    # Creating an empty dictionary  
+    freq = {} 
+    for item in my_list: 
+        if (item in freq): 
+            freq[item] += 1
+        else: 
+            freq[item] = 1
+
+    return [element[1] for element in freq.items()]
+
 
 def getExclusiveSimilarity(file1, file2): 
 	"""! @brief Evaluates the exclusive similarity between two files.  
@@ -131,6 +145,9 @@ def extract_and_process(tar_filename):
 	code_files_dir = directory_of_file + '/code_files'
 	code_files = os.listdir(code_files_dir)
 	file_params = [getFingerPrints(directory_of_file + '/code_files/' + file) for file in code_files]
+	freq_fingerprints = [CountFrequency(param[3]) for param in file_params]
+	embedded_files = get_reduced_components(freq_fingerprints)
+	print(embedded_files)
 
 
 
@@ -206,7 +223,7 @@ def extract_and_process(tar_filename):
 	print(sorted_list)
 	# np.savetxt(directory_of_file + '/data.csv', sorted_list, delimiter=',', fmt = ['%s', '%s', '%s'], header = 'File 1,File 2,Similarity', comments='')
 
-	return file_similarities, code_files, sorted_list
+	return file_similarities, code_files, sorted_list, embedded_files
 
 
 # def get_fps_and_pca(tar_filename):

@@ -22,20 +22,20 @@ Before you begin, ensure you have installed the latest version of the following:
 To install **Red Plag**, follow these steps:
 
 * Clone this github repository on your local machine using:
-```
-git clone https://github.com/tantheta01/Plagiarism-Detection
+```bash
+$ git clone https://github.com/tantheta01/Plagiarism-Detection
 ```
 * Navigate to the `PYTORCH` directory, and setup the backend environment using:
-```
-cd Plagiarism-Detection/PYTORCH/
-python3 manage.py runserver
+```bash
+$ cd Plagiarism-Detection/PYTORCH/
+$ python3 manage.py runserver
 ```
 * Navigate to the `FrontEnd` directory, and setup the frontend environment using:
-```
-cd ../FrontEnd/sim-check/
-# Install dependencies
-npm install
-ng serve --open
+```bash
+$ cd ../FrontEnd/sim-check/
+# install dependencies
+$ npm install
+$ ng serve --open
 ```
 * The local host server will open after compilation.
 

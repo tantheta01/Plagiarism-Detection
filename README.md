@@ -1,6 +1,8 @@
  # Red Plag
+ <!---
 ![GitHub repo size](https://img.shields.io/github/repo-size/scottydocs/README-template.md)
 ![GitHub contributors](https://img.shields.io/github/contributors/scottydocs/README-template.md)
+-->
 
 Red Plag is a plagiarism checker tool that allows user to detect source code plagiarism and locate the instances of plagiarism within the code files pairwise. The frontend is implemented in Angular and backend with Django and Django REST framework.
 
@@ -11,7 +13,9 @@ It gives a visual measure of plagiarized content using scatter plots and also hi
 Before you begin, ensure you have installed the latest version of the following:
 
 * `python`
+* `numpy` and `pandas` packages
 * `pygments`, a syntax package in `python`
+* `scikit-learn`, an ml library in `python`
 * `Java`
 * `@angular/cli`
 * `Django`
@@ -47,9 +51,9 @@ To use **Red Plag** follow these steps:
 * Once logged in, the main page features options to change your password and upload the code files.
 * Accepted File Format for Upload:
     * tar file format
-    * on extracting, tar file should have two directories, namely `code_files` and `stub_files`.
+    * on extracting, tar file should have a directory named `code_files` and [optional] one named `stub_code`.
     * `code_files` contains all the code files for pairwise plagiarism detection.
-    * `stub_files` contains the stub code file(s) that is invariably common in all the code files.
+    * `stub_code` contains the stub code file that is invariably common in all the code files.
 * Upload the tar file in specified format.
 * You will be navigated to the results page. The result page features the following:
     * Scatter plot to visualize high-dimensional signature vectors of the code files by performing dimensionality-reduction (**PCA**).
@@ -66,7 +70,6 @@ To use **Red Plag** follow these steps:
 - `FileUpload`: To upload the tarball. Takes the tar file to be uploaded and the authentication token of the user. Every file is linked to a user object and to facilitate organization and showing previous results, the file is saved at `/media/<username>/<filename>`.
 
 ### Core Logic
-*will add this once doxygen is finalised*
 
 * This tool cleans the software codes to be checked for plagiarism by removing white spaces, denoising the content i.e replacing variable names throughout by 'N', strings by 'S' and user defined function names by 'F'. By cleaning up the codes, the efficiency of plagiarism detector is no longer affected by changes in identifiers.
 * It employs winnowing algorithm to detect plagiarized content. It takes the code files (pairwise) as input. The output is the plagiarized content (highlighted blocks) and the extent of similarity.

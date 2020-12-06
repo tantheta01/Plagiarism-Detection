@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { CommunicationService } from '../../communication.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,7 @@ import { CommunicationService } from '../../communication.service';
 
 export class RegisterComponent implements OnInit {
 
+  hide : boolean = false;
 
   userSignupForm = new FormGroup({
     name : new FormControl('', Validators.required),
@@ -29,7 +31,7 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     if (this.userSignupForm.valid) {
       if(this.userSignupForm.controls['password'].value != this.userSignupForm.controls['confirm_password'].value){
-        window.alert("Passwords do not match")
+        Swal.fire("Oops", "Passwords do not match", "error");
         this.userSignupForm.setValue({
           name : "",
           username : "",
@@ -45,19 +47,19 @@ export class RegisterComponent implements OnInit {
         this.cservice.signUp(this.userSignupForm.controls['username'].value, this.userSignupForm.controls['password'].value, this.userSignupForm.controls['email'].value).subscribe(
         {
           next : answer => {
-            window.alert("Registration Successful")
+            Swal.fire("Success","Registration Successful",'success');
             this.cservice.navigateToLogin()
             JSON.stringify(answer)
 
           },
           error: error => {
-            window.alert("Sorry there was a problem")
+            Swal.fire("Oops", "There was an error", "error");
           }
         }
         )
       }
     }
-    else window.alert("Submission failed!");
+    else Swal.fire("Oops", "Submission Failed", "error");
   }
 
 }

@@ -1,6 +1,8 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { CommunicationService } from 'src/app/communication.service';
+import { RouterLink, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-fileupload',
@@ -9,13 +11,15 @@ import { CommunicationService } from 'src/app/communication.service';
 })
 
 export class FileUploadComponent implements OnInit {
+
+  // @ViewChild("fileUpload", {static: false}) fileUpload: ElementRef;files = [];
   
   formGroup = this.fb.group({
-    file: [null]
+    file: [null],
   });
   
 
-  constructor(private commus: CommunicationService, private fb: FormBuilder, public cd : ChangeDetectorRef) { }
+  constructor(private commus: CommunicationService, private fb: FormBuilder, public cd : ChangeDetectorRef, private router : Router) { }
 
   ngOnInit() { }
 
@@ -29,38 +33,28 @@ export class FileUploadComponent implements OnInit {
     this.formGroup.patchValue({
       file: file
     });
-    // console.log(JSON.stringify(this.formGroup.controls))
-    // reader.onload = () => {
-    //   this.formGroup.patchValue({
-    //     file: reader.result
-    //   });
-      
-    //   // need to run CD since file load runs outside of zone
-    //   this.cd.markForCheck();
-    // };
+    
   }
 }
 
   onSubmit() {
-    // console.log(this.formGroup.controls['file'].value)
-    // var httpOptions = {
-    //   headers: new HttpHeaders({ 
-    //     "Content-Type": "multipart/form-data",
-    //     "Authorization": "Token " + this.commus.token
-    //   }), 
-    // };
-    // this._http.post('http://localhost:8000/api/users/', {'test.cpp': this.fileUpload.controls['file'].value})
+    
     console.log("Behenchod kaun hai ye a");
     this.commus.fileUpload(this.formGroup.controls['file'].value).subscribe({
       next: answer => {
         console.log("fumck this not getting calledddd")
         console.log(answer.data[Object.keys(answer.data)[0]]);
         console.log("and here it ends")
+        // console.log(Object.keys(answer));
+        // console.log("are the keys of the shit");
+        console.log(JSON.stringify(answer.csv))
+        console.log("is the csv file");
         
         sessionStorage.setItem('datta', JSON.stringify(answer.data));
         sessionStorage.setItem('names', answer.names);
-        sessionStorage.setItem("csvfile", answer.csv);
+        sessionStorage.setItem("csvfile", JSON.stringify(answer.csv));
         console.log(sessionStorage['names']);
+        this.router.navigate(['/outp']);
         // console.log(Object.keys(JSON.parse(sessionStorage['datta'])));
       },
       error: error => {

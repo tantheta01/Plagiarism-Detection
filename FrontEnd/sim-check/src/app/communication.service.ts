@@ -78,7 +78,8 @@ export class CommunicationService {
 			headers: new HttpHeaders({ 
 			  // "Content-Type": 'multipart/form-data',
 			  "Authorization": "Token " + sessionStorage['token'],
-			}) 
+			}),
+
 		  };
 		const formData: FormData = new FormData();
 		formData.append('file', file);
@@ -87,5 +88,7 @@ export class CommunicationService {
 		//   .map(() => { return true; })
 		//   .catch((e) => this.handleError(e));
 	}
+
+	
 
 }

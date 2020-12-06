@@ -1,0 +1,412 @@
+\hypertarget{namespacewinnowing}{}\doxysection{winnowing Namespace Reference}
+\label{namespacewinnowing}\index{winnowing@{winnowing}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacewinnowing_ae13520da715fa8db917e124124f87fb0}{hash}} (text)
+\begin{DoxyCompactList}\small\item\em generates hash value for a string \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacewinnowing_a8f7f592341af0fe815ea8388d18c63fe}{kgrams}} (text, k=25)
+\begin{DoxyCompactList}\small\item\em Generates list of k\+Grams and corresponding hash value for a specific string. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacewinnowing_a538426530c9a7edf9d4f0857d2ede3e7}{min\+Index}} (arr)
+\begin{DoxyCompactList}\small\item\em Finds index of leftmost minimum element in list. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacewinnowing_a202ce4c3e07af5737d4f2c5bcd2512f2}{fingerprints}} (arr, win\+Size=4)
+\begin{DoxyCompactList}\small\item\em Performs winnowing and computes the fingerprint from a hashlist. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacewinnowing_a3e45b10afd17ad1bdcb95ac280816640}{hash\+List}} (arr)
+\item 
+def \mbox{\hyperlink{namespacewinnowing_adfc32bc9ce7a7a09c13c60c715921e3d}{get\+Finger\+Prints}} (filename)
+\begin{DoxyCompactList}\small\item\em Calculate the tokenset of the file. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacewinnowing_afcaed9bfef1e0ac4baa188c432cc4987}{plagiarism\+Check}} (file1, token1, k\+Grams1, HL1, fp\+List1, fp\+List2)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacewinnowing_a202ce4c3e07af5737d4f2c5bcd2512f2}\label{namespacewinnowing_a202ce4c3e07af5737d4f2c5bcd2512f2}} 
+\index{winnowing@{winnowing}!fingerprints@{fingerprints}}
+\index{fingerprints@{fingerprints}!winnowing@{winnowing}}
+\doxysubsubsection{\texorpdfstring{fingerprints()}{fingerprints()}}
+{\footnotesize\ttfamily def winnowing.\+fingerprints (\begin{DoxyParamCaption}\item[{}]{arr,  }\item[{}]{win\+Size = {\ttfamily 4} }\end{DoxyParamCaption})}
+
+
+
+Performs winnowing and computes the fingerprint from a hashlist. 
+
+@detail For every window length subarray of the hash list take the leftmost minimum in the list if it is not alreasy taken
+
+@type arr\+: list 
+\begin{DoxyParams}{Parameters}
+{\em arr} & The hashlist for which the fingerprint is to be computed\\
+\hline
+\end{DoxyParams}
+@type win\+Size\+: int 
+\begin{DoxyParams}{Parameters}
+{\em win\+Size} & The size of the window for winnowing.\\
+\hline
+\end{DoxyParams}
+@rtype fingerprint\+List\+: list \begin{DoxyReturn}{Returns}
+fingerprint\+List\+: List of hash values in the fingerprint of the array 
+\end{DoxyReturn}
+
+
+Definition at line 66 of file winnowing.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{66 \textcolor{keyword}{def }\mbox{\hyperlink{namespacewinnowing_a202ce4c3e07af5737d4f2c5bcd2512f2}{fingerprints}}(arr, winSize = 4):}
+\DoxyCodeLine{67     \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{68 \textcolor{stringliteral}{    @brief Performs winnowing and computes the fingerprint from a hashlist}}
+\DoxyCodeLine{69 \textcolor{stringliteral}{}}
+\DoxyCodeLine{70 \textcolor{stringliteral}{    @detail For every window length subarray of the hash list take the leftmost minimum in the list if it is not alreasy taken}}
+\DoxyCodeLine{71 \textcolor{stringliteral}{}}
+\DoxyCodeLine{72 \textcolor{stringliteral}{    @type arr: list}}
+\DoxyCodeLine{73 \textcolor{stringliteral}{    @param arr: The hashlist for which the fingerprint is to be computed}}
+\DoxyCodeLine{74 \textcolor{stringliteral}{}}
+\DoxyCodeLine{75 \textcolor{stringliteral}{    @type winSize: int}}
+\DoxyCodeLine{76 \textcolor{stringliteral}{    @param winSize: The size of the window for winnowing. }}
+\DoxyCodeLine{77 \textcolor{stringliteral}{}}
+\DoxyCodeLine{78 \textcolor{stringliteral}{    @rtype fingerprintList: list}}
+\DoxyCodeLine{79 \textcolor{stringliteral}{    @return fingerprintList: List of hash values in the fingerprint of the array}}
+\DoxyCodeLine{80 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{81 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{82     arrLen = len(arr)}
+\DoxyCodeLine{83     prevMin = 0}
+\DoxyCodeLine{84     currMin = 0}
+\DoxyCodeLine{85     windows = []}
+\DoxyCodeLine{86     fingerprintList = []}
+\DoxyCodeLine{87     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(arrLen -\/ winSize):}
+\DoxyCodeLine{88         win = arr[i: i + winSize]  \textcolor{comment}{\#forming windows}}
+\DoxyCodeLine{89         windows.append(win)}
+\DoxyCodeLine{90         currMin = i + \mbox{\hyperlink{namespacewinnowing_a538426530c9a7edf9d4f0857d2ede3e7}{minIndex}}(win)}
+\DoxyCodeLine{91         \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} currMin == prevMin:  \textcolor{comment}{\#min value of window is stored only if it is not the same as min value of prev window}}
+\DoxyCodeLine{92             fingerprintList.append(arr[currMin])  \textcolor{comment}{\#reduces the number of fingerprints while maintaining guarantee}}
+\DoxyCodeLine{93             prevMin = currMin  \textcolor{comment}{\#refer to density of winnowing and guarantee threshold (Stanford paper)}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95     \textcolor{keywordflow}{return} fingerprintList}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{comment}{\#takes k-\/gram list as input and returns a list of only hash values}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacewinnowing_adfc32bc9ce7a7a09c13c60c715921e3d}\label{namespacewinnowing_adfc32bc9ce7a7a09c13c60c715921e3d}} 
+\index{winnowing@{winnowing}!getFingerPrints@{getFingerPrints}}
+\index{getFingerPrints@{getFingerPrints}!winnowing@{winnowing}}
+\doxysubsubsection{\texorpdfstring{getFingerPrints()}{getFingerPrints()}}
+{\footnotesize\ttfamily def winnowing.\+get\+Finger\+Prints (\begin{DoxyParamCaption}\item[{}]{filename }\end{DoxyParamCaption})}
+
+
+
+Calculate the tokenset of the file. 
+
+
+
+Definition at line 110 of file winnowing.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{110 \textcolor{keyword}{def }\mbox{\hyperlink{namespacewinnowing_adfc32bc9ce7a7a09c13c60c715921e3d}{getFingerPrints}}(filename):}
+\DoxyCodeLine{111     \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{112 \textcolor{stringliteral}{    @brief Calculate the tokenset of the file}}
+\DoxyCodeLine{113 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{114     token = \mbox{\hyperlink{namespacecleanUP_a82e773d554e0d616ec52f55aaa06f399}{tokenize}}(filename)}
+\DoxyCodeLine{115     token\_string = \mbox{\hyperlink{namespacecleanUP_aca49de92cbc0deea68120c95e485b279}{toText}}(token)}
+\DoxyCodeLine{116     kGrams = \mbox{\hyperlink{namespacewinnowing_a8f7f592341af0fe815ea8388d18c63fe}{kgrams}}(token\_string)}
+\DoxyCodeLine{117     HL = \mbox{\hyperlink{namespacewinnowing_a3e45b10afd17ad1bdcb95ac280816640}{hashList}}(kGrams)}
+\DoxyCodeLine{118     fpList = \mbox{\hyperlink{namespacewinnowing_a202ce4c3e07af5737d4f2c5bcd2512f2}{fingerprints}}(HL)}
+\DoxyCodeLine{119     \textcolor{keywordflow}{return} (token, kGrams, HL, fpList)}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacewinnowing_ae13520da715fa8db917e124124f87fb0}\label{namespacewinnowing_ae13520da715fa8db917e124124f87fb0}} 
+\index{winnowing@{winnowing}!hash@{hash}}
+\index{hash@{hash}!winnowing@{winnowing}}
+\doxysubsubsection{\texorpdfstring{hash()}{hash()}}
+{\footnotesize\ttfamily def winnowing.\+hash (\begin{DoxyParamCaption}\item[{}]{text }\end{DoxyParamCaption})}
+
+
+
+generates hash value for a string 
+
+@type text\+: str 
+\begin{DoxyParams}{Parameters}
+{\em text} & The input string to hash\\
+\hline
+\end{DoxyParams}
+@rtype hashvl\+: int \begin{DoxyReturn}{Returns}
+hashval\+: The mapped hash value of the string 
+\end{DoxyReturn}
+
+
+Definition at line 7 of file winnowing.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{7 \textcolor{keyword}{def }\mbox{\hyperlink{namespacewinnowing_ae13520da715fa8db917e124124f87fb0}{hash}}(text):}
+\DoxyCodeLine{8     \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{9 \textcolor{stringliteral}{    @brief generates hash value for a string}}
+\DoxyCodeLine{10 \textcolor{stringliteral}{}}
+\DoxyCodeLine{11 \textcolor{stringliteral}{    @type text: str}}
+\DoxyCodeLine{12 \textcolor{stringliteral}{    @param text: The input string to hash}}
+\DoxyCodeLine{13 \textcolor{stringliteral}{}}
+\DoxyCodeLine{14 \textcolor{stringliteral}{    @rtype hashvl: int}}
+\DoxyCodeLine{15 \textcolor{stringliteral}{    @return hashval: The mapped hash value of the string}}
+\DoxyCodeLine{16 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{17     }
+\DoxyCodeLine{18     hashval = hashlib.sha1(text.encode(\textcolor{stringliteral}{'utf-\/8'}))}
+\DoxyCodeLine{19     hashval = hashval.hexdigest()[-\/4 :]}
+\DoxyCodeLine{20     hashval = int(hashval, 16)  \textcolor{comment}{\#using last 16 bits of sha-\/1 digest}}
+\DoxyCodeLine{21     \textcolor{keywordflow}{return} hashval}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{comment}{\#function to form k-\/grams out of the cleaned up text}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacewinnowing_a3e45b10afd17ad1bdcb95ac280816640}\label{namespacewinnowing_a3e45b10afd17ad1bdcb95ac280816640}} 
+\index{winnowing@{winnowing}!hashList@{hashList}}
+\index{hashList@{hashList}!winnowing@{winnowing}}
+\doxysubsubsection{\texorpdfstring{hashList()}{hashList()}}
+{\footnotesize\ttfamily def winnowing.\+hash\+List (\begin{DoxyParamCaption}\item[{}]{arr }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@param arr : list of 4-tuples containing (k_gram, hash value, start_index, end_index)
+\end{DoxyVerb}
+ 
+
+Definition at line 98 of file winnowing.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{98 \textcolor{keyword}{def }\mbox{\hyperlink{namespacewinnowing_a3e45b10afd17ad1bdcb95ac280816640}{hashList}}(arr):}
+\DoxyCodeLine{99     \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{100 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{101 \textcolor{stringliteral}{    @param arr : list of 4-\/tuples containing (k\_gram, hash value, start\_index, end\_index)}}
+\DoxyCodeLine{102 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{103     HL = []}
+\DoxyCodeLine{104     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} arr:}
+\DoxyCodeLine{105         HL.append(i[1])}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107     \textcolor{keywordflow}{return} HL}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacewinnowing_a8f7f592341af0fe815ea8388d18c63fe}\label{namespacewinnowing_a8f7f592341af0fe815ea8388d18c63fe}} 
+\index{winnowing@{winnowing}!kgrams@{kgrams}}
+\index{kgrams@{kgrams}!winnowing@{winnowing}}
+\doxysubsubsection{\texorpdfstring{kgrams()}{kgrams()}}
+{\footnotesize\ttfamily def winnowing.\+kgrams (\begin{DoxyParamCaption}\item[{}]{text,  }\item[{}]{k = {\ttfamily 25} }\end{DoxyParamCaption})}
+
+
+
+Generates list of k\+Grams and corresponding hash value for a specific string. 
+
+@type text\+: str 
+\begin{DoxyParams}{Parameters}
+{\em text} & string for which kgrams are generated\\
+\hline
+\end{DoxyParams}
+@type k\+: int 
+\begin{DoxyParams}{Parameters}
+{\em k} & block size in generating kgrams\\
+\hline
+\end{DoxyParams}
+@rtype kgrams\+: list \begin{DoxyReturn}{Returns}
+kgrams\+: List of 4-\/tuples. The length of the list is equal to the number of k\+Grams of the string. Each element in the list is a 4-\/tuple -\/ (kgram, hash\+\_\+value, start\+\_\+index, end\+\_\+index) 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file winnowing.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \textcolor{keyword}{def }\mbox{\hyperlink{namespacewinnowing_a8f7f592341af0fe815ea8388d18c63fe}{kgrams}}(text, k = 25):}
+\DoxyCodeLine{25     \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{26 \textcolor{stringliteral}{    @brief Generates list of kGrams and corresponding hash value for a specific string. }}
+\DoxyCodeLine{27 \textcolor{stringliteral}{}}
+\DoxyCodeLine{28 \textcolor{stringliteral}{    @type text: str}}
+\DoxyCodeLine{29 \textcolor{stringliteral}{    @param text: string for which kgrams are generated}}
+\DoxyCodeLine{30 \textcolor{stringliteral}{}}
+\DoxyCodeLine{31 \textcolor{stringliteral}{    @type k: int}}
+\DoxyCodeLine{32 \textcolor{stringliteral}{    @param k: block size in generating kgrams}}
+\DoxyCodeLine{33 \textcolor{stringliteral}{}}
+\DoxyCodeLine{34 \textcolor{stringliteral}{    @rtype kgrams: list}}
+\DoxyCodeLine{35 \textcolor{stringliteral}{    @return kgrams: List of 4-\/tuples. The length of the list is equal to the number of kGrams of the string. Each element in the list is a 4-\/tuple -\/ (kgram, hash\_value, start\_index, end\_index)}}
+\DoxyCodeLine{36 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{37     tokenList = list(text)}
+\DoxyCodeLine{38     n = len(tokenList)}
+\DoxyCodeLine{39     kgrams = []}
+\DoxyCodeLine{40     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(n -\/ k + 1):}
+\DoxyCodeLine{41         kgram = \textcolor{stringliteral}{''}.join(tokenList[i : i + k])}
+\DoxyCodeLine{42         hv = \mbox{\hyperlink{namespacewinnowing_ae13520da715fa8db917e124124f87fb0}{hash}}(kgram)}
+\DoxyCodeLine{43         kgrams.append((kgram, hv, i, i + k))  \textcolor{comment}{\#k-\/gram, its hash value, starting and ending positions are stored}}
+\DoxyCodeLine{44         \textcolor{comment}{\#these help in marking the plagiarized content in the original code.}}
+\DoxyCodeLine{45     \textcolor{keywordflow}{return} kgrams}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{comment}{\#function that returns the index at which minimum value of a given list (window) is located}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacewinnowing_a538426530c9a7edf9d4f0857d2ede3e7}\label{namespacewinnowing_a538426530c9a7edf9d4f0857d2ede3e7}} 
+\index{winnowing@{winnowing}!minIndex@{minIndex}}
+\index{minIndex@{minIndex}!winnowing@{winnowing}}
+\doxysubsubsection{\texorpdfstring{minIndex()}{minIndex()}}
+{\footnotesize\ttfamily def winnowing.\+min\+Index (\begin{DoxyParamCaption}\item[{}]{arr }\end{DoxyParamCaption})}
+
+
+
+Finds index of leftmost minimum element in list. 
+
+@type arr\+: list
+
+@rtype minI\+: int 
+
+Definition at line 48 of file winnowing.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{48 \textcolor{keyword}{def }\mbox{\hyperlink{namespacewinnowing_a538426530c9a7edf9d4f0857d2ede3e7}{minIndex}}(arr):}
+\DoxyCodeLine{49     \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{50 \textcolor{stringliteral}{    @brief Finds index of leftmost minimum element in list}}
+\DoxyCodeLine{51 \textcolor{stringliteral}{}}
+\DoxyCodeLine{52 \textcolor{stringliteral}{    @type arr: list}}
+\DoxyCodeLine{53 \textcolor{stringliteral}{}}
+\DoxyCodeLine{54 \textcolor{stringliteral}{    @rtype minI: int}}
+\DoxyCodeLine{55 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{56     minI = 0}
+\DoxyCodeLine{57     minV = arr[0]}
+\DoxyCodeLine{58     n = len(arr)}
+\DoxyCodeLine{59     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(n):}
+\DoxyCodeLine{60         \textcolor{keywordflow}{if} arr[i] < minV:}
+\DoxyCodeLine{61             minV = arr[i]}
+\DoxyCodeLine{62             minI = i}
+\DoxyCodeLine{63     \textcolor{keywordflow}{return} minI}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{comment}{\#we form windows of hash values and use min-\/hash to limit the number of fingerprints}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacewinnowing_afcaed9bfef1e0ac4baa188c432cc4987}\label{namespacewinnowing_afcaed9bfef1e0ac4baa188c432cc4987}} 
+\index{winnowing@{winnowing}!plagiarismCheck@{plagiarismCheck}}
+\index{plagiarismCheck@{plagiarismCheck}!winnowing@{winnowing}}
+\doxysubsubsection{\texorpdfstring{plagiarismCheck()}{plagiarismCheck()}}
+{\footnotesize\ttfamily def winnowing.\+plagiarism\+Check (\begin{DoxyParamCaption}\item[{}]{file1,  }\item[{}]{token1,  }\item[{}]{k\+Grams1,  }\item[{}]{HL1,  }\item[{}]{fp\+List1,  }\item[{}]{fp\+List2 }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Calculates similarity between two code files
+
+@detail The similarity is calculated as length of similar code in file1/length of file1
+
+@type file1: str
+@param file1: name of the first file
+
+@type token1: list
+@param token1: list of tokens where each token is of the form (token_text, count1, count2)
+
+@type kGrams1: list
+@param kGrams1: list of kGrams for the first file. 
+
+@type HL1: list
+@param HL1: hash list of the first source code
+
+@type fpList1: list
+@param fpList1: list of fingerprints from the first file
+
+@type fpList2: list
+@param fpList2: list of fingerprints from the second file
+
+@rtype similarity: float
+@return similarity: the similarity between the two files
+
+@rtype newCode: str
+@return newCode: The content of first file with <b>mark<b> appended around every plagiarized(with respect to second file) block
+\end{DoxyVerb}
+ 
+
+Definition at line 122 of file winnowing.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{122 \textcolor{keyword}{def }\mbox{\hyperlink{namespacewinnowing_afcaed9bfef1e0ac4baa188c432cc4987}{plagiarismCheck}}(file1, token1, kGrams1, HL1, fpList1, fpList2):}
+\DoxyCodeLine{123     \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{124 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{125 \textcolor{stringliteral}{    @brief Calculates similarity between two code files}}
+\DoxyCodeLine{126 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{127 \textcolor{stringliteral}{    @detail The similarity is calculated as length of similar code in file1/length of file1}}
+\DoxyCodeLine{128 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{129 \textcolor{stringliteral}{    @type file1: str}}
+\DoxyCodeLine{130 \textcolor{stringliteral}{    @param file1: name of the first file}}
+\DoxyCodeLine{131 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{132 \textcolor{stringliteral}{    @type token1: list}}
+\DoxyCodeLine{133 \textcolor{stringliteral}{    @param token1: list of tokens where each token is of the form (token\_text, count1, count2)}}
+\DoxyCodeLine{134 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{135 \textcolor{stringliteral}{    @type kGrams1: list}}
+\DoxyCodeLine{136 \textcolor{stringliteral}{    @param kGrams1: list of kGrams for the first file. }}
+\DoxyCodeLine{137 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{138 \textcolor{stringliteral}{    @type HL1: list}}
+\DoxyCodeLine{139 \textcolor{stringliteral}{    @param HL1: hash list of the first source code}}
+\DoxyCodeLine{140 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{141 \textcolor{stringliteral}{    @type fpList1: list}}
+\DoxyCodeLine{142 \textcolor{stringliteral}{    @param fpList1: list of fingerprints from the first file}}
+\DoxyCodeLine{143 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{144 \textcolor{stringliteral}{    @type fpList2: list}}
+\DoxyCodeLine{145 \textcolor{stringliteral}{    @param fpList2: list of fingerprints from the second file}}
+\DoxyCodeLine{146 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{147 \textcolor{stringliteral}{    @rtype similarity: float}}
+\DoxyCodeLine{148 \textcolor{stringliteral}{    @return similarity: the similarity between the two files}}
+\DoxyCodeLine{149 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{150 \textcolor{stringliteral}{    @rtype newCode: str}}
+\DoxyCodeLine{151 \textcolor{stringliteral}{    @return newCode: The content of first file with <b>mark<b> appended around every plagiarized(with respect to second file) block}}
+\DoxyCodeLine{152 \textcolor{stringliteral}{}}
+\DoxyCodeLine{153 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{154     f1 = open(file1, \textcolor{stringliteral}{"{}r"{}})}
+\DoxyCodeLine{155     }
+\DoxyCodeLine{156     start = []   \textcolor{comment}{\#to store the start values corresponding to matching fingerprints}}
+\DoxyCodeLine{157     end = []   \textcolor{comment}{\#to store end values}}
+\DoxyCodeLine{158     code = f1.read()  \textcolor{comment}{\#original code}}
+\DoxyCodeLine{159     newCode = \textcolor{stringliteral}{"{}"{}}   \textcolor{comment}{\#code with marked plagiarized content}}
+\DoxyCodeLine{160     points = []}
+\DoxyCodeLine{161     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} fpList1:}
+\DoxyCodeLine{162         \textcolor{keywordflow}{for} j \textcolor{keywordflow}{in} fpList2:}
+\DoxyCodeLine{163             \textcolor{keywordflow}{if} i == j:   \textcolor{comment}{\#fingerprints match}}
+\DoxyCodeLine{164                 flag = 0}
+\DoxyCodeLine{165                 match = HL1.index(i)   \textcolor{comment}{\#index of matching fingerprints in hash list, k-\/grams list}}
+\DoxyCodeLine{166                 newStart = kGrams1[match][2]   \textcolor{comment}{\#start position of matched k-\/gram in cleaned up code}}
+\DoxyCodeLine{167                 newEnd = kGrams1[match][3]   \textcolor{comment}{\#end position}}
+\DoxyCodeLine{168                 \textcolor{keywordflow}{for} k \textcolor{keywordflow}{in} token1:}
+\DoxyCodeLine{169                     \textcolor{keywordflow}{if} k[2] == newStart:   \textcolor{comment}{\#linking positions in cleaned up code to original code}}
+\DoxyCodeLine{170                         startx = k[1]}
+\DoxyCodeLine{171                         flag += 1}
+\DoxyCodeLine{172                     \textcolor{keywordflow}{if} k[2] == newEnd:}
+\DoxyCodeLine{173                         endx = k[1]}
+\DoxyCodeLine{174                         flag=flag+1}
+\DoxyCodeLine{175                 \textcolor{keywordflow}{if} flag == 2:}
+\DoxyCodeLine{176                     points.append([startx, endx])}
+\DoxyCodeLine{177     points.sort(key = \textcolor{keyword}{lambda} x: x[0])}
+\DoxyCodeLine{178     if(len(points) > 1):}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180         points = points[1:]}
+\DoxyCodeLine{181         mergedPoints = []}
+\DoxyCodeLine{182         mergedPoints.append(points[0])}
+\DoxyCodeLine{183         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(1, len(points)):}
+\DoxyCodeLine{184             last = mergedPoints[len(mergedPoints) -\/ 1]}
+\DoxyCodeLine{185             \textcolor{keywordflow}{if} points[i][0] >= last[0] \textcolor{keywordflow}{and} points[i][0] <= last[1]: \textcolor{comment}{\#merging overlapping regions}}
+\DoxyCodeLine{186                 \textcolor{keywordflow}{if} points[i][1] > last[1]:}
+\DoxyCodeLine{187                     mergedPoints = mergedPoints[: len(mergedPoints)-\/1]}
+\DoxyCodeLine{188                     mergedPoints.append([last[0], points[i][1]])}
+\DoxyCodeLine{189                 \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{190                     \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{191             \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{192                 mergedPoints.append(points[i])}
+\DoxyCodeLine{193         newCode = code[: mergedPoints[0][0]]}
+\DoxyCodeLine{194         plagCount = 0}
+\DoxyCodeLine{195         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(mergedPoints)):}
+\DoxyCodeLine{196             \textcolor{keywordflow}{if} mergedPoints[i][1] > mergedPoints[i][0]:}
+\DoxyCodeLine{197                 plagCount += mergedPoints[i][1] -\/ mergedPoints[i][0]}
+\DoxyCodeLine{198                 newCode = newCode + \textcolor{stringliteral}{'<mark>'} + code[mergedPoints[i][0] : mergedPoints[i][1]] + \textcolor{stringliteral}{"{}<mark>"{}}}
+\DoxyCodeLine{199                 \textcolor{keywordflow}{if} i < len(mergedPoints) -\/ 1:}
+\DoxyCodeLine{200                     newCode = newCode + code[mergedPoints[i][1] : mergedPoints[i+1][0]]}
+\DoxyCodeLine{201                 \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{202                     newCode = newCode + code[mergedPoints[i][1] :]}
+\DoxyCodeLine{203         \textcolor{keywordflow}{return} plagCount/len(code), newCode}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205     \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{206         \textcolor{keywordflow}{return} 0, code}
+\DoxyCodeLine{207     }
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210 }
+
+\end{DoxyCode}

@@ -90,22 +90,25 @@ export class OutputPageComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) { }
   ngOnInit(){
 
-    const data = 'csv file';
+    const data = sessionStorage['csvfile'];
     const blob = new Blob([data], {​​​​​​​​ type: 'application/octet-stream' }​​​​​​​​);
     this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
 
 
     console.log("Init occurs");
-    console.log(this.firstCode["test2.py,test3.py"]["first_file"]);
+    console.log(this.firstCode['f2.py,f.py']["first_file"]);
 
     console.log(this.fnames);
 
     for (var i = 0; i < this.file_keys.length; ++i) {
       var fCdd = this.firstCode[this.file_keys[i]]['first_file'];
+      // console
       if (fCdd.substring(0, 6) == "<mark>") {
         var j=1;
         var bstring = fCdd.split("<mark>");
         var bits=[];
+        console.log("The length of Bstring is");
+        console.log(bstring.length);
         for(var k=0;k<bstring.length;k++){
           bits.push(j);
           j ^= 1;
@@ -116,6 +119,10 @@ export class OutputPageComponent implements OnInit {
       else{
         var j=0;
         var bstring = fCdd.split("<mark>");
+        console.log("The length of Bstring hereere is");
+        console.log(bstring.length);
+        console.log(this.file_keys[i]);
+        // console.log(bstring);
         var bits=[];
         for(var k=0;k<bstring.length;k++){
           bits.push(j);

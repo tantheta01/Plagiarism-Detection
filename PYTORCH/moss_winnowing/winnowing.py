@@ -5,7 +5,16 @@ from cleanUP import *
 
 #sha-1 encoding is used to generate hash values
 def hash(text):
-    #this function generates hash values
+    """!
+    @brief generates hash value for a string
+
+    @type text: str
+    @param text: The input string to hash
+
+    @rtype hashvl: int
+    @return hashval: The mapped hash value of the string
+    """
+    
     hashval = hashlib.sha1(text.encode('utf-8'))
     hashval = hashval.hexdigest()[-4 :]
     hashval = int(hashval, 16)  #using last 16 bits of sha-1 digest
@@ -13,6 +22,18 @@ def hash(text):
 
 #function to form k-grams out of the cleaned up text
 def kgrams(text, k = 25):
+    """!
+    @brief Generates list of kGrams and corresponding hash value for a specific string. 
+
+    @type text: str
+    @param text: string for which kgrams are generated
+
+    @type k: int
+    @param k: block size in generating kgrams
+
+    @rtype kgrams: list
+    @return kgrams: List of 4-tuples. The length of the list is equal to the number of kGrams of the string. Each element in the list is a 4-tuple - (kgram, hash_value, start_index, end_index)
+    """
     tokenList = list(text)
     n = len(tokenList)
     kgrams = []
@@ -25,6 +46,13 @@ def kgrams(text, k = 25):
 
 #function that returns the index at which minimum value of a given list (window) is located
 def minIndex(arr):
+    """!
+    @brief Finds index of leftmost minimum element in list
+
+    @type arr: list
+
+    @rtype minI: int
+    """
     minI = 0
     minV = arr[0]
     n = len(arr)
@@ -36,6 +64,21 @@ def minIndex(arr):
 
 #we form windows of hash values and use min-hash to limit the number of fingerprints
 def fingerprints(arr, winSize = 4):
+    """!
+    @brief Performs winnowing and computes the fingerprint from a hashlist
+
+    @detail For every window length subarray of the hash list take the leftmost minimum in the list if it is not alreasy taken
+
+    @type arr: list
+    @param arr: The hashlist for which the fingerprint is to be computed
+
+    @type winSize: int
+    @param winSize: The size of the window for winnowing. 
+
+    @rtype fingerprintList: list
+    @return fingerprintList: List of hash values in the fingerprint of the array
+    
+    """
     arrLen = len(arr)
     prevMin = 0
     currMin = 0
@@ -53,24 +96,63 @@ def fingerprints(arr, winSize = 4):
 
 #takes k-gram list as input and returns a list of only hash values
 def hashList(arr):
+    """!
+    
+    @param arr : list of 4-tuples containing (k_gram, hash value, start_index, end_index)
+    """
     HL = []
     for i in arr:
         HL.append(i[1])
 
     return HL
 
-def plagiarismCheck(file1, file2):
+
+def getFingerPrints(filename):
+    """!
+    @brief Calculate the tokenset of the file
+    """
+    token = tokenize(filename)
+    token_string = toText(token)
+    kGrams = kgrams(token_string)
+    HL = hashList(kGrams)
+    fpList = fingerprints(HL)
+    return (token, kGrams, HL, fpList)
+
+
+def plagiarismCheck(file1, token1, kGrams1, HL1, fpList1, fpList2):
+    """!
+    
+    @brief Calculates similarity between two code files
+    
+    @detail The similarity is calculated as length of similar code in file1/length of file1
+    
+    @type file1: str
+    @param file1: name of the first file
+    
+    @type token1: list
+    @param token1: list of tokens where each token is of the form (token_text, count1, count2)
+    
+    @type kGrams1: list
+    @param kGrams1: list of kGrams for the first file. 
+    
+    @type HL1: list
+    @param HL1: hash list of the first source code
+    
+    @type fpList1: list
+    @param fpList1: list of fingerprints from the first file
+    
+    @type fpList2: list
+    @param fpList2: list of fingerprints from the second file
+    
+    @rtype similarity: float
+    @return similarity: the similarity between the two files
+    
+    @rtype newCode: str
+    @return newCode: The content of first file with <b>mark<b> appended around every plagiarized(with respect to second file) block
+
+    """
     f1 = open(file1, "r")
-    token1 = tokenize(file1)  #from cleanUP.py
-    str1 = toText(token1)
-    token2 = tokenize(file2)
-    str2 = toText(token2)
-    kGrams1 = kgrams(str1)  #stores k-grams, their hash values and positions in cleaned up text
-    kGrams2 = kgrams(str2)
-    HL1 = hashList(kGrams1)  #hash list derived from k-grams list
-    HL2 = hashList(kGrams2)
-    fpList1 = fingerprints(HL1)
-    fpList2 = fingerprints(HL2)
+    
     start = []   #to store the start values corresponding to matching fingerprints
     end = []   #to store end values
     code = f1.read()  #original code

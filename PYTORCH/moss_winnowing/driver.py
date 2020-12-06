@@ -6,7 +6,8 @@ import shutil
 import numpy as np
 
 def getExclusiveSimilarity(file1, file2): 
-	""" Evaluates the exclusive similarity between two files.  
+	"""! @brief Evaluates the exclusive similarity between two files.  
+	 	
 		Arguments : 
 		file1 : The similarity between the code and another code
 		file2 : The similarity between the code and stub code
@@ -127,15 +128,27 @@ def extract_and_process(tar_filename):
 	file2=[]
 	similarity=[]
 
+	code_files_dir = directory_of_file + '/code_files'
+	code_files = os.listdir(code_files_dir)
+	file_params = [getFingerPrints(directory_of_file + '/code_files/' + file) for file in code_files]
+
+
+
 	if "stub_code" in os.listdir(directory_of_file):
 
+
+
 		stub_code_file = directory_of_file + "/stub_code/" + os.listdir(directory_of_file + "/stub_code")[0]
+		
+		stub_code_params = getFingerPrints(stub_code_file)
+
+
 		code_files_dir = directory_of_file + '/code_files'
 		code_files = os.listdir(code_files_dir)
 
 		code_files_similarity_stub_code = []
 		for i in range(len(code_files)):
-			_, file_com = plagiarismCheck(code_files_dir + '/' + code_files[i], stub_code_file)
+			_, file_com = plagiarismCheck(code_files_dir + '/' + code_files[i], file_params[i][0], file_params[i][1], file_params[i][2], file_params[i][3], stub_code_params[3])
 			code_files_similarity_stub_code.append(file_com)
 
 
@@ -143,11 +156,11 @@ def extract_and_process(tar_filename):
 
 			for j in range(i+1, len(code_files)):
 
-				file1_sim, file1_com = plagiarismCheck(code_files_dir + '/' + code_files[i], code_files_dir + '/' + code_files[j])
-				# file1_sim, file1_com = getExclusiveSimilarity(file1_com, code_files_similarity_stub_code[i])
+				file1_sim, file1_com = plagiarismCheck(code_files_dir + '/' + code_files[i], file_params[i][0], file_params[i][1], file_params[i][2], file_params[i][3], file_params[j][3])
+				file1_sim, file1_com = getExclusiveSimilarity(file1_com, code_files_similarity_stub_code[i])
 
-				file2_sim, file2_com = plagiarismCheck(code_files_dir + '/' + code_files[j], code_files_dir + '/' + code_files[i])
-				# file2_sim, file2_com = getExclusiveSimilarity(file2_com, code_files_similarity_stub_code[j])
+				file2_sim, file2_com = plagiarismCheck(code_files_dir + '/' + code_files[j], file_params[j][0], file_params[j][1], file_params[j][2], file_params[j][3], file_params[j][3])
+				file2_sim, file2_com = getExclusiveSimilarity(file2_com, code_files_similarity_stub_code[j])
 
 				file_similarities[(code_files[i], code_files[j])] = {"first_file" : file1_com, "second_file" : file2_com, "similarity" : min(file1_sim, file2_sim)}
 				file_similarities[(code_files[j], code_files[i])] = {"first_file" : file2_com, "second_file" : file1_com, "similarity" : min(file1_sim, file2_sim)}
@@ -169,8 +182,9 @@ def extract_and_process(tar_filename):
 
 			for j in range(i+1, len(code_files)):
 
-				file1_sim, file1_com = plagiarismCheck(code_files_dir + '/' + code_files[i], code_files_dir + '/' + code_files[j])
-				file2_sim, file2_com = plagiarismCheck(code_files_dir + '/' + code_files[j], code_files_dir + '/' + code_files[i])
+				file1_sim, file1_com = plagiarismCheck(code_files_dir + '/' + code_files[i], file_params[i][0], file_params[i][1], file_params[i][2], file_params[i][3], file_params[j][3])
+				print(len(file1_com.split("<mark>")), "is the similarity between the filesssssssssssssssssssss")
+				file2_sim, file2_com = plagiarismCheck(code_files_dir + '/' + code_files[j], file_params[j][0], file_params[j][1], file_params[j][2], file_params[j][3], file_params[i][3])
 
 				file_similarities[(code_files[i], code_files[j])] = {"first_file" : file1_com, "second_file" : file2_com, "similarity" : min(file1_sim, file2_sim)}
 				file_similarities[(code_files[j], code_files[i])] = {"first_file" : file2_com, "second_file" : file1_com, "similarity" : min(file1_sim, file2_sim)}
@@ -194,7 +208,18 @@ def extract_and_process(tar_filename):
 
 	return file_similarities, code_files, sorted_list
 
-	
+
+# def get_fps_and_pca(tar_filename):
+
+
+# 	directory_of_file = '/'.join(folder for folder in tar_filename.split('/')[:-1])
+# 	# with open(tar_filename) as f:
+# 	# 	f.extractall(directory_of_file)
+# 	mytar = tarfile.open(tar_filename)
+# 	mytar.extractall(directory_of_file)
+# 	mytar.close()
+
+
 
 
 

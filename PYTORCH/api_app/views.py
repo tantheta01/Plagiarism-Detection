@@ -31,6 +31,7 @@ from django.shortcuts import render, redirect
 import os
 import time
 import sys
+import pandas as pd
 sys.path.append('moss_winnowing')
 
 
@@ -90,6 +91,11 @@ class FileUploadView(APIView):
             file_path = "api_app/media/" + uname + "/" + filename
             extracted, fnames, csv_list = extract_and_process(file_path)
 
+            dirsize = len(os.listdir("api_app/media/" + uname))
+            pd.DataFrame(csv_list).to_csv("api_app/media/" + uname + str(dirsize) + '.csv')
+            
+            # print(extracted['f2.py,f.py']['first_file'])
+            print(csv_list)
             return Response({'data' : extracted, 'names' : fnames, 'csv' : csv_list}, HTTP_200_OK)
             # return Response({'data' : DiCtNAME}, HTTP_200_OK)
             # return Response({

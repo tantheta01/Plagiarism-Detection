@@ -1,0 +1,116 @@
+\hypertarget{namespacecleanUP}{}\doxysection{clean\+UP Namespace Reference}
+\label{namespacecleanUP}\index{cleanUP@{cleanUP}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacecleanUP_a82e773d554e0d616ec52f55aaa06f399}{tokenize}} (filename)
+\item 
+def \mbox{\hyperlink{namespacecleanUP_aca49de92cbc0deea68120c95e485b279}{to\+Text}} (arr)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacecleanUP_a82e773d554e0d616ec52f55aaa06f399}\label{namespacecleanUP_a82e773d554e0d616ec52f55aaa06f399}} 
+\index{cleanUP@{cleanUP}!tokenize@{tokenize}}
+\index{tokenize@{tokenize}!cleanUP@{cleanUP}}
+\doxysubsubsection{\texorpdfstring{tokenize()}{tokenize()}}
+{\footnotesize\ttfamily def clean\+UP.\+tokenize (\begin{DoxyParamCaption}\item[{}]{filename }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}! @brief Tokenie input file
+
+@detail Remove comments, Replace every variable/class/any other user defined name by N, Replace every string literal by S, Replace every function name by F
+
+@type filename: str
+@param filename: path of the file to be tokenized
+
+@rtype result: list
+@return result: Every token is a string, obtained by stripping the file content to words and performing the cleaning described. The starting index of the token in the cleaned code and actual code are also stored
+\end{DoxyVerb}
+ 
+
+Definition at line 5 of file clean\+UP.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{5 \textcolor{keyword}{def }\mbox{\hyperlink{namespacecleanUP_a82e773d554e0d616ec52f55aaa06f399}{tokenize}}(filename):}
+\DoxyCodeLine{6     \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{7 \textcolor{stringliteral}{    ! @brief Tokenie input file}}
+\DoxyCodeLine{8 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{9 \textcolor{stringliteral}{    @detail Remove comments, Replace every variable/class/any other user defined name by N, Replace every string literal by S, Replace every function name by F}}
+\DoxyCodeLine{10 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{11 \textcolor{stringliteral}{    @type filename: str}}
+\DoxyCodeLine{12 \textcolor{stringliteral}{    @param filename: path of the file to be tokenized}}
+\DoxyCodeLine{13 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{14 \textcolor{stringliteral}{    @rtype result: list}}
+\DoxyCodeLine{15 \textcolor{stringliteral}{    @return result: Every token is a string, obtained by stripping the file content to words and performing the cleaning described. The starting index of the token in the cleaned code and actual code are also stored}}
+\DoxyCodeLine{16 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{17     file = open(filename, \textcolor{stringliteral}{"{}r"{}})}
+\DoxyCodeLine{18     text = file.read()}
+\DoxyCodeLine{19     file.close()}
+\DoxyCodeLine{20     lexer = pygments.lexers.guess\_lexer\_for\_filename(filename, text)}
+\DoxyCodeLine{21     tokens = lexer.get\_tokens(text)}
+\DoxyCodeLine{22     tokens = list(tokens)}
+\DoxyCodeLine{23     result = []}
+\DoxyCodeLine{24     lenT = len(tokens)}
+\DoxyCodeLine{25     count1 = 0    \textcolor{comment}{\#tag to store corresponding position of each element in original code file}}
+\DoxyCodeLine{26     count2 = 0    \textcolor{comment}{\#tag to store position of each element in cleaned up code text}}
+\DoxyCodeLine{27     \textcolor{comment}{\# these tags are used to mark the plagiarized content in the original code files.}}
+\DoxyCodeLine{28     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(lenT):}
+\DoxyCodeLine{29         \textcolor{keywordflow}{if} tokens[i][0] == pygments.token.Name \textcolor{keywordflow}{and} \textcolor{keywordflow}{not} i == lenT -\/ 1 \textcolor{keywordflow}{and} \textcolor{keywordflow}{not} tokens[i + 1][1] == \textcolor{stringliteral}{'('}:}
+\DoxyCodeLine{30             result.append((\textcolor{stringliteral}{'N'}, count1, count2))  \textcolor{comment}{\#all variable names as 'N'}}
+\DoxyCodeLine{31             count2 += 1}
+\DoxyCodeLine{32         \textcolor{keywordflow}{elif} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Literal.String:}
+\DoxyCodeLine{33             result.append((\textcolor{stringliteral}{'S'}, count1, count2))  \textcolor{comment}{\#all strings as 'S'}}
+\DoxyCodeLine{34             count2 += 1}
+\DoxyCodeLine{35         \textcolor{keywordflow}{elif} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Name.Function:}
+\DoxyCodeLine{36             result.append((\textcolor{stringliteral}{'F'}, count1, count2))   \textcolor{comment}{\#user defined function names as 'F'}}
+\DoxyCodeLine{37             count2 += 1}
+\DoxyCodeLine{38         \textcolor{keywordflow}{elif} tokens[i][0] == pygments.token.Text \textcolor{keywordflow}{or} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Comment:}
+\DoxyCodeLine{39             \textcolor{keywordflow}{pass}   \textcolor{comment}{\#whitespaces and comments ignored}}
+\DoxyCodeLine{40         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{41             result.append((tokens[i][1], count1, count2))  }
+\DoxyCodeLine{42             \textcolor{comment}{\#tuples in result-\/(each element e.g 'def', its position in original code file, position in cleaned up code/text) }}
+\DoxyCodeLine{43             count2 += len(tokens[i][1])}
+\DoxyCodeLine{44         count1 += len(tokens[i][1])}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \textcolor{keywordflow}{return} result}
+\DoxyCodeLine{47 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacecleanUP_aca49de92cbc0deea68120c95e485b279}\label{namespacecleanUP_aca49de92cbc0deea68120c95e485b279}} 
+\index{cleanUP@{cleanUP}!toText@{toText}}
+\index{toText@{toText}!cleanUP@{cleanUP}}
+\doxysubsubsection{\texorpdfstring{toText()}{toText()}}
+{\footnotesize\ttfamily def clean\+UP.\+to\+Text (\begin{DoxyParamCaption}\item[{}]{arr }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}! @brief Convert list of tokens to string
+
+@type arr: list
+@param arr: List of tuples obtained from @ref tokenize
+
+@rtype cleanText: str
+@return cleanText: code obtained by joining all tokens and removing comments and whitespaces
+\end{DoxyVerb}
+ 
+
+Definition at line 48 of file clean\+UP.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{48 \textcolor{keyword}{def }\mbox{\hyperlink{namespacecleanUP_aca49de92cbc0deea68120c95e485b279}{toText}}(arr):}
+\DoxyCodeLine{49     \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{50 \textcolor{stringliteral}{    ! @brief Convert list of tokens to string}}
+\DoxyCodeLine{51 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{52 \textcolor{stringliteral}{    @type arr: list}}
+\DoxyCodeLine{53 \textcolor{stringliteral}{    @param arr: List of tuples obtained from @ref tokenize}}
+\DoxyCodeLine{54 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{55 \textcolor{stringliteral}{    @rtype cleanText: str}}
+\DoxyCodeLine{56 \textcolor{stringliteral}{    @return cleanText: code obtained by joining all tokens and removing comments and whitespaces}}
+\DoxyCodeLine{57 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{58     cleanText = \textcolor{stringliteral}{''}.join(str(x[0]) \textcolor{keywordflow}{for} x \textcolor{keywordflow}{in} arr)}
+\DoxyCodeLine{59     \textcolor{keywordflow}{return} cleanText}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 }
+
+\end{DoxyCode}

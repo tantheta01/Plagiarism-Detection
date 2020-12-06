@@ -4,14 +4,15 @@ import pygments.lexers
 
 def tokenize(filename):
     """
-    -> Remove comments
-    -> Replace every variable/class/any other user defined name by N
-    -> Replace every string literal by S
-    -> Replace every function name by F
-    Arguments : 
-    filename : complete path of file to be cleaned
-    Return : 
-    result : list of tokens after cleaning the code
+    ! @brief Tokenie input file
+    
+    @detail Remove comments, Replace every variable/class/any other user defined name by N, Replace every string literal by S, Replace every function name by F
+    
+    @type filename: str
+    @param filename: path of the file to be tokenized
+    
+    @rtype result: list
+    @return result: Every token is a string, obtained by stripping the file content to words and performing the cleaning described. The starting index of the token in the cleaned code and actual code are also stored
     """
     file = open(filename, "r")
     text = file.read()
@@ -45,6 +46,15 @@ def tokenize(filename):
     return result
 
 def toText(arr):
+    """
+    ! @brief Convert list of tokens to string
+    
+    @type arr: list
+    @param arr: List of tuples obtained from @ref tokenize
+    
+    @rtype cleanText: str
+    @return cleanText: code obtained by joining all tokens and removing comments and whitespaces
+    """
     cleanText = ''.join(str(x[0]) for x in arr)
     return cleanText
 

@@ -61,6 +61,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import { PrevresultsComponent } from './components/prevresults/prevresults.component';
 
 
 
@@ -117,7 +118,8 @@ import {MatTreeModule} from '@angular/material/tree';
     MainpageComponent,
     EditprofileComponent,
     FileUploadComponent,
-    OutputPageComponent
+    OutputPageComponent,
+    PrevresultsComponent
 
   ],
   

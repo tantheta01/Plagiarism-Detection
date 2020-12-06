@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { CommunicationService } from '../../communication.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class LogInComponent implements OnInit {
     password : new FormControl('', [Validators.required]),
 
   })
+  hide : boolean = false;
   
 
   constructor(private fb: FormBuilder, public commus : CommunicationService, private router : Router) { }
@@ -36,18 +38,18 @@ export class LogInComponent implements OnInit {
           // localStorage.setItem('password', pass);
           sessionStorage.setItem('username', answer['username']);
           sessionStorage.setItem('token', answer['token']);
-          window.alert(sessionStorage['token']);
+          Swal.fire('Welcome', "Login Successful", 'success');
 
           this.router.navigate(['/mainpage'])
         },
         error : error => {
-          window.alert('Username or password incorrect')
+          Swal.fire("Oops", "Incorrect credentials", "error");
         }
       })
 
     }
 
-    else window.alert("Submission failed!");
+    else Swal.fire('Oops', 'Something went wrong', 'error');
   
   }
 

@@ -9,6 +9,7 @@ import { CommunicationService } from '../../communication.service';
 })
 export class EditprofileComponent implements OnInit {
 
+  hide : boolean = false;
   userDetails = new FormGroup({
 		old_password : new FormControl('', [Validators.required]),
 		new_password : new FormControl('', [Validators.required]),

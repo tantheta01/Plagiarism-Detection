@@ -107,6 +107,8 @@ export class OutputPageComponent implements OnInit {
       if (fCdd.substring(0, 6) == "<mark>") {
         var j=1;
         var bstring = fCdd.split("<mark>");
+        console.log(bstring.length)
+        console.log("is the BString length of the shitttttt")
         var bits=[];
         console.log("The length of Bstring is");
         console.log(bstring.length);
@@ -127,7 +129,7 @@ export class OutputPageComponent implements OnInit {
         var bits=[];
         for(var k=0;k<bstring.length;k++){
           bits.push(j);
-          j ^= 1;
+          j = (j+1)%2;
         }
         this.firstCode[this.file_keys[i]]['first_file'] = bstring;
         this.firstCode[this.file_keys[i]]['first_params'] = bits;
@@ -139,7 +141,7 @@ export class OutputPageComponent implements OnInit {
         var bits=[];
         for(var k=0;k<bstring.length;k++){
           bits.push(j);
-          j ^= 1;
+          j = (j+1)%2;
         }
         this.firstCode[this.file_keys[i]]['second_file'] = bstring;
         this.firstCode[this.file_keys[i]]['second_params'] = bits;

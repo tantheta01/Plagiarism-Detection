@@ -30,7 +30,8 @@
 <div class="container" style="position: absolute; top: 140px; left: 50px; width: 20vw;height: 40vw; overflow-y: scroll; ">
 
   <span *ngFor="let fd of firstCode[firstFileControl.value + ',' + secondFileControl.value]['first_file'];let i=index">
-    <pre><ng-template *ngIf="firstCode[pairname]['first_params'][i] then thenblock; else elseblock"></ng-template><ng-template #thenblock><mark>{{fd}}</mark></ng-template><ng-template #elseblock>{{fd}}</ng-template></pre>
+    <h1>Lauda lassaanaa</h1>
+    <pre><ng-template *ngIf="firstCode[pairname]['first_params'][i] then thenblock; else elseblock"></ng-template><ng-template #thenblock><mark>{{fd}}{{firstCode[pairname]['first_params'][i]}}</mark></ng-template><ng-template #elseblock>{{fd}}</ng-template></pre>
   </span>
   
 </div>

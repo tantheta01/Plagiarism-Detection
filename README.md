@@ -53,7 +53,7 @@ To use **Red Plag** follow these steps:
 * You will be navigated to the results page. The result page features the following:
     * A csv file `pairwise_similarity.csv` in the format:
 
-| Column 1       | Column 2     | Column 3     |
+| File 1         | File 2       | Similarity   |
 | :------------- | :----------: | -----------: |
 
     * 

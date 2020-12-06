@@ -21,7 +21,6 @@ from django.core.files.base import ContentFile
 from rest_framework import viewsets, renderers
 from rest_framework.decorators import action
 
-
 from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework import generics
 from django.contrib.auth.forms import PasswordChangeForm
@@ -34,10 +33,8 @@ import sys
 import pandas as pd
 sys.path.append('moss_winnowing')
 
-
 # Importing the main logic functions
 from driver import *
-
 
 
 class UserCreate(generics.ListCreateAPIView):
@@ -58,8 +55,6 @@ class UserLogin(APIView):
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 
-
-
 class FileUploadView(APIView):
     """The Upload File view should be availale to users only."""
     parser_classes = (MultiPartParser, FormParser)
@@ -67,10 +62,8 @@ class FileUploadView(APIView):
     permission_classes = (IsAuthenticated, )
 
     def post(self, request, filename, format=None):
-        print("Hello")
         file = request.data.get('file', None)
         if file:
-            print("TATa")
             user = request.user
             uname = str(user.username)
             # tType = request.params.testType
@@ -84,8 +77,7 @@ class FileUploadView(APIView):
                 "api_app/media/" + uname + "/" + filename, ContentFile(file.read()))
             
             uploadFile = UploadFile(path=path, user=user)
-            uploadFile.save()
-            
+            uploadFile.save()            
 
 
             file_path = "api_app/media/" + uname + "/" + filename
@@ -94,15 +86,9 @@ class FileUploadView(APIView):
             dirsize = len(os.listdir("api_app/media/" + uname))
             pd.DataFrame(csv_list).to_csv("api_app/media/" + uname + '/' + str(dirsize) + '.csv')
             
-            # print(extracted['f2.py,f.py']['first_file'])
-            print(csv_list)
+            # print(csv_list)
             return Response({'data' : extracted, 'names' : fnames, 'csv' : pd.DataFrame(csv_list), 'embeddings' : embeddings}, HTTP_200_OK)
-            # return Response({'data' : DiCtNAME}, HTTP_200_OK)
-            # return Response({
-            #     "path": path,
-            #     "user": user.username
-            # },
-            #     status=HTTP_200_OK)
+
         return Response({"error": "file not found"}, status=HTTP_400_BAD_REQUEST)
 
 
@@ -124,7 +110,7 @@ class PassChangeView(generics.UpdateAPIView):
             serializer = self.get_serializer(data=request.data)
 
             if serializer.is_valid():
-                # Check old password
+                # check old password
                 if not self.object.check_password(serializer.data.get("old_password")):
                     return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
                 # set_password also hashes the password that the user will get

@@ -46,7 +46,6 @@ export class LogInComponent implements OnInit {
           Swal.fire("Oops", "Incorrect credentials", "error");
         }
       })
-
     }
 
     else Swal.fire('Oops', 'Something went wrong', 'error');

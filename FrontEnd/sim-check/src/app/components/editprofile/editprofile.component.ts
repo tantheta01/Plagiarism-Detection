@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder,  Validators } from '@angular/forms';
 import { CommunicationService } from '../../communication.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editprofile',
   templateUrl: './editprofile.component.html',
   styleUrls: ['./editprofile.component.css']
 })
+
 export class EditprofileComponent implements OnInit {
 
   hide : boolean = false;
@@ -23,29 +25,31 @@ export class EditprofileComponent implements OnInit {
   }
 
   onSubmit() {
+    
     if (this.userDetails.valid) {
       console.log(sessionStorage['token']);
       this.cservice.changepass(this.userDetails.controls['old_password'].value, this.userDetails.controls['new_password'].value).subscribe({
         next : answer => {
           if(answer.status =="success"){
-            window.alert("password changed successfully");
+            Swal.fire('Successful', "Password changed successfully", 'success');
             this.cservice.navigateToMain();
           }
           else{
-            window.alert("oops there was an error please try again");
+            window.alert("Oops! There was an error. Please try again.");
             this.cservice.navigateToMain();
           }
         },
         error: error => {
-          window.alert("oops there was an error. please try again");
+          window.alert("Oops! There was an error. Please try again.");
           this.cservice.navigateToMain();
         }
       })
     }
 
-    else{
+    else {
       window.alert(this.userDetails.controls['new_password'].value + this.userDetails.controls['confirm_newpassword'].value)
     }
+
   }
 
 }

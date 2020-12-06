@@ -11,8 +11,9 @@ import {​​​​​​​​ DomSanitizer }​​​​​​​​ from '@a
   templateUrl: './output-page.component.html',
   styleUrls: ['./output-page.component.css']
 })
-export class OutputPageComponent implements OnInit {
 
+
+export class OutputPageComponent implements OnInit {
 
   // panelOpenState=true;  
   fileUrl;
@@ -27,7 +28,6 @@ export class OutputPageComponent implements OnInit {
 
   
   public scatterChartLabels: Label[] = ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'];
-
 
   public scatterChartData: ChartDataSets[] = [
     {
@@ -86,20 +86,18 @@ export class OutputPageComponent implements OnInit {
   };
 
 
-
   constructor(private sanitizer: DomSanitizer) { }
+  
   ngOnInit(){
-    console.log(sessionStorage['embeddings'][0])
-    console.log("bhodaaaa")
+    // console.log(sessionStorage['embeddings'][0])
     const data = sessionStorage['csvfile'];
     const blob = new Blob([data], {​​​​​​​​ type: 'application/octet-stream' }​​​​​​​​);
     this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
 
 
-    console.log("Init occurs");
-    console.log(this.firstCode['f2.py,f.py']["first_file"]);
+    // console.log("init occurs");
 
-    console.log(this.fnames);
+    // console.log(this.fnames);
 
     for (var i = 0; i < this.file_keys.length; ++i) {
       var fCdd = this.firstCode[this.file_keys[i]]['first_file'];
@@ -108,8 +106,8 @@ export class OutputPageComponent implements OnInit {
         var j=1;
         var bstring = fCdd.split("<mark>");
         var bits=[];
-        console.log("The length of Bstring is");
-        console.log(bstring.length);
+        // console.log("The length of bstring is");
+        // console.log(bstring.length);
         for(var k=0;k<bstring.length;k++){
           bits.push(j);
           j ^= 1;
@@ -117,12 +115,12 @@ export class OutputPageComponent implements OnInit {
         this.firstCode[this.file_keys[i]]['first_file'] = bstring;
         this.firstCode[this.file_keys[i]]['first_params'] = bits;
       }
-      else{
+      else {
         var j=0;
         var bstring = fCdd.split("<mark>");
-        console.log("The length of Bstring hereere is");
-        console.log(bstring.length);
-        console.log(this.file_keys[i]);
+        // console.log("The length of bstring here is");
+        // console.log(bstring.length);
+        // console.log(this.file_keys[i]);
         // console.log(bstring);
         var bits=[];
         for(var k=0;k<bstring.length;k++){
@@ -144,7 +142,7 @@ export class OutputPageComponent implements OnInit {
         this.firstCode[this.file_keys[i]]['second_file'] = bstring;
         this.firstCode[this.file_keys[i]]['second_params'] = bits;
       }
-      else{
+      else {
         var j=0;
         var bstring = fCdd.split("<mark>");
         var bits=[];
@@ -157,21 +155,18 @@ export class OutputPageComponent implements OnInit {
       }
     }
 
-
-
   }
+
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
   }
 
   public FileNameChange(event): void {
     this.pairname = this.firstFileControl.value + ',' + this.secondFileControl.value;
-    console.log("this is such a dhit ititititi");
   }
 
   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
   }
-
 
 }

@@ -14,6 +14,7 @@ def tokenize(filename):
     @rtype result: list
     @return result: Every token is a string, obtained by stripping the file content to words and performing the cleaning described. The starting index of the token in the cleaned code and actual code are also stored
     """
+
     file = open(filename, "r")
     text = file.read()
     file.close()
@@ -25,6 +26,7 @@ def tokenize(filename):
     count1 = 0    #tag to store corresponding position of each element in original code file
     count2 = 0    #tag to store position of each element in cleaned up code text
     # these tags are used to mark the plagiarized content in the original code files.
+
     for i in range(lenT):
         if tokens[i][0] == pygments.token.Name and not i == lenT - 1 and not tokens[i + 1][1] == '(':
             result.append(('N', count1, count2))  #all variable names as 'N'
@@ -55,8 +57,7 @@ def toText(arr):
     @rtype cleanText: str
     @return cleanText: code obtained by joining all tokens and removing comments and whitespaces
     """
+
     cleanText = ''.join(str(x[0]) for x in arr)
     return cleanText
-
-
 

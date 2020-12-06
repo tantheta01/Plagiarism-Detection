@@ -2,6 +2,7 @@ import numpy as np
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from sklearn.manifold import TSNE
+
 def get_reduced_components(data):
 	# print(len(data))
 	maxlen = max(len(frequency_vector) for frequency_vector in data)
@@ -23,7 +24,4 @@ def get_reduced_components(data):
 		data = pca.fir_transform(data)
 
 	return TSNE().fit_transform(data)
-
-
-
 

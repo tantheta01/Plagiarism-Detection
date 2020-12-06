@@ -1,7 +1,6 @@
-
 <div>
   <div>
-    <div class="chart-container float-right grow:hover" style="position: absolute;left: 1000px; top: 400px; height:40vh; width:40vw; border: 3px solid #cecece; ">
+    <div class="chart-container float-right grow:hover" style="position: absolute; left: 1000px; top: 400px; height: 40vh; width: 40vw; border: 3px solid #cecece;">
       <canvas baseChart  
         [datasets]="scatterChartData"
         [options]="scatterChartOptions"
@@ -26,7 +25,6 @@
   </mat-form-field>
 </div>
 
-
 <div class="container" style="position: absolute; top: 140px; left: 50px; width: 20vw;height: 40vw; overflow-y: scroll; ">
 
   <span *ngFor="let fd of firstCode[firstFileControl.value + ',' + secondFileControl.value]['first_file'];let i=index">
@@ -43,11 +41,11 @@
   
 </div>
 
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+<div class="login-wrapper" style="position: absolute; left: 1200px; top: 200px;">
 <mat-card class="box">
 <mat-card-header>
 <mat-card-title>Download File</mat-card-title>
 </mat-card-header>
-<a [href]="fileUrl" download="file.csv">Plagiarism report</a>
+<a [href]="fileUrl" download="pairwise_similarity.csv">Plagiarism Report</a>
 </mat-card>
 </div>

@@ -7,9 +7,6 @@
   
       <!-- <form class="example-form"> -->
       <form class="example-form" action="action_page.php" method="post" [formGroup]="userLoginForm">
-        <div class="imgcontainer">
-          <img src="img_avatar2.png" alt="Avatar" class="avatar">
-        </div>
         <mat-card-content>
           <mat-form-field class="example-full-width">
             <input matInput type="text" placeholder="Username" required formControlName="username">
@@ -31,9 +28,9 @@
 
 
         <p class="spacing"></p>
-        <div class="container" style="text-align: right;">
+        <!-- <div class="container" style="text-align: right;">
           <span class="psw"><a routerLink="/login">Forgot password?</a></span>
-        </div>
+        </div> -->
         <div class="container" style="text-align: right;">
           <span><a routerLink="/register">Don't have an account?</a></span>
         </div>

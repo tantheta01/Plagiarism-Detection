@@ -1,10 +1,10 @@
 import tarfile
 import os
-# import os
 import shutil
 import numpy as np
 from winnowing import *
 from plot import get_reduced_components
+
 
 def CountFrequency(my_list): 
   
@@ -20,6 +20,7 @@ def CountFrequency(my_list):
 
 
 def getExclusiveSimilarity(file1, file2): 
+
 	"""! @brief Evaluates the exclusive similarity between two files.  
 	 	
 		Arguments : 
@@ -28,6 +29,7 @@ def getExclusiveSimilarity(file1, file2):
 		Return:
 		file1_f : The similarity exclusive for the two files
 	"""
+
 	file1_chunks = file1.split("<mark>")
 	file2_chunks = file2.split("<mark>")
 
@@ -38,6 +40,7 @@ def getExclusiveSimilarity(file1, file2):
 	file2_ranges=[]
 	f1_start_idx=0
 	f2_start_idx=0
+
 	for i in len(len(file1_chunks)):
 		if i%2 == y1:
 			file1_ranges.append((f1_start_idx, f1_start_idx+len(file1_chunks[i])))
@@ -103,11 +106,8 @@ def getExclusiveSimilarity(file1, file2):
 	return plagged/len(file1_unmarked), file1_f
 
 
-
-
-
-
 def extract_and_process(tar_filename):
+
 	"""
 	Driver Circuit to extract tar files and pass them through prepreocessing. 
 	Arguments : 
@@ -121,23 +121,21 @@ def extract_and_process(tar_filename):
 	code_files : list of files in the directory code_files
 	sorted_list : 
 	"""
+
 	directory_of_file = '/'.join(folder for folder in tar_filename.split('/')[:-1])
 	# with open(tar_filename) as f:
-	# 	f.extractall(directory_of_file)
+		# f.extractall(directory_of_file)
 	mytar = tarfile.open(tar_filename)
 	mytar.extractall(directory_of_file)
 	mytar.close()
 
+	# print("Tar file name is ", tar_filename)
+	# print(directory_of_file)
 
-	print("Tar file name is ", tar_filename)
-
-	print(directory_of_file)
 	file_similarities = {}
 
-	# We are expecting there shall be one directory in the tar file named code_files and one of them shall be named stub_code if stub_code is provided
+	# We are expecting there shall be one directory in the tar file named code_files and one named stub_code if stub_code is provided
 
-	print(os.listdir(directory_of_file), "This is the folder presen in the directory")
-	print("directory of file is", directory_of_file)
 	file1=[]
 	file2=[]
 	similarity=[]
@@ -147,27 +145,22 @@ def extract_and_process(tar_filename):
 	file_params = [getFingerPrints(directory_of_file + '/code_files/' + file) for file in code_files]
 	freq_fingerprints = [CountFrequency(param[3]) for param in file_params]
 	embedded_files = get_reduced_components(freq_fingerprints)
-	print(embedded_files)
-
+	# print(embedded_files)
 
 
 	if "stub_code" in os.listdir(directory_of_file):
 
-
-
 		stub_code_file = directory_of_file + "/stub_code/" + os.listdir(directory_of_file + "/stub_code")[0]
-		
 		stub_code_params = getFingerPrints(stub_code_file)
-
 
 		code_files_dir = directory_of_file + '/code_files'
 		code_files = os.listdir(code_files_dir)
 
 		code_files_similarity_stub_code = []
+
 		for i in range(len(code_files)):
 			_, file_com = plagiarismCheck(code_files_dir + '/' + code_files[i], file_params[i][0], file_params[i][1], file_params[i][2], file_params[i][3], stub_code_params[3])
 			code_files_similarity_stub_code.append(file_com)
-
 
 		for i in range(len(code_files)-1):
 
@@ -200,7 +193,7 @@ def extract_and_process(tar_filename):
 			for j in range(i+1, len(code_files)):
 
 				file1_sim, file1_com = plagiarismCheck(code_files_dir + '/' + code_files[i], file_params[i][0], file_params[i][1], file_params[i][2], file_params[i][3], file_params[j][3])
-				print(len(file1_com.split("<mark>")), "is the similarity between the filesssssssssssssssssssss")
+				# print(len(file1_com.split("<mark>")))
 				file2_sim, file2_com = plagiarismCheck(code_files_dir + '/' + code_files[j], file_params[j][0], file_params[j][1], file_params[j][2], file_params[j][3], file_params[i][3])
 
 				file_similarities[(code_files[i], code_files[j])] = {"first_file" : file1_com, "second_file" : file2_com, "similarity" : min(file1_sim, file2_sim)}
@@ -212,31 +205,12 @@ def extract_and_process(tar_filename):
 
 
 		file_similarities = {','.join(k):v for (k,v) in sorted(file_similarities.items(), key = lambda item : -1*item[1]["similarity"])}
-		# print(file_similarities["test2.py,test3.py"]["first_file"])
 		
 	shutil.rmtree(directory_of_file + "/code_files")
 	os.remove(tar_filename)
 
 	csv_list = np.column_stack([np.array(file1), np.array(file2), np.array(similarity)])
 	sorted_list = csv_list[np.argsort(csv_list[:, 2])][::-1]
-	# csv_list.sort(key = lambda x: x[2], reverse = True)
-	print(sorted_list)
-	# np.savetxt(directory_of_file + '/data.csv', sorted_list, delimiter=',', fmt = ['%s', '%s', '%s'], header = 'File 1,File 2,Similarity', comments='')
 
 	return file_similarities, code_files, sorted_list, embedded_files
-
-
-# def get_fps_and_pca(tar_filename):
-
-
-# 	directory_of_file = '/'.join(folder for folder in tar_filename.split('/')[:-1])
-# 	# with open(tar_filename) as f:
-# 	# 	f.extractall(directory_of_file)
-# 	mytar = tarfile.open(tar_filename)
-# 	mytar.extractall(directory_of_file)
-# 	mytar.close()
-
-
-
-
 

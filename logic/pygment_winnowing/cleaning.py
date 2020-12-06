@@ -15,5 +15,5 @@ def tokenize_file(filename):
 	count1=0
 	count2=0
 
-	for token in tokens:
-		if token[0] == 
+	# for token in tokens:
+	# 	if token[0] == 

@@ -33,6 +33,7 @@ python3 manage.py runserver
 * Navigate to the `FrontEnd` directory, and setup the frontend environment using:
 ```
 cd ../FrontEnd/sim-check/
+# Install dependencies
 npm install
 ng serve --open
 ```

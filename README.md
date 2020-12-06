@@ -52,7 +52,6 @@ To use **Red Plag** follow these steps:
 * Upload the tar file in specified format.
 * You will be navigated to the results page. The result page features the following:
     * A csv file `pairwise_similarity.csv` in the format:
-
 | File 1         | File 2       | Similarity   |
 | :------------- | :----------: | -----------: |
     * Scatter plot to visualize high-dimensional signature vectors of the code files by performing dimensionality-reduction (**PCA**).

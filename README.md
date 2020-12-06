@@ -68,6 +68,11 @@ To use **Red Plag** follow these steps:
 ### Core Logic
 *will add this once doxygen is finalised*
 
+* This tool cleans the software codes to be checked for plagiarism by removing white spaces, denoising the content i.e replacing variable names throughout by 'N', strings by 'S' and user defined function names by 'F'. By cleaning up the codes, the efficiency of plagiarism detector is no longer affected by changes in identifiers.
+* It employs winnowing algorithm to detect plagiarized content. It takes the code files (pairwise) as input. The output is the plagiarized content (highlighted blocks) and the extent of similarity.
+* In case stub code file is provided, the "influence" of the stub code (which is invariably common in all code files) is subtracted from the overall pairwise similarity.
+* It visually represents the high-dimensional signature vectors corresponding to each code file by performing dimensionality reduction by employing **PCA**. 
+
 ## Contributors
 * [@tantheta01](https://github.com/tantheta01)
 * [@akshay-121](https://github.com/akshay-121)

@@ -23,7 +23,7 @@ To install **Red Plag**, follow these steps:
 
 * Clone this github repository on your local machine using:
 ```bash
-$ git clone https://github.com/tantheta01/Plagiarism-Detection
+$ git clone -b merge1 https://github.com/tantheta01/Plagiarism-Detection
 ```
 * Navigate to the `PYTORCH` directory, and setup the backend environment using:
 ```bash

@@ -1,14 +1,73 @@
-# Plagiarism-Detection
-A simple client to detect source code plagiarism detection using various techniques
+ # Red Plag
+![GitHub repo size](https://img.shields.io/github/repo-size/scottydocs/README-template.md)
+![GitHub contributors](https://img.shields.io/github/contributors/scottydocs/README-template.md)
 
+Red Plag is a plagiarism checker tool that allows user to detect source code plagiarism and locate the instances of plagiarism within the code files pairwise. The frontend is implemented in Angular and backend with Django and Django REST framework.
 
-## Project implemented so far
-### Frontend
+It gives a visual measure of plagiarized content using scatter plots and also highlights the similar blocks between the files pairwise. It implements language-specific functionality to develop a more robust checker for Java.
 
-The frontend is implemented in Angular, Javascript library. On loading the application directs to a Get Started page which has a small description about the project and a link to the login page. The login page asks the user for the username and password. If the user doesn’t have an account already they can be directed to the registration page. After a successful login, the user is directed to the mainpage which has all the features in a single dashboard. It displays the user profile and has a description for (how to use the webapp) like a link. It has options for file uploading which directs the user to a file upload page where the user can upload the file(s) to be checked and then view the result in the form of graphs and visualization. It also has an option for the user to view previous results for the file(s) that have been checked before. The person can also edit the profile using the “Edit profile” option on the mainpage.
-All the pages apart from the “View Result” page have been implemented in the current version.
+## Prerequisites
 
-![](./image.png)
+Before you begin, ensure you have installed the latest version of the following:
+
+* `python`
+* `pygments`, a syntax package in `python`
+* `Java`
+* `@angular/cli`
+* `Django`
+* `Django REST`
+
+## Installing Red Plag
+
+To install **Red Plag**, follow these steps:
+
+* Clone this github repository on your local machine using:
+```
+git clone https://github.com/tantheta01/Plagiarism-Detection
+```
+* Navigate to the `PYTORCH` directory, and setup the backend environment using:
+```
+cd Plagiarism-Detection/PYTORCH/
+python3 manage.py runserver
+```
+* Navigate to the `FrontEnd` directory, and setup the frontend environment using:
+```
+cd ../FrontEnd/sim-check/
+npm install
+ng serve --open
+```
+* The local host server will open after compilation.
+
+## Using Red Plag
+
+To use **Red Plag** follow these steps:
+* Click on the *Let’s get started!* button on the introduction page.
+* You will be routed to the login page. If you already have an account, login with those credentials. Else, click on *Don’t have an account?* and signup.
+* Once logged in, the main page features options to change your password and upload the code files.
+* Accepted File Format for Upload:
+    * tar file format
+    * on extracting, tar file should have two directories, namely `code_files` and `stub_files`.
+    * `code_files` contains all the code files for pairwise plagiarism detection.
+    * `stub_files` contains the stub code file(s) that is invariably common in all the code files.
+* Upload the tar file in specified format.
+* You will be navigated to the results page. The result page features the following:
+    * A csv file `pairwise_similarity.csv` in the format:
+| File 1       | File 2   | Similarity                     |
+| ------------ | -------- | ------------------------------ |
+    * 
+    * 
+
+## Contributors
+* [@tantheta01](https://github.com/tantheta01)
+* [@akshay-121](https://github.com/akshay-121)
+* [@badola2320](https://github.com/badola2320)
+* [@Liza23](https://github.com/Liza23)
+
+## Contact
+If you want to contact me you can reach me at greettanay@gmail.com.
+
+## License
+This project uses the following license: **MIT**.
 
 ### Backend
 Endpoints  : 
@@ -16,32 +75,10 @@ Endpoints  :
 - SignUp -> Returns the username and email of the user
 - ChangePassword -> Takes the old password, new password of the user (Authentication is done using Token). If the old password matches the user's password, the password is updated
 - File Upload -> Takes the File to be uploaded and the token for getting the user and authentication. Every File is linked to a user object and to facilitate organization and showing previous results(something we plan to do) the file is saved at /media/username/filename. The response is the contents of the same file at the moment and shall be changed to the results once we implement core logic. 
- 
+
 
 ## Technologies and Frameworks used
 The frontend is implemented in Angular and backend with Django framework and Django REST framework. 
-
-
-## Project Setup
-
-- Clone this github repository on your local machine using `git clone https://github.com/tantheta01/Plagiarism-Detection`
-- cd into the repository and then in the backend folder, `PYTORCH` and run the following command
-  
-  `python3 manage.py runserver`
-  
-  This will set up the backend environment on your local machine.
-- To run the frontend locally, first cd out of the backend folder and then cd into the frontend folder i.e. `FrontEnd/sim-check` 
-  - `npm install` 
-  - `ng serve --open`
-- The local host server will open after compilation.
-
-## Functionality and Usage
-- Click on the “Let’s get started!” button on the introduction page.
-- You will be routed to the Login Page.
-- If you have an account already, type your login credentials. If not, click on  “Don’t have an account?” and register by typing your name, email, username and password. Confirm your password. After successful registration, you will be directed to the login page. Enter your login credentials and hit the “Login” button.
-- After successful registration, you will be routed to the main page. The main page features your profile details and has a button for file upload, which leads you to the File Upload Page, a button to View your previous results and one for editing your profile.
-- On clicking the “File Upload” button you’ll be directed to a page for uploading your file(s). After successfully uploading your file(s) (this may take a little time if your file size is big enough), you’ll have to click on the “View Results'' button, to view results in the form of various graphs and visualizations. 
-- There’ll be a button on the “View Result” page that directs you to the main home page. 
 
 
 ## Project Plan Ahead

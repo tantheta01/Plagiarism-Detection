@@ -51,12 +51,12 @@ To use **Red Plag** follow these steps:
     * `stub_files` contains the stub code file(s) that is invariably common in all the code files.
 * Upload the tar file in specified format.
 * You will be navigated to the results page. The result page features the following:
+    * Scatter plot to visualize high-dimensional signature vectors of the code files by performing dimensionality-reduction (**PCA**).
+    * Highlighted similar blocks between the files pairwise.
     * A csv file `pairwise_similarity.csv` in the format:
     
 | File 1         | File 2       | Similarity   |
 | :------------- | :----------: | -----------: |
-    * Scatter plot to visualize high-dimensional signature vectors of the code files by performing dimensionality-reduction (**PCA**).
-    * Highlighted similar blocks between the files pairwise
 
 ### Backend Endpoints
 - `UserLogin`: An endpoint for logging in. Returns the username and the authentication token for the user.

@@ -91,7 +91,9 @@ export class OutputPageComponent implements OnInit {
   ngOnInit(){
     // console.log(sessionStorage['embeddings'][0])
     const data = sessionStorage['csvfile'];
-    const blob = new Blob([data], {​​​​​​​​ type: 'application/octet-stream' }​​​​​​​​);
+    const temp = JSON.parse(data);
+    
+    const blob = new Blob([temp[0] + '\n' + temp[1] + '\n' + temp[2]], {​​​​​​​​ type: 'application/octet-stream' }​​​​​​​​);
     this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
 
 

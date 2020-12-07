@@ -58,7 +58,7 @@ To use **Red Plag** follow these steps:
 * You will be navigated to the results page. The result page features the following:
     * Scatter plot to visualize high-dimensional signature vectors of the code files by performing dimensionality-reduction (**PCA**).
     * Highlighted similar blocks between the files pairwise.
-    * A downloadable csv file `pairwise_similarity.csv` in the format:
+    * A downloadable csv file `pairwise_similarity.csv` in the format (following as rows):
     
 | File 1         | File 2       | Similarity   |
 | :------------- | :----------: | -----------: |

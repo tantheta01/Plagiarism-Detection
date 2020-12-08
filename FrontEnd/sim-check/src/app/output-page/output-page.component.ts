@@ -91,9 +91,20 @@ export class OutputPageComponent implements OnInit {
   ngOnInit(){
     // console.log(sessionStorage['embeddings'][0])
     const data = sessionStorage['csvfile'];
-    const temp = JSON.parse(data);
+    const parsed_data = JSON.parse(data);
+
+    const file1 = String(parsed_data[0]).split(',');
+    const file2 = String(parsed_data[1]).split(',');
+    const similarity = String(parsed_data[2]).split(',');
+
+    var csv = "File1,File2,Similarity";
+    const n = file1.length;
+    for (let i = 0; i < n; i++) {
+      csv += '\n';
+      csv += String(file1[i]) + "," + String(file2[i]) + "," + String(similarity[i]);
+    }
     
-    const blob = new Blob([temp[0] + '\n' + temp[1] + '\n' + temp[2]], {​​​​​​​​ type: 'application/octet-stream' }​​​​​​​​);
+    const blob = new Blob([csv], {​​​​​​​​ type: 'application/octet-stream' }​​​​​​​​);
     this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
 
 

@@ -1,0 +1,31 @@
+\hypertarget{namespaceapi__app_1_1urls}{}\doxysection{api\+\_\+app.\+urls Namespace Reference}
+\label{namespaceapi__app_1_1urls}\index{api\_app.urls@{api\_app.urls}}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+list \mbox{\hyperlink{namespaceapi__app_1_1urls_ad64c15c12e3e6106e09263a8f5882f21}{urlpatterns}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceapi__app_1_1urls_ad64c15c12e3e6106e09263a8f5882f21}\label{namespaceapi__app_1_1urls_ad64c15c12e3e6106e09263a8f5882f21}} 
+\index{api\_app.urls@{api\_app.urls}!urlpatterns@{urlpatterns}}
+\index{urlpatterns@{urlpatterns}!api\_app.urls@{api\_app.urls}}
+\doxysubsubsection{\texorpdfstring{urlpatterns}{urlpatterns}}
+{\footnotesize\ttfamily urlpatterns}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  [}
+\DoxyCodeLine{2     path(\textcolor{stringliteral}{'api/users/'}, views.UserCreate.as\_view(), name=\textcolor{stringliteral}{"{}user\_list"{}}),}
+\DoxyCodeLine{3     path(\textcolor{stringliteral}{'api/users/login/'}, views.UserLogin.as\_view(), name=\textcolor{stringliteral}{"{}user\_login"{}}),}
+\DoxyCodeLine{4     re\_path(\textcolor{stringliteral}{r'\string^api/files/upload/(?P<filename>[\string^/]+)\$'},}
+\DoxyCodeLine{5             views.FileUploadView.as\_view(), name=\textcolor{stringliteral}{"{}file\_view"{}}),}
+\DoxyCodeLine{6     path(\textcolor{stringliteral}{'api/password/'}, views.PassChangeView.as\_view(), name=\textcolor{stringliteral}{'change\_password'}),}
+\DoxyCodeLine{7 ]}
+
+\end{DoxyCode}
+
+
+Definition at line 5 of file urls.\+py.
+

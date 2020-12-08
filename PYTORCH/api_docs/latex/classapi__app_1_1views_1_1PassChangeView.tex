@@ -1,0 +1,165 @@
+\hypertarget{classapi__app_1_1views_1_1PassChangeView}{}\doxysection{Pass\+Change\+View Class Reference}
+\label{classapi__app_1_1views_1_1PassChangeView}\index{PassChangeView@{PassChangeView}}
+
+
+An endpoint for changing password.  
+
+
+Inheritance diagram for Pass\+Change\+View\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classapi__app_1_1views_1_1PassChangeView}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classapi__app_1_1views_1_1PassChangeView_a5daef22632aaffc4f3b113bab4690dce}{get\+\_\+object}} (self, queryset=None)
+\item 
+def \mbox{\hyperlink{classapi__app_1_1views_1_1PassChangeView_a166e9eef818b282db099a739c7030f48}{update}} (self, request, $\ast$args, $\ast$$\ast$kwargs)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classapi__app_1_1views_1_1PassChangeView_ad03408aabe16bb53c780fae6cf3910f9}{object}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classapi__app_1_1views_1_1PassChangeView_aa4e8bede03797663504131b3ee2883da}{serializer\+\_\+class}} = \mbox{\hyperlink{classapi__app_1_1serializers_1_1ChangePasswordSerializer}{Change\+Password\+Serializer}}
+\item 
+\mbox{\hyperlink{classapi__app_1_1views_1_1PassChangeView_a508cc3106d2c29fe07dc87cbe3ea6927}{model}} = User
+\item 
+tuple \mbox{\hyperlink{classapi__app_1_1views_1_1PassChangeView_a62bac0086fb6da9b4cd58b9f4a1bfe4c}{authentication\+\_\+classes}} = (Token\+Authentication,)
+\item 
+tuple \mbox{\hyperlink{classapi__app_1_1views_1_1PassChangeView_a6342ffcd66928b30835cfc0a77a42163}{permission\+\_\+classes}} = (Is\+Authenticated,)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An endpoint for changing password. 
+
+Endoint \+: {\bfseries{api/password/}} 
+\begin{DoxyParams}{Parameters}
+{\em body} & The request body contains the keys {\bfseries{old\+\_\+password}} and {\bfseries{new\+\_\+password}} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 121 of file views.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classapi__app_1_1views_1_1PassChangeView_a5daef22632aaffc4f3b113bab4690dce}\label{classapi__app_1_1views_1_1PassChangeView_a5daef22632aaffc4f3b113bab4690dce}} 
+\index{PassChangeView@{PassChangeView}!get\_object@{get\_object}}
+\index{get\_object@{get\_object}!PassChangeView@{PassChangeView}}
+\doxysubsubsection{\texorpdfstring{get\_object()}{get\_object()}}
+{\footnotesize\ttfamily def get\+\_\+object (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{queryset = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 132 of file views.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{132         \textcolor{keyword}{def }get\_object(self, queryset=None):}
+\DoxyCodeLine{133             obj = self.request.user}
+\DoxyCodeLine{134             \textcolor{keywordflow}{return} obj}
+\DoxyCodeLine{135 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classapi__app_1_1views_1_1PassChangeView_a166e9eef818b282db099a739c7030f48}\label{classapi__app_1_1views_1_1PassChangeView_a166e9eef818b282db099a739c7030f48}} 
+\index{PassChangeView@{PassChangeView}!update@{update}}
+\index{update@{update}!PassChangeView@{PassChangeView}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily def update (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{request,  }\item[{$\ast$}]{args,  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+
+
+Definition at line 136 of file views.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{136         \textcolor{keyword}{def }update(self, request, *args, **kwargs):}
+\DoxyCodeLine{137             self.object = self.get\_object()}
+\DoxyCodeLine{138             serializer = self.get\_serializer(data=request.data)}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140             \textcolor{keywordflow}{if} serializer.is\_valid():}
+\DoxyCodeLine{141                 \textcolor{comment}{\# check old password}}
+\DoxyCodeLine{142                 \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} self.object.check\_password(serializer.data.get(\textcolor{stringliteral}{"{}old\_password"{}})):}
+\DoxyCodeLine{143                     \textcolor{keywordflow}{return} Response(\{\textcolor{stringliteral}{"{}old\_password"{}}: [\textcolor{stringliteral}{"{}Wrong password."{}}]\}, status=status.HTTP\_400\_BAD\_REQUEST)}
+\DoxyCodeLine{144                 \textcolor{comment}{\# set\_password also hashes the password that the user will get}}
+\DoxyCodeLine{145                 self.object.set\_password(serializer.data.get(\textcolor{stringliteral}{"{}new\_password"{}}))}
+\DoxyCodeLine{146                 self.object.save()}
+\DoxyCodeLine{147                 response = \{}
+\DoxyCodeLine{148                     \textcolor{stringliteral}{'status'}: \textcolor{stringliteral}{'success'},}
+\DoxyCodeLine{149                     \textcolor{stringliteral}{'code'}: HTTP\_200\_OK,}
+\DoxyCodeLine{150                     \textcolor{stringliteral}{'message'}: \textcolor{stringliteral}{'Password updated successfully'},}
+\DoxyCodeLine{151                     \textcolor{stringliteral}{'data'}: []}
+\DoxyCodeLine{152                 \}}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154                 \textcolor{keywordflow}{return} Response(response)}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156             \textcolor{keywordflow}{return} Response(serializer.errors, status=HTTP\_400\_BAD\_REQUEST)}
+\DoxyCodeLine{157 }
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classapi__app_1_1views_1_1PassChangeView_a62bac0086fb6da9b4cd58b9f4a1bfe4c}\label{classapi__app_1_1views_1_1PassChangeView_a62bac0086fb6da9b4cd58b9f4a1bfe4c}} 
+\index{PassChangeView@{PassChangeView}!authentication\_classes@{authentication\_classes}}
+\index{authentication\_classes@{authentication\_classes}!PassChangeView@{PassChangeView}}
+\doxysubsubsection{\texorpdfstring{authentication\_classes}{authentication\_classes}}
+{\footnotesize\ttfamily tuple authentication\+\_\+classes = (Token\+Authentication,)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 129 of file views.\+py.
+
+\mbox{\Hypertarget{classapi__app_1_1views_1_1PassChangeView_a508cc3106d2c29fe07dc87cbe3ea6927}\label{classapi__app_1_1views_1_1PassChangeView_a508cc3106d2c29fe07dc87cbe3ea6927}} 
+\index{PassChangeView@{PassChangeView}!model@{model}}
+\index{model@{model}!PassChangeView@{PassChangeView}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily model = User\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 128 of file views.\+py.
+
+\mbox{\Hypertarget{classapi__app_1_1views_1_1PassChangeView_ad03408aabe16bb53c780fae6cf3910f9}\label{classapi__app_1_1views_1_1PassChangeView_ad03408aabe16bb53c780fae6cf3910f9}} 
+\index{PassChangeView@{PassChangeView}!object@{object}}
+\index{object@{object}!PassChangeView@{PassChangeView}}
+\doxysubsubsection{\texorpdfstring{object}{object}}
+{\footnotesize\ttfamily object}
+
+
+
+Definition at line 137 of file views.\+py.
+
+\mbox{\Hypertarget{classapi__app_1_1views_1_1PassChangeView_a6342ffcd66928b30835cfc0a77a42163}\label{classapi__app_1_1views_1_1PassChangeView_a6342ffcd66928b30835cfc0a77a42163}} 
+\index{PassChangeView@{PassChangeView}!permission\_classes@{permission\_classes}}
+\index{permission\_classes@{permission\_classes}!PassChangeView@{PassChangeView}}
+\doxysubsubsection{\texorpdfstring{permission\_classes}{permission\_classes}}
+{\footnotesize\ttfamily tuple permission\+\_\+classes = (Is\+Authenticated,)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 130 of file views.\+py.
+
+\mbox{\Hypertarget{classapi__app_1_1views_1_1PassChangeView_aa4e8bede03797663504131b3ee2883da}\label{classapi__app_1_1views_1_1PassChangeView_aa4e8bede03797663504131b3ee2883da}} 
+\index{PassChangeView@{PassChangeView}!serializer\_class@{serializer\_class}}
+\index{serializer\_class@{serializer\_class}!PassChangeView@{PassChangeView}}
+\doxysubsubsection{\texorpdfstring{serializer\_class}{serializer\_class}}
+{\footnotesize\ttfamily serializer\+\_\+class = \mbox{\hyperlink{classapi__app_1_1serializers_1_1ChangePasswordSerializer}{Change\+Password\+Serializer}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 127 of file views.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tanay/\+Sem3/\+SSL/\+Main\+Project/\+Plagiarism-\/\+Detection/\+PYTORCH/api\+\_\+app/\mbox{\hyperlink{views_8py}{views.\+py}}\end{DoxyCompactItemize}

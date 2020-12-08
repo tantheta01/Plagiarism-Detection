@@ -38,11 +38,24 @@ from driver import *
 
 
 class UserCreate(generics.ListCreateAPIView):
+    """!
+    @brief Creates User objects(user registration) 
+    Endpoint : **api/users/**
+    @param body The request body must contain the keys **username**, **password** and **email**
+    @return The response body contains the keys **username**
+
+    """
     queryset = User.objects.all().order_by('pk')
     serializer_class = UserCreateSerializer
 
 
 class UserLogin(APIView):
+    """!
+    @brief Endpoint for user login
+    Endpoint : **api/users/login/**
+    @param body The request body must contain the keys **username** and **password**
+    @return The response body contains the keys **username** and **token**. The token should be preserved for any further authentication. 
+    """
     permission_classes = [permissions.AllowAny]
     serializer_class = UserLoginSerializer
 
@@ -56,7 +69,15 @@ class UserLogin(APIView):
 
 
 class FileUploadView(APIView):
-    """The Upload File view should be availale to users only."""
+    """!
+    @brief Endpoint for file upload 
+    Endpoint : **api/files/upload/filename** 
+    Note that ths endpoint does not have a trailig */* as opposed to others
+
+    @param body Request body contains the file to be uploaded. The file should be in **tar.gz** format and should untar to produce folders **code_files** and/or **stub_code**
+    @param header Response header contains the authentication token
+    @return The response object contains all the similarity parameters listed in the logic documentation
+    """
     parser_classes = (MultiPartParser, FormParser)
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated, )
@@ -98,8 +119,10 @@ class FileUploadView(APIView):
 
 
 class PassChangeView(generics.UpdateAPIView):
-        """
-        An endpoint for changing password.
+        """!
+        @brief An endpoint for changing password.
+        Endoint : **api/password/** 
+        @param body The request body contains the keys **old_password** and **new_password** 
         """
         serializer_class = ChangePasswordSerializer
         model = User

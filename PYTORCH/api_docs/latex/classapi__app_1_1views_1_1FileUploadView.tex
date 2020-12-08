@@ -1,0 +1,137 @@
+\hypertarget{classapi__app_1_1views_1_1FileUploadView}{}\doxysection{File\+Upload\+View Class Reference}
+\label{classapi__app_1_1views_1_1FileUploadView}\index{FileUploadView@{FileUploadView}}
+
+
+Endpoint for file upload Endpoint \+: {\bfseries{api/files/upload/filename}} Note that ths endpoint does not have a trailig $\ast$/$\ast$ as opposed to others.  
+
+
+Inheritance diagram for File\+Upload\+View\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classapi__app_1_1views_1_1FileUploadView}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classapi__app_1_1views_1_1FileUploadView_a4cc72eb4138ae2d1c3d43a5aaa890591}{post}} (self, request, filename, format=None)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \mbox{\hyperlink{classapi__app_1_1views_1_1FileUploadView_af049e7b93ca72c6112c645efe027b6a7}{parser\+\_\+classes}} = (Multi\+Part\+Parser, Form\+Parser)
+\item 
+tuple \mbox{\hyperlink{classapi__app_1_1views_1_1FileUploadView_a62bac0086fb6da9b4cd58b9f4a1bfe4c}{authentication\+\_\+classes}} = (Token\+Authentication,)
+\item 
+tuple \mbox{\hyperlink{classapi__app_1_1views_1_1FileUploadView_a6342ffcd66928b30835cfc0a77a42163}{permission\+\_\+classes}} = (Is\+Authenticated, )
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Endpoint for file upload Endpoint \+: {\bfseries{api/files/upload/filename}} Note that ths endpoint does not have a trailig $\ast$/$\ast$ as opposed to others. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body} & Request body contains the file to be uploaded. The file should be in {\bfseries{tar.\+gz}} format and should untar to produce folders {\bfseries{code\+\_\+files}} and/or {\bfseries{stub\+\_\+code}} \\
+\hline
+{\em header} & Response header contains the authentication token \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The response object contains all the similarity parameters listed in the logic documentation 
+\end{DoxyReturn}
+
+
+Definition at line 71 of file views.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classapi__app_1_1views_1_1FileUploadView_a4cc72eb4138ae2d1c3d43a5aaa890591}\label{classapi__app_1_1views_1_1FileUploadView_a4cc72eb4138ae2d1c3d43a5aaa890591}} 
+\index{FileUploadView@{FileUploadView}!post@{post}}
+\index{post@{post}!FileUploadView@{FileUploadView}}
+\doxysubsubsection{\texorpdfstring{post()}{post()}}
+{\footnotesize\ttfamily def post (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{request,  }\item[{}]{filename,  }\item[{}]{format = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 85 of file views.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{85     \textcolor{keyword}{def }post(self, request, filename, format=None):}
+\DoxyCodeLine{86         file = request.data.get(\textcolor{stringliteral}{'file'}, \textcolor{keywordtype}{None})}
+\DoxyCodeLine{87         \textcolor{keywordflow}{if} file:}
+\DoxyCodeLine{88             user = request.user}
+\DoxyCodeLine{89             uname = str(user.username)}
+\DoxyCodeLine{90             \textcolor{comment}{\# tType = request.params.testType}}
+\DoxyCodeLine{91             \textcolor{keywordflow}{if} uname \textcolor{keywordflow}{not} \textcolor{keywordflow}{in} os.listdir(\textcolor{stringliteral}{"{}api\_app/media/"{}}):}
+\DoxyCodeLine{92                 os.mkdir(\textcolor{stringliteral}{"{}api\_app/media/"{}} + uname)}
+\DoxyCodeLine{93             }
+\DoxyCodeLine{94             \textcolor{comment}{\# extention = filename.split("{}."{})[1]}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96             \textcolor{comment}{\# os.mkdir("{}api\_app/media/"{} + uname + "{}/"{} + str(tType) + str(time.strftime("{}\%Y\%m\%d-\/\%H\%M\%S"{})) + "{}/"{})}}
+\DoxyCodeLine{97             path = default\_storage.save(}
+\DoxyCodeLine{98                 \textcolor{stringliteral}{"{}api\_app/media/"{}} + uname + \textcolor{stringliteral}{"{}/"{}} + filename, ContentFile(file.read()))}
+\DoxyCodeLine{99             }
+\DoxyCodeLine{100             uploadFile = UploadFile(path=path, user=user)}
+\DoxyCodeLine{101             uploadFile.save()            }
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104             file\_path = \textcolor{stringliteral}{"{}api\_app/media/"{}} + uname + \textcolor{stringliteral}{"{}/"{}} + filename}
+\DoxyCodeLine{105             extracted, fnames, csv\_list, embeddings, range\_sim = extract\_and\_process(file\_path)}
+\DoxyCodeLine{106             print(range\_sim, \textcolor{stringliteral}{"{}is the range issimmm"{}})}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108             dirsize = len(os.listdir(\textcolor{stringliteral}{"{}api\_app/media/"{}} + uname))}
+\DoxyCodeLine{109             pd.DataFrame(csv\_list).to\_csv(\textcolor{stringliteral}{"{}api\_app/media/"{}} + uname + \textcolor{stringliteral}{'/'} + str(dirsize) + \textcolor{stringliteral}{'.csv'})}
+\DoxyCodeLine{110             \textcolor{comment}{\# print(extracted['f2.py,f.py']['first\_file'])}}
+\DoxyCodeLine{111             \textcolor{comment}{\# print(csv\_list)}}
+\DoxyCodeLine{112             \textcolor{keywordflow}{return} Response(\{\textcolor{stringliteral}{'data'} : extracted, \textcolor{stringliteral}{'names'} : fnames, \textcolor{stringliteral}{'csv'} : pd.DataFrame(csv\_list), \textcolor{stringliteral}{'embeddings'} : embeddings, \textcolor{stringliteral}{'range\_sim'} : range\_sim\}, HTTP\_200\_OK)}
+\DoxyCodeLine{113             \textcolor{comment}{\# return Response(\{'data' : DiCtNAME\}, HTTP\_200\_OK)}}
+\DoxyCodeLine{114             \textcolor{comment}{\# return Response(\{}}
+\DoxyCodeLine{115             \textcolor{comment}{\#     "{}path"{}: path,}}
+\DoxyCodeLine{116             \textcolor{comment}{\#     "{}user"{}: user.username}}
+\DoxyCodeLine{117             \textcolor{comment}{\# \},}}
+\DoxyCodeLine{118         \textcolor{keywordflow}{return} Response(\{\textcolor{stringliteral}{"{}error"{}}: \textcolor{stringliteral}{"{}file not found"{}}\}, status=HTTP\_400\_BAD\_REQUEST)}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 }
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classapi__app_1_1views_1_1FileUploadView_a62bac0086fb6da9b4cd58b9f4a1bfe4c}\label{classapi__app_1_1views_1_1FileUploadView_a62bac0086fb6da9b4cd58b9f4a1bfe4c}} 
+\index{FileUploadView@{FileUploadView}!authentication\_classes@{authentication\_classes}}
+\index{authentication\_classes@{authentication\_classes}!FileUploadView@{FileUploadView}}
+\doxysubsubsection{\texorpdfstring{authentication\_classes}{authentication\_classes}}
+{\footnotesize\ttfamily tuple authentication\+\_\+classes = (Token\+Authentication,)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 82 of file views.\+py.
+
+\mbox{\Hypertarget{classapi__app_1_1views_1_1FileUploadView_af049e7b93ca72c6112c645efe027b6a7}\label{classapi__app_1_1views_1_1FileUploadView_af049e7b93ca72c6112c645efe027b6a7}} 
+\index{FileUploadView@{FileUploadView}!parser\_classes@{parser\_classes}}
+\index{parser\_classes@{parser\_classes}!FileUploadView@{FileUploadView}}
+\doxysubsubsection{\texorpdfstring{parser\_classes}{parser\_classes}}
+{\footnotesize\ttfamily tuple parser\+\_\+classes = (Multi\+Part\+Parser, Form\+Parser)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 81 of file views.\+py.
+
+\mbox{\Hypertarget{classapi__app_1_1views_1_1FileUploadView_a6342ffcd66928b30835cfc0a77a42163}\label{classapi__app_1_1views_1_1FileUploadView_a6342ffcd66928b30835cfc0a77a42163}} 
+\index{FileUploadView@{FileUploadView}!permission\_classes@{permission\_classes}}
+\index{permission\_classes@{permission\_classes}!FileUploadView@{FileUploadView}}
+\doxysubsubsection{\texorpdfstring{permission\_classes}{permission\_classes}}
+{\footnotesize\ttfamily tuple permission\+\_\+classes = (Is\+Authenticated, )\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 83 of file views.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tanay/\+Sem3/\+SSL/\+Main\+Project/\+Plagiarism-\/\+Detection/\+PYTORCH/api\+\_\+app/\mbox{\hyperlink{views_8py}{views.\+py}}\end{DoxyCompactItemize}

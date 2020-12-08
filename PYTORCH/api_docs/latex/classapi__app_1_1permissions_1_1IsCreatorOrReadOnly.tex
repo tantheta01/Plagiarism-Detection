@@ -1,0 +1,46 @@
+\hypertarget{classapi__app_1_1permissions_1_1IsCreatorOrReadOnly}{}\doxysection{Is\+Creator\+Or\+Read\+Only Class Reference}
+\label{classapi__app_1_1permissions_1_1IsCreatorOrReadOnly}\index{IsCreatorOrReadOnly@{IsCreatorOrReadOnly}}
+Inheritance diagram for Is\+Creator\+Or\+Read\+Only\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classapi__app_1_1permissions_1_1IsCreatorOrReadOnly}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classapi__app_1_1permissions_1_1IsCreatorOrReadOnly_a77788bbdf862f2dffd99902ba0ae6b7e}{has\+\_\+object\+\_\+permission}} (self, request, view, obj)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 4 of file permissions.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classapi__app_1_1permissions_1_1IsCreatorOrReadOnly_a77788bbdf862f2dffd99902ba0ae6b7e}\label{classapi__app_1_1permissions_1_1IsCreatorOrReadOnly_a77788bbdf862f2dffd99902ba0ae6b7e}} 
+\index{IsCreatorOrReadOnly@{IsCreatorOrReadOnly}!has\_object\_permission@{has\_object\_permission}}
+\index{has\_object\_permission@{has\_object\_permission}!IsCreatorOrReadOnly@{IsCreatorOrReadOnly}}
+\doxysubsubsection{\texorpdfstring{has\_object\_permission()}{has\_object\_permission()}}
+{\footnotesize\ttfamily def has\+\_\+object\+\_\+permission (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{request,  }\item[{}]{view,  }\item[{}]{obj }\end{DoxyParamCaption})}
+
+
+
+Definition at line 6 of file permissions.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{6     \textcolor{keyword}{def }has\_object\_permission(self, request, view, obj):}
+\DoxyCodeLine{7         \textcolor{keywordflow}{if} request.method \textcolor{keywordflow}{in} permissions.SAFE\_METHODS:}
+\DoxyCodeLine{8             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{9         \textcolor{keywordflow}{return} obj.creator == request.user}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tanay/\+Sem3/\+SSL/\+Main\+Project/\+Plagiarism-\/\+Detection/\+PYTORCH/api\+\_\+app/\mbox{\hyperlink{permissions_8py}{permissions.\+py}}\end{DoxyCompactItemize}

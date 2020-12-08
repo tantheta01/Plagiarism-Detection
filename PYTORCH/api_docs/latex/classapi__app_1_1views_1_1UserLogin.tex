@@ -1,0 +1,96 @@
+\hypertarget{classapi__app_1_1views_1_1UserLogin}{}\doxysection{User\+Login Class Reference}
+\label{classapi__app_1_1views_1_1UserLogin}\index{UserLogin@{UserLogin}}
+
+
+Endpoint for user login Endpoint \+: {\bfseries{api/users/login/}}  
+
+
+Inheritance diagram for User\+Login\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classapi__app_1_1views_1_1UserLogin}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classapi__app_1_1views_1_1UserLogin_a3a35debc9ba8363a01d9088960cc0349}{post}} (self, request, $\ast$args, $\ast$$\ast$kwargs)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+list \mbox{\hyperlink{classapi__app_1_1views_1_1UserLogin_ad1a31bf4d10343f31c581f635cef1b2e}{permission\+\_\+classes}} = \mbox{[}permissions.\+Allow\+Any\mbox{]}
+\item 
+\mbox{\hyperlink{classapi__app_1_1views_1_1UserLogin_aa4e8bede03797663504131b3ee2883da}{serializer\+\_\+class}} = \mbox{\hyperlink{classapi__app_1_1serializers_1_1UserLoginSerializer}{User\+Login\+Serializer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Endpoint for user login Endpoint \+: {\bfseries{api/users/login/}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body} & The request body must contain the keys {\bfseries{username}} and {\bfseries{password}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The response body contains the keys {\bfseries{username}} and {\bfseries{token}}. The token should be preserved for any further authentication. 
+\end{DoxyReturn}
+
+
+Definition at line 52 of file views.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classapi__app_1_1views_1_1UserLogin_a3a35debc9ba8363a01d9088960cc0349}\label{classapi__app_1_1views_1_1UserLogin_a3a35debc9ba8363a01d9088960cc0349}} 
+\index{UserLogin@{UserLogin}!post@{post}}
+\index{post@{post}!UserLogin@{UserLogin}}
+\doxysubsubsection{\texorpdfstring{post()}{post()}}
+{\footnotesize\ttfamily def post (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{request,  }\item[{$\ast$}]{args,  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+
+
+Definition at line 62 of file views.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{62     \textcolor{keyword}{def }post(self, request, *args, **kwargs):}
+\DoxyCodeLine{63         data = request.data}
+\DoxyCodeLine{64         serializer = UserLoginSerializer(data=data)}
+\DoxyCodeLine{65         \textcolor{keywordflow}{if} serializer.is\_valid(raise\_exception=\textcolor{keyword}{True}):}
+\DoxyCodeLine{66             new\_data = serializer.data}
+\DoxyCodeLine{67             \textcolor{keywordflow}{return} Response(new\_data, status=HTTP\_200\_OK)}
+\DoxyCodeLine{68         \textcolor{keywordflow}{return} Response(serializer.errors, status=HTTP\_400\_BAD\_REQUEST)}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 }
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classapi__app_1_1views_1_1UserLogin_ad1a31bf4d10343f31c581f635cef1b2e}\label{classapi__app_1_1views_1_1UserLogin_ad1a31bf4d10343f31c581f635cef1b2e}} 
+\index{UserLogin@{UserLogin}!permission\_classes@{permission\_classes}}
+\index{permission\_classes@{permission\_classes}!UserLogin@{UserLogin}}
+\doxysubsubsection{\texorpdfstring{permission\_classes}{permission\_classes}}
+{\footnotesize\ttfamily list permission\+\_\+classes = \mbox{[}permissions.\+Allow\+Any\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 59 of file views.\+py.
+
+\mbox{\Hypertarget{classapi__app_1_1views_1_1UserLogin_aa4e8bede03797663504131b3ee2883da}\label{classapi__app_1_1views_1_1UserLogin_aa4e8bede03797663504131b3ee2883da}} 
+\index{UserLogin@{UserLogin}!serializer\_class@{serializer\_class}}
+\index{serializer\_class@{serializer\_class}!UserLogin@{UserLogin}}
+\doxysubsubsection{\texorpdfstring{serializer\_class}{serializer\_class}}
+{\footnotesize\ttfamily serializer\+\_\+class = \mbox{\hyperlink{classapi__app_1_1serializers_1_1UserLoginSerializer}{User\+Login\+Serializer}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 60 of file views.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tanay/\+Sem3/\+SSL/\+Main\+Project/\+Plagiarism-\/\+Detection/\+PYTORCH/api\+\_\+app/\mbox{\hyperlink{views_8py}{views.\+py}}\end{DoxyCompactItemize}

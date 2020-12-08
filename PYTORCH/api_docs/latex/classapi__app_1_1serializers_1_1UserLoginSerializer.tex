@@ -1,0 +1,94 @@
+\hypertarget{classapi__app_1_1serializers_1_1UserLoginSerializer}{}\doxysection{User\+Login\+Serializer Class Reference}
+\label{classapi__app_1_1serializers_1_1UserLoginSerializer}\index{UserLoginSerializer@{UserLoginSerializer}}
+Inheritance diagram for User\+Login\+Serializer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classapi__app_1_1serializers_1_1UserLoginSerializer}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classapi__app_1_1serializers_1_1UserLoginSerializer_1_1Meta}{Meta}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classapi__app_1_1serializers_1_1UserLoginSerializer_a895bc90f12d05b6318fcfd9ca85df5ec}{validate}} (self, data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classapi__app_1_1serializers_1_1UserLoginSerializer_a0adcbe0e0e6f64a29b1d205ede9632c1}{username}} = serializers.\+Char\+Field()
+\item 
+\mbox{\hyperlink{classapi__app_1_1serializers_1_1UserLoginSerializer_a87da3d8264af1c9427605148f20dd9c4}{token}} = serializers.\+Char\+Field(allow\+\_\+blank=True, read\+\_\+only=True)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 37 of file serializers.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classapi__app_1_1serializers_1_1UserLoginSerializer_a895bc90f12d05b6318fcfd9ca85df5ec}\label{classapi__app_1_1serializers_1_1UserLoginSerializer_a895bc90f12d05b6318fcfd9ca85df5ec}} 
+\index{UserLoginSerializer@{UserLoginSerializer}!validate@{validate}}
+\index{validate@{validate}!UserLoginSerializer@{UserLoginSerializer}}
+\doxysubsubsection{\texorpdfstring{validate()}{validate()}}
+{\footnotesize\ttfamily def validate (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{data }\end{DoxyParamCaption})}
+
+
+
+Definition at line 48 of file serializers.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{48     \textcolor{keyword}{def }validate(self, data):}
+\DoxyCodeLine{49         user\_obj = \textcolor{keywordtype}{None}}
+\DoxyCodeLine{50         name = data.get(\textcolor{stringliteral}{'username'})}
+\DoxyCodeLine{51         password = data[\textcolor{stringliteral}{"{}password"{}}]}
+\DoxyCodeLine{52         user = User.objects.filter(}
+\DoxyCodeLine{53             Q(username=name)}
+\DoxyCodeLine{54         ).distinct()}
+\DoxyCodeLine{55         \textcolor{keywordflow}{if} user.exists() \textcolor{keywordflow}{and} user.count() == 1:}
+\DoxyCodeLine{56             user\_obj = user.first()}
+\DoxyCodeLine{57         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{58             \textcolor{keywordflow}{raise} serializers.ValidationError(\textcolor{stringliteral}{"{}Invalid user."{}})}
+\DoxyCodeLine{59         \textcolor{keywordflow}{if} user\_obj:}
+\DoxyCodeLine{60             \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} user\_obj.check\_password(password):}
+\DoxyCodeLine{61                 \textcolor{keywordflow}{raise} serializers.ValidationError(\textcolor{stringliteral}{"{}Incorrect password."{}})}
+\DoxyCodeLine{62         token, created = Token.objects.get\_or\_create(user=user\_obj)}
+\DoxyCodeLine{63         data[\textcolor{stringliteral}{"{}token"{}}] = token.key}
+\DoxyCodeLine{64         \textcolor{keywordflow}{return} data}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classapi__app_1_1serializers_1_1UserLoginSerializer_a87da3d8264af1c9427605148f20dd9c4}\label{classapi__app_1_1serializers_1_1UserLoginSerializer_a87da3d8264af1c9427605148f20dd9c4}} 
+\index{UserLoginSerializer@{UserLoginSerializer}!token@{token}}
+\index{token@{token}!UserLoginSerializer@{UserLoginSerializer}}
+\doxysubsubsection{\texorpdfstring{token}{token}}
+{\footnotesize\ttfamily token = serializers.\+Char\+Field(allow\+\_\+blank=True, read\+\_\+only=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 39 of file serializers.\+py.
+
+\mbox{\Hypertarget{classapi__app_1_1serializers_1_1UserLoginSerializer_a0adcbe0e0e6f64a29b1d205ede9632c1}\label{classapi__app_1_1serializers_1_1UserLoginSerializer_a0adcbe0e0e6f64a29b1d205ede9632c1}} 
+\index{UserLoginSerializer@{UserLoginSerializer}!username@{username}}
+\index{username@{username}!UserLoginSerializer@{UserLoginSerializer}}
+\doxysubsubsection{\texorpdfstring{username}{username}}
+{\footnotesize\ttfamily username = serializers.\+Char\+Field()\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 38 of file serializers.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tanay/\+Sem3/\+SSL/\+Main\+Project/\+Plagiarism-\/\+Detection/\+PYTORCH/api\+\_\+app/\mbox{\hyperlink{serializers_8py}{serializers.\+py}}\end{DoxyCompactItemize}

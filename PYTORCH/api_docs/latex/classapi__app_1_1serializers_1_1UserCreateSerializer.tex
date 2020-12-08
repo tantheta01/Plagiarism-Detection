@@ -1,0 +1,57 @@
+\hypertarget{classapi__app_1_1serializers_1_1UserCreateSerializer}{}\doxysection{User\+Create\+Serializer Class Reference}
+\label{classapi__app_1_1serializers_1_1UserCreateSerializer}\index{UserCreateSerializer@{UserCreateSerializer}}
+Inheritance diagram for User\+Create\+Serializer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classapi__app_1_1serializers_1_1UserCreateSerializer}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classapi__app_1_1serializers_1_1UserCreateSerializer_1_1Meta}{Meta}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classapi__app_1_1serializers_1_1UserCreateSerializer_ac66c7685ca866829a47d73070821efa2}{create}} (self, validated\+\_\+data)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 17 of file serializers.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classapi__app_1_1serializers_1_1UserCreateSerializer_ac66c7685ca866829a47d73070821efa2}\label{classapi__app_1_1serializers_1_1UserCreateSerializer_ac66c7685ca866829a47d73070821efa2}} 
+\index{UserCreateSerializer@{UserCreateSerializer}!create@{create}}
+\index{create@{create}!UserCreateSerializer@{UserCreateSerializer}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily def create (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{validated\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Definition at line 27 of file serializers.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27     \textcolor{keyword}{def }create(self, validated\_data):}
+\DoxyCodeLine{28         username = validated\_data[\textcolor{stringliteral}{'username'}]}
+\DoxyCodeLine{29         email = validated\_data[\textcolor{stringliteral}{'email'}]}
+\DoxyCodeLine{30         password = validated\_data[\textcolor{stringliteral}{'password'}]}
+\DoxyCodeLine{31         user = User(username=username, email=email)}
+\DoxyCodeLine{32         user.set\_password(password)}
+\DoxyCodeLine{33         user.save()}
+\DoxyCodeLine{34         \textcolor{keywordflow}{return} user}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 }
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tanay/\+Sem3/\+SSL/\+Main\+Project/\+Plagiarism-\/\+Detection/\+PYTORCH/api\+\_\+app/\mbox{\hyperlink{serializers_8py}{serializers.\+py}}\end{DoxyCompactItemize}

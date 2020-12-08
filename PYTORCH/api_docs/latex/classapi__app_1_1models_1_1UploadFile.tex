@@ -1,0 +1,115 @@
+\hypertarget{classapi__app_1_1models_1_1UploadFile}{}\doxysection{Upload\+File Class Reference}
+\label{classapi__app_1_1models_1_1UploadFile}\index{UploadFile@{UploadFile}}
+Inheritance diagram for Upload\+File\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classapi__app_1_1models_1_1UploadFile}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classapi__app_1_1models_1_1UploadFile_a945b8d6db900564ddaa60ff23dcfe175}{delete}} (self)
+\item 
+def \mbox{\hyperlink{classapi__app_1_1models_1_1UploadFile_a23e8041ce1015febe4fdace3225714f9}{\+\_\+\+\_\+str\+\_\+\+\_\+}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classapi__app_1_1models_1_1UploadFile_aa28dc103258589d9cb421197fe2de90b}{path}} = models.\+Char\+Field(max\+\_\+length=200)
+\item 
+\mbox{\hyperlink{classapi__app_1_1models_1_1UploadFile_ab306ba850202400eedfaa831fd7e2bf5}{created\+\_\+date}} = models.\+Date\+Time\+Field(default=timezone.\+now)
+\item 
+\mbox{\hyperlink{classapi__app_1_1models_1_1UploadFile_a5cc32e366c87c4cb49e4309b75f57d64}{user}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 9 of file models.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classapi__app_1_1models_1_1UploadFile_a23e8041ce1015febe4fdace3225714f9}\label{classapi__app_1_1models_1_1UploadFile_a23e8041ce1015febe4fdace3225714f9}} 
+\index{UploadFile@{UploadFile}!\_\_str\_\_@{\_\_str\_\_}}
+\index{\_\_str\_\_@{\_\_str\_\_}!UploadFile@{UploadFile}}
+\doxysubsubsection{\texorpdfstring{\_\_str\_\_()}{\_\_str\_\_()}}
+{\footnotesize\ttfamily def \+\_\+\+\_\+str\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 23 of file models.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23     \textcolor{keyword}{def }\_\_str\_\_(self):}
+\DoxyCodeLine{24         \textcolor{keywordflow}{return} str(self.path)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classapi__app_1_1models_1_1UploadFile_a945b8d6db900564ddaa60ff23dcfe175}\label{classapi__app_1_1models_1_1UploadFile_a945b8d6db900564ddaa60ff23dcfe175}} 
+\index{UploadFile@{UploadFile}!delete@{delete}}
+\index{delete@{delete}!UploadFile@{UploadFile}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily def delete (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 16 of file models.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{16     \textcolor{keyword}{def }delete(self):}
+\DoxyCodeLine{17         \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{18             default\_storage.delete(self.path)}
+\DoxyCodeLine{19         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{20             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{21         super(UploadFile, self).delete()}
+\DoxyCodeLine{22 }
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classapi__app_1_1models_1_1UploadFile_ab306ba850202400eedfaa831fd7e2bf5}\label{classapi__app_1_1models_1_1UploadFile_ab306ba850202400eedfaa831fd7e2bf5}} 
+\index{UploadFile@{UploadFile}!created\_date@{created\_date}}
+\index{created\_date@{created\_date}!UploadFile@{UploadFile}}
+\doxysubsubsection{\texorpdfstring{created\_date}{created\_date}}
+{\footnotesize\ttfamily created\+\_\+date = models.\+Date\+Time\+Field(default=timezone.\+now)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 11 of file models.\+py.
+
+\mbox{\Hypertarget{classapi__app_1_1models_1_1UploadFile_aa28dc103258589d9cb421197fe2de90b}\label{classapi__app_1_1models_1_1UploadFile_aa28dc103258589d9cb421197fe2de90b}} 
+\index{UploadFile@{UploadFile}!path@{path}}
+\index{path@{path}!UploadFile@{UploadFile}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily path = models.\+Char\+Field(max\+\_\+length=200)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 10 of file models.\+py.
+
+\mbox{\Hypertarget{classapi__app_1_1models_1_1UploadFile_a5cc32e366c87c4cb49e4309b75f57d64}\label{classapi__app_1_1models_1_1UploadFile_a5cc32e366c87c4cb49e4309b75f57d64}} 
+\index{UploadFile@{UploadFile}!user@{user}}
+\index{user@{user}!UploadFile@{UploadFile}}
+\doxysubsubsection{\texorpdfstring{user}{user}}
+{\footnotesize\ttfamily user\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  models.ForeignKey(}
+\DoxyCodeLine{        User, related\_name=\textcolor{stringliteral}{'uploaded\_files'}, on\_delete=models.CASCADE)}
+
+\end{DoxyCode}
+
+
+Definition at line 12 of file models.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tanay/\+Sem3/\+SSL/\+Main\+Project/\+Plagiarism-\/\+Detection/\+PYTORCH/api\+\_\+app/\mbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

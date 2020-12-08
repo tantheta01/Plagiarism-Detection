@@ -212,6 +212,10 @@ def extract_and_process(tar_filename):
 	csv_list = np.column_stack([np.array(file1), np.array(file2), np.array(similarity)])
 	sorted_list = csv_list[np.argsort(csv_list[:, 2])][::-1]
 
-	return file_similarities, code_files, sorted_list, embedded_files
+	similarity = np.array(similarity)
+	print(similarity, "is similarity")
+	return file_similarities, code_files, sorted_list, embedded_files, [ sum((similarity >= j*0.2)*(similarity < (j+1)*0.2)) for j in range(5) ]
+
+	# return file_similarities, code_files, sorted_list, embedded_files
 
 

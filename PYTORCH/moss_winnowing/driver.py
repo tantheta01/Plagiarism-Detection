@@ -140,6 +140,8 @@ def extract_and_process(tar_filename):
 
 	code_files_dir = directory_of_file + '/code_files'
 	code_files = os.listdir(code_files_dir)
+	print(code_files)
+	print("These are the motherfucking code files")
 	isLangSpec = code_files[0].split('.')[-1] == 'java'
 	file_params = [getFingerPrints(directory_of_file + '/code_files/' + file, isLangSpec) for file in code_files]
 	freq_fingerprints = [CountFrequency(param[3]) for param in file_params]

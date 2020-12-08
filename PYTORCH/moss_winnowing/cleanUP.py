@@ -134,7 +134,7 @@ def tokenize_for_java(filename):
             count2 += 1
         elif tokens[i][0] == pygments.token.Text or tokens[i][0] in pygments.token.Comment:
             pass   #whitespaces and comments ignored
-        elif tokens[i][0] != Token.Punctuation:
+        elif tokens[i][0] != pygments.tokens.Punctuation:
             result.append((tokens[i][1], count1, count2))  
             #tuples in result-(each element e.g 'def', its position in original code file, position in cleaned up code/text) 
             count2 += len(tokens[i][1])

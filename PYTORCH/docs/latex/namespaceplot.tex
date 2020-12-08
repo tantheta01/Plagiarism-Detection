@@ -1,0 +1,78 @@
+\hypertarget{namespaceplot}{}\doxysection{plot Namespace Reference}
+\label{namespaceplot}\index{plot@{plot}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespaceplot_ad4f2ae0e60db1c0106d9f15894248c38}{get\+\_\+reduced\+\_\+components}} (data)
+\begin{DoxyCompactList}\small\item\em Calculates the lower dimentional embedding of the input data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaceplot_ad4f2ae0e60db1c0106d9f15894248c38}\label{namespaceplot_ad4f2ae0e60db1c0106d9f15894248c38}} 
+\index{plot@{plot}!get\_reduced\_components@{get\_reduced\_components}}
+\index{get\_reduced\_components@{get\_reduced\_components}!plot@{plot}}
+\doxysubsubsection{\texorpdfstring{get\_reduced\_components()}{get\_reduced\_components()}}
+{\footnotesize\ttfamily def plot.\+get\+\_\+reduced\+\_\+components (\begin{DoxyParamCaption}\item[{}]{data }\end{DoxyParamCaption})}
+
+
+
+Calculates the lower dimentional embedding of the input data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & List of lists containing the frequency vector of each fingerprint \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Array of shape (n, 2) 
+\end{DoxyReturn}
+
+
+Definition at line 5 of file plot.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{5 \textcolor{keyword}{def }\mbox{\hyperlink{namespaceplot_ad4f2ae0e60db1c0106d9f15894248c38}{get\_reduced\_components}}(data):}
+\DoxyCodeLine{6     \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{7 \textcolor{stringliteral}{    @brief Calculates the lower dimentional embedding of the input data}}
+\DoxyCodeLine{8 \textcolor{stringliteral}{    @param data List of lists containing the frequency vector of each fingerprint}}
+\DoxyCodeLine{9 \textcolor{stringliteral}{    @return Array of shape (n, 2) }}
+\DoxyCodeLine{10 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{11     \textcolor{comment}{\# print(len(data))}}
+\DoxyCodeLine{12     maxlen = max(len(frequency\_vector) \textcolor{keywordflow}{for} frequency\_vector \textcolor{keywordflow}{in} data)}
+\DoxyCodeLine{13     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(data)):}
+\DoxyCodeLine{14         sc = StandardScaler()}
+\DoxyCodeLine{15         data[i] = np.pad(np.array(data[i]), (0, maxlen-\/len(data[i])), \textcolor{stringliteral}{'constant'}, constant\_values=0)}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17     sc = StandardScaler()}
+\DoxyCodeLine{18     data = np.vstack(tuple(data))}
+\DoxyCodeLine{19     print(data[0,:2], \textcolor{stringliteral}{"{}hi"{}})}
+\DoxyCodeLine{20     print(data[2,:], \textcolor{stringliteral}{"{}hi"{}})}
+\DoxyCodeLine{21     }
+\DoxyCodeLine{22     \textcolor{comment}{\# print(data.shape)}}
+\DoxyCodeLine{23     \textcolor{comment}{\# data = np.array(data)}}
+\DoxyCodeLine{24     \textcolor{comment}{\# print(data[0].size)}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26     \textcolor{keywordflow}{if} data.shape[0] < data.shape[1]:}
+\DoxyCodeLine{27         data = data[:, :data.shape[0]]}
+\DoxyCodeLine{28     print(data[0,:2], \textcolor{stringliteral}{"{}hi"{}})}
+\DoxyCodeLine{29     print(data[2,:], \textcolor{stringliteral}{"{}hi"{}})}
+\DoxyCodeLine{30     \textcolor{keywordflow}{if} data.shape[1] > 15:}
+\DoxyCodeLine{31         pca = PCA(n\_components=30)}
+\DoxyCodeLine{32         data = pca.fir\_transform(data)}
+\DoxyCodeLine{33     print(data[0,:2], \textcolor{stringliteral}{"{}hi"{}})}
+\DoxyCodeLine{34     print(data[2,:], \textcolor{stringliteral}{"{}hi"{}})}
+\DoxyCodeLine{35     data = sc.fit\_transform(data)}
+\DoxyCodeLine{36     print(data[0,:2], \textcolor{stringliteral}{"{}hi"{}})}
+\DoxyCodeLine{37     print(data[2,:], \textcolor{stringliteral}{"{}hi"{}})}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     data = TSNE().fit\_transform(data)}
+\DoxyCodeLine{40     print(data[0,:2], \textcolor{stringliteral}{"{}hi"{}})}
+\DoxyCodeLine{41     print(data[2,:], \textcolor{stringliteral}{"{}hi"{}})}
+\DoxyCodeLine{42     \textcolor{keywordflow}{return} data}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 }
+
+\end{DoxyCode}

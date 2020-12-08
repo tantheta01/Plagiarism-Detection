@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['getexclusivesimilarity_25',['getExclusiveSimilarity',['../namespacedriver.html#aab0487684dc0bc713cf4d087b66d4de2',1,'driver']]],
-  ['getfingerprints_26',['getFingerPrints',['../namespacewinnowing.html#adfc32bc9ce7a7a09c13c60c715921e3d',1,'winnowing']]]
+  ['fingerprints_32',['fingerprints',['../namespacewinnowing.html#a202ce4c3e07af5737d4f2c5bcd2512f2',1,'winnowing']]]
 ];

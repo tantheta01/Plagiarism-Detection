@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['winnowing_19',['winnowing',['../namespacewinnowing.html',1,'']]]
+  ['plot_24',['plot',['../namespaceplot.html',1,'']]]
 ];

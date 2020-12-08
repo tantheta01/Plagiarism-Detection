@@ -6,6 +6,8 @@
 def \mbox{\hyperlink{namespacecleanUP_a82e773d554e0d616ec52f55aaa06f399}{tokenize}} (filename)
 \item 
 def \mbox{\hyperlink{namespacecleanUP_aca49de92cbc0deea68120c95e485b279}{to\+Text}} (arr)
+\item 
+def \mbox{\hyperlink{namespacecleanUP_a56ee319cedb39c40bd5b3218905b3cf1}{tokenize\+\_\+for\+\_\+java}} (filename)
 \end{DoxyCompactItemize}
 
 
@@ -18,63 +20,166 @@ def \mbox{\hyperlink{namespacecleanUP_aca49de92cbc0deea68120c95e485b279}{to\+Tex
 
 \begin{DoxyVerb}! @brief Tokenie input file
 
-@detail Remove comments, Replace every variable/class/any other user defined name by N, Replace every string literal by S, Replace every function name by F
+Remove comments, Replace every variable/class/any other user defined name by N, Replace every string literal by S, Replace every function name by F
 
-@type filename: str
+
 @param filename: path of the file to be tokenized
 
-@rtype result: list
+
 @return result: Every token is a string, obtained by stripping the file content to words and performing the cleaning described. The starting index of the token in the cleaned code and actual code are also stored
 \end{DoxyVerb}
  
 
-Definition at line 5 of file clean\+UP.\+py.
+Definition at line 8 of file clean\+UP.\+py.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{5 \textcolor{keyword}{def }\mbox{\hyperlink{namespacecleanUP_a82e773d554e0d616ec52f55aaa06f399}{tokenize}}(filename):}
-\DoxyCodeLine{6     \textcolor{stringliteral}{"{}"{}"{}}}
-\DoxyCodeLine{7 \textcolor{stringliteral}{    ! @brief Tokenie input file}}
-\DoxyCodeLine{8 \textcolor{stringliteral}{    }}
-\DoxyCodeLine{9 \textcolor{stringliteral}{    @detail Remove comments, Replace every variable/class/any other user defined name by N, Replace every string literal by S, Replace every function name by F}}
-\DoxyCodeLine{10 \textcolor{stringliteral}{    }}
-\DoxyCodeLine{11 \textcolor{stringliteral}{    @type filename: str}}
-\DoxyCodeLine{12 \textcolor{stringliteral}{    @param filename: path of the file to be tokenized}}
+\DoxyCodeLine{8 \textcolor{keyword}{def }\mbox{\hyperlink{namespacecleanUP_a82e773d554e0d616ec52f55aaa06f399}{tokenize}}(filename):}
+\DoxyCodeLine{9     \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{10 \textcolor{stringliteral}{    ! @brief Tokenie input file}}
+\DoxyCodeLine{11 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{12 \textcolor{stringliteral}{    Remove comments, Replace every variable/class/any other user defined name by N, Replace every string literal by S, Replace every function name by F}}
 \DoxyCodeLine{13 \textcolor{stringliteral}{    }}
-\DoxyCodeLine{14 \textcolor{stringliteral}{    @rtype result: list}}
-\DoxyCodeLine{15 \textcolor{stringliteral}{    @return result: Every token is a string, obtained by stripping the file content to words and performing the cleaning described. The starting index of the token in the cleaned code and actual code are also stored}}
-\DoxyCodeLine{16 \textcolor{stringliteral}{    "{}"{}"{}}}
-\DoxyCodeLine{17     file = open(filename, \textcolor{stringliteral}{"{}r"{}})}
-\DoxyCodeLine{18     text = file.read()}
-\DoxyCodeLine{19     file.close()}
-\DoxyCodeLine{20     lexer = pygments.lexers.guess\_lexer\_for\_filename(filename, text)}
-\DoxyCodeLine{21     tokens = lexer.get\_tokens(text)}
-\DoxyCodeLine{22     tokens = list(tokens)}
-\DoxyCodeLine{23     result = []}
-\DoxyCodeLine{24     lenT = len(tokens)}
-\DoxyCodeLine{25     count1 = 0    \textcolor{comment}{\#tag to store corresponding position of each element in original code file}}
-\DoxyCodeLine{26     count2 = 0    \textcolor{comment}{\#tag to store position of each element in cleaned up code text}}
-\DoxyCodeLine{27     \textcolor{comment}{\# these tags are used to mark the plagiarized content in the original code files.}}
-\DoxyCodeLine{28     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(lenT):}
-\DoxyCodeLine{29         \textcolor{keywordflow}{if} tokens[i][0] == pygments.token.Name \textcolor{keywordflow}{and} \textcolor{keywordflow}{not} i == lenT -\/ 1 \textcolor{keywordflow}{and} \textcolor{keywordflow}{not} tokens[i + 1][1] == \textcolor{stringliteral}{'('}:}
-\DoxyCodeLine{30             result.append((\textcolor{stringliteral}{'N'}, count1, count2))  \textcolor{comment}{\#all variable names as 'N'}}
-\DoxyCodeLine{31             count2 += 1}
-\DoxyCodeLine{32         \textcolor{keywordflow}{elif} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Literal.String:}
-\DoxyCodeLine{33             result.append((\textcolor{stringliteral}{'S'}, count1, count2))  \textcolor{comment}{\#all strings as 'S'}}
+\DoxyCodeLine{14 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{15 \textcolor{stringliteral}{    @param filename: path of the file to be tokenized}}
+\DoxyCodeLine{16 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{17 \textcolor{stringliteral}{   }}
+\DoxyCodeLine{18 \textcolor{stringliteral}{    @return result: Every token is a string, obtained by stripping the file content to words and performing the cleaning described. The starting index of the token in the cleaned code and actual code are also stored}}
+\DoxyCodeLine{19 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{20     file = open(filename, \textcolor{stringliteral}{"{}r"{}})}
+\DoxyCodeLine{21     text = file.read()}
+\DoxyCodeLine{22     file.close()}
+\DoxyCodeLine{23     lexer = pygments.lexers.guess\_lexer\_for\_filename(filename, text)}
+\DoxyCodeLine{24     tokens = lexer.get\_tokens(text)}
+\DoxyCodeLine{25     tokens = list(tokens)}
+\DoxyCodeLine{26     result = []}
+\DoxyCodeLine{27     lenT = len(tokens)}
+\DoxyCodeLine{28     count1 = 0    \textcolor{comment}{\#tag to store corresponding position of each element in original code file}}
+\DoxyCodeLine{29     count2 = 0    \textcolor{comment}{\#tag to store position of each element in cleaned up code text}}
+\DoxyCodeLine{30     \textcolor{comment}{\# these tags are used to mark the plagiarized content in the original code files.}}
+\DoxyCodeLine{31     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(lenT):}
+\DoxyCodeLine{32         \textcolor{keywordflow}{if} tokens[i][0] == pygments.token.Name \textcolor{keywordflow}{and} \textcolor{keywordflow}{not} i == lenT -\/ 1 \textcolor{keywordflow}{and} \textcolor{keywordflow}{not} tokens[i + 1][1] == \textcolor{stringliteral}{'('}:}
+\DoxyCodeLine{33             result.append((\textcolor{stringliteral}{'N'}, count1, count2))  \textcolor{comment}{\#all variable names as 'N'}}
 \DoxyCodeLine{34             count2 += 1}
-\DoxyCodeLine{35         \textcolor{keywordflow}{elif} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Name.Function:}
-\DoxyCodeLine{36             result.append((\textcolor{stringliteral}{'F'}, count1, count2))   \textcolor{comment}{\#user defined function names as 'F'}}
+\DoxyCodeLine{35         \textcolor{keywordflow}{elif} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Literal.String:}
+\DoxyCodeLine{36             result.append((\textcolor{stringliteral}{'S'}, count1, count2))  \textcolor{comment}{\#all strings as 'S'}}
 \DoxyCodeLine{37             count2 += 1}
-\DoxyCodeLine{38         \textcolor{keywordflow}{elif} tokens[i][0] == pygments.token.Text \textcolor{keywordflow}{or} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Comment:}
-\DoxyCodeLine{39             \textcolor{keywordflow}{pass}   \textcolor{comment}{\#whitespaces and comments ignored}}
-\DoxyCodeLine{40         \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{41             result.append((tokens[i][1], count1, count2))  }
-\DoxyCodeLine{42             \textcolor{comment}{\#tuples in result-\/(each element e.g 'def', its position in original code file, position in cleaned up code/text) }}
-\DoxyCodeLine{43             count2 += len(tokens[i][1])}
-\DoxyCodeLine{44         count1 += len(tokens[i][1])}
-\DoxyCodeLine{45 }
-\DoxyCodeLine{46     \textcolor{keywordflow}{return} result}
-\DoxyCodeLine{47 }
+\DoxyCodeLine{38         \textcolor{keywordflow}{elif} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Name.Function:}
+\DoxyCodeLine{39             result.append((\textcolor{stringliteral}{'F'}, count1, count2))   \textcolor{comment}{\#user defined function names as 'F'}}
+\DoxyCodeLine{40             count2 += 1}
+\DoxyCodeLine{41         \textcolor{keywordflow}{elif} tokens[i][0] == pygments.token.Text \textcolor{keywordflow}{or} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Comment:}
+\DoxyCodeLine{42             \textcolor{keywordflow}{pass}   \textcolor{comment}{\#whitespaces and comments ignored}}
+\DoxyCodeLine{43         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{44             result.append((tokens[i][1], count1, count2))  }
+\DoxyCodeLine{45             \textcolor{comment}{\#tuples in result-\/(each element e.g 'def', its position in original code file, position in cleaned up code/text) }}
+\DoxyCodeLine{46             count2 += len(tokens[i][1])}
+\DoxyCodeLine{47         count1 += len(tokens[i][1])}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49     \textcolor{keywordflow}{return} result}
+\DoxyCodeLine{50 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacecleanUP_a56ee319cedb39c40bd5b3218905b3cf1}\label{namespacecleanUP_a56ee319cedb39c40bd5b3218905b3cf1}} 
+\index{cleanUP@{cleanUP}!tokenize\_for\_java@{tokenize\_for\_java}}
+\index{tokenize\_for\_java@{tokenize\_for\_java}!cleanUP@{cleanUP}}
+\doxysubsubsection{\texorpdfstring{tokenize\_for\_java()}{tokenize\_for\_java()}}
+{\footnotesize\ttfamily def clean\+UP.\+tokenize\+\_\+for\+\_\+java (\begin{DoxyParamCaption}\item[{}]{filename }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}! @brief Tokenize input file
+
+Remove comments, Replace every variable/class/any other user defined name by N, Replace every string literal by S, Replace every function name by F
+Further replace common loop statements(for, while, do-while) with L. Ignore stop words. Ignore common datatypes. Ignore class and class names. Ignore punctuations
+
+
+@param filename: path of the file to be tokenized
+
+
+@return result: Every token is a string, obtained by stripping the file content to words and performing the cleaning described. The starting index of the token in the cleaned code and actual code are also stored
+\end{DoxyVerb}
+ 
+
+Definition at line 65 of file clean\+UP.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{65 \textcolor{keyword}{def }\mbox{\hyperlink{namespacecleanUP_a56ee319cedb39c40bd5b3218905b3cf1}{tokenize\_for\_java}}(filename):}
+\DoxyCodeLine{66     \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{67 \textcolor{stringliteral}{    ! @brief Tokenize input file}}
+\DoxyCodeLine{68 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{69 \textcolor{stringliteral}{    Remove comments, Replace every variable/class/any other user defined name by N, Replace every string literal by S, Replace every function name by F}}
+\DoxyCodeLine{70 \textcolor{stringliteral}{    Further replace common loop statements(for, while, do-\/while) with L. Ignore stop words. Ignore common datatypes. Ignore class and class names. Ignore punctuations}}
+\DoxyCodeLine{71 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{72 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{73 \textcolor{stringliteral}{    @param filename: path of the file to be tokenized}}
+\DoxyCodeLine{74 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{75 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{76 \textcolor{stringliteral}{    @return result: Every token is a string, obtained by stripping the file content to words and performing the cleaning described. The starting index of the token in the cleaned code and actual code are also stored}}
+\DoxyCodeLine{77 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{78     file = open(filename, \textcolor{stringliteral}{"{}r"{}})}
+\DoxyCodeLine{79     text = file.read()}
+\DoxyCodeLine{80     file.close()}
+\DoxyCodeLine{81     lexer = pygments.lexers.guess\_lexer\_for\_filename(filename, text)}
+\DoxyCodeLine{82     tokens = lexer.get\_tokens(text)}
+\DoxyCodeLine{83     tokens = list(tokens)}
+\DoxyCodeLine{84     result = []}
+\DoxyCodeLine{85     lenT = len(tokens)}
+\DoxyCodeLine{86     count1 = 0    \textcolor{comment}{\#tag to store corresponding position of each element in original code file}}
+\DoxyCodeLine{87     count2 = 0    \textcolor{comment}{\#tag to store position of each element in cleaned up code text}}
+\DoxyCodeLine{88     \textcolor{comment}{\# these tags are used to mark the plagiarized content in the original code files.}}
+\DoxyCodeLine{89     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(lenT):}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91         \textcolor{keywordflow}{if} tokens[i][1] == \textcolor{stringliteral}{'package'}:}
+\DoxyCodeLine{92             j=i;}
+\DoxyCodeLine{93             \textcolor{keywordflow}{while} j<len(lenT) \textcolor{keywordflow}{and} tokens[j][1]!=\textcolor{stringliteral}{'\(\backslash\)n'}:}
+\DoxyCodeLine{94                 count1 += len(tokens[j][1])}
+\DoxyCodeLine{95                 j+=1}
+\DoxyCodeLine{96             i=j}
+\DoxyCodeLine{97         \textcolor{keywordflow}{elif} tokens[i][1] \textcolor{keywordflow}{in} [\textcolor{stringliteral}{'int'}, \textcolor{stringliteral}{'boolean'}, \textcolor{stringliteral}{'char'}, \textcolor{stringliteral}{'byte'}, \textcolor{stringliteral}{'short'}, \textcolor{stringliteral}{'long'}, \textcolor{stringliteral}{'float'}, \textcolor{stringliteral}{'double'}, \textcolor{stringliteral}{'public'}, \textcolor{stringliteral}{'private'}, \textcolor{stringliteral}{'static'}, \textcolor{stringliteral}{'import'}, \textcolor{stringliteral}{'System'}, \textcolor{stringliteral}{'out'}, \textcolor{stringliteral}{'println'}, \textcolor{stringliteral}{'try'}, \textcolor{stringliteral}{'catch'}, \textcolor{stringliteral}{'finally'}, \textcolor{stringliteral}{'void'}]:}
+\DoxyCodeLine{98             count1 += len(tokens[i][1])}
+\DoxyCodeLine{99             \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101         \textcolor{keywordflow}{elif} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Name.Class:}
+\DoxyCodeLine{102             j=i}
+\DoxyCodeLine{103             result.append(\textcolor{stringliteral}{'C'}, count1, count2)}
+\DoxyCodeLine{104             count2+=len(tokens[i][1])}
+\DoxyCodeLine{105             \textcolor{keywordflow}{while} j!=len(lenT) \textcolor{keywordflow}{and} tokens[j][1]!=\textcolor{stringliteral}{'\{'}:}
+\DoxyCodeLine{106                 count1 += len(tokens[j][1])}
+\DoxyCodeLine{107                 j+=1}
+\DoxyCodeLine{108                 }
+\DoxyCodeLine{109             i=j}
+\DoxyCodeLine{110         \textcolor{comment}{\# elif tokens[i][0]}}
+\DoxyCodeLine{111         \textcolor{keywordflow}{elif} tokens[i][1] == \textcolor{stringliteral}{'for'} \textcolor{keywordflow}{or} tokens[i][1] == \textcolor{stringliteral}{'while'}:}
+\DoxyCodeLine{112             result.append(\textcolor{stringliteral}{'L'}, count1, count2)}
+\DoxyCodeLine{113             count2 += 1}
+\DoxyCodeLine{114             j=i}
+\DoxyCodeLine{115             fbrac, rbrac = 0,0}
+\DoxyCodeLine{116             \textcolor{keywordflow}{while} j!=len(lenT) \textcolor{keywordflow}{and} (fbrac!=rbrac \textcolor{keywordflow}{or} fbrac==0):}
+\DoxyCodeLine{117                 \textcolor{keywordflow}{if} tokens[j][1] == \textcolor{stringliteral}{'('}:}
+\DoxyCodeLine{118                     fbrac += 1}
+\DoxyCodeLine{119                 \textcolor{keywordflow}{elif} tokens[i][1] == \textcolor{stringliteral}{')'}:}
+\DoxyCodeLine{120                     rbrac += 1}
+\DoxyCodeLine{121                 count1 += len(tokens[j][1])}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124         \textcolor{keywordflow}{if} tokens[i][0] == pygments.token.Name \textcolor{keywordflow}{and} \textcolor{keywordflow}{not} i == lenT -\/ 1 \textcolor{keywordflow}{and} \textcolor{keywordflow}{not} tokens[i + 1][1] == \textcolor{stringliteral}{'('}:}
+\DoxyCodeLine{125             result.append((\textcolor{stringliteral}{'N'}, count1, count2))  \textcolor{comment}{\#all variable names as 'N'}}
+\DoxyCodeLine{126             count2 += 1}
+\DoxyCodeLine{127         \textcolor{keywordflow}{elif} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Literal.String:}
+\DoxyCodeLine{128             result.append((\textcolor{stringliteral}{'S'}, count1, count2))  \textcolor{comment}{\#all strings as 'S'}}
+\DoxyCodeLine{129             count2 += 1}
+\DoxyCodeLine{130         \textcolor{keywordflow}{elif} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Name.Function:}
+\DoxyCodeLine{131             result.append((\textcolor{stringliteral}{'F'}, count1, count2))   \textcolor{comment}{\#user defined function names as 'F'}}
+\DoxyCodeLine{132             count2 += 1}
+\DoxyCodeLine{133         \textcolor{keywordflow}{elif} tokens[i][0] == pygments.token.Text \textcolor{keywordflow}{or} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Comment:}
+\DoxyCodeLine{134             \textcolor{keywordflow}{pass}   \textcolor{comment}{\#whitespaces and comments ignored}}
+\DoxyCodeLine{135         \textcolor{keywordflow}{elif} tokens[i][0] != Token.Punctuation:}
+\DoxyCodeLine{136             result.append((tokens[i][1], count1, count2))  }
+\DoxyCodeLine{137             \textcolor{comment}{\#tuples in result-\/(each element e.g 'def', its position in original code file, position in cleaned up code/text) }}
+\DoxyCodeLine{138             count2 += len(tokens[i][1])}
+\DoxyCodeLine{139         count1 += len(tokens[i][1])}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141     \textcolor{keywordflow}{return} result}
+\DoxyCodeLine{142 }
 
 \end{DoxyCode}
 \mbox{\Hypertarget{namespacecleanUP_aca49de92cbc0deea68120c95e485b279}\label{namespacecleanUP_aca49de92cbc0deea68120c95e485b279}} 
@@ -85,32 +190,31 @@ Definition at line 5 of file clean\+UP.\+py.
 
 \begin{DoxyVerb}! @brief Convert list of tokens to string
 
-@type arr: list
+
 @param arr: List of tuples obtained from @ref tokenize
 
-@rtype cleanText: str
+
 @return cleanText: code obtained by joining all tokens and removing comments and whitespaces
 \end{DoxyVerb}
  
 
-Definition at line 48 of file clean\+UP.\+py.
+Definition at line 51 of file clean\+UP.\+py.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{48 \textcolor{keyword}{def }\mbox{\hyperlink{namespacecleanUP_aca49de92cbc0deea68120c95e485b279}{toText}}(arr):}
-\DoxyCodeLine{49     \textcolor{stringliteral}{"{}"{}"{}}}
-\DoxyCodeLine{50 \textcolor{stringliteral}{    ! @brief Convert list of tokens to string}}
-\DoxyCodeLine{51 \textcolor{stringliteral}{    }}
-\DoxyCodeLine{52 \textcolor{stringliteral}{    @type arr: list}}
-\DoxyCodeLine{53 \textcolor{stringliteral}{    @param arr: List of tuples obtained from @ref tokenize}}
+\DoxyCodeLine{51 \textcolor{keyword}{def }\mbox{\hyperlink{namespacecleanUP_aca49de92cbc0deea68120c95e485b279}{toText}}(arr):}
+\DoxyCodeLine{52     \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{53 \textcolor{stringliteral}{    ! @brief Convert list of tokens to string}}
 \DoxyCodeLine{54 \textcolor{stringliteral}{    }}
-\DoxyCodeLine{55 \textcolor{stringliteral}{    @rtype cleanText: str}}
-\DoxyCodeLine{56 \textcolor{stringliteral}{    @return cleanText: code obtained by joining all tokens and removing comments and whitespaces}}
-\DoxyCodeLine{57 \textcolor{stringliteral}{    "{}"{}"{}}}
-\DoxyCodeLine{58     cleanText = \textcolor{stringliteral}{''}.join(str(x[0]) \textcolor{keywordflow}{for} x \textcolor{keywordflow}{in} arr)}
-\DoxyCodeLine{59     \textcolor{keywordflow}{return} cleanText}
-\DoxyCodeLine{60 }
-\DoxyCodeLine{61 }
-\DoxyCodeLine{62 }
+\DoxyCodeLine{55 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{56 \textcolor{stringliteral}{    @param arr: List of tuples obtained from @ref tokenize}}
+\DoxyCodeLine{57 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{58 \textcolor{stringliteral}{   }}
+\DoxyCodeLine{59 \textcolor{stringliteral}{    @return cleanText: code obtained by joining all tokens and removing comments and whitespaces}}
+\DoxyCodeLine{60 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{61     cleanText = \textcolor{stringliteral}{''}.join(str(x[0]) \textcolor{keywordflow}{for} x \textcolor{keywordflow}{in} arr)}
+\DoxyCodeLine{62     \textcolor{keywordflow}{return} cleanText}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 }
 
 \end{DoxyCode}

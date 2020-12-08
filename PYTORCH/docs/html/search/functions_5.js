@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['minindex_30',['minIndex',['../namespacewinnowing.html#a538426530c9a7edf9d4f0857d2ede3e7',1,'winnowing']]]
+  ['kgrams_38',['kgrams',['../namespacewinnowing.html#a8f7f592341af0fe815ea8388d18c63fe',1,'winnowing']]]
 ];

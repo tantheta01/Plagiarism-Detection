@@ -39,7 +39,7 @@ export class FileUploadComponent implements OnInit {
 
   onSubmit() {
     
-    console.log("Behenchod kaun hai ye a");
+    // console.log("Behenchod kaun hai ye a");
     this.commus.fileUpload(this.formGroup.controls['file'].value).subscribe({
       next: answer => {
         console.log("fumck this not getting calledddd")
@@ -53,7 +53,8 @@ export class FileUploadComponent implements OnInit {
         sessionStorage.setItem('datta', JSON.stringify(answer.data));
         sessionStorage.setItem('names', answer.names);
         sessionStorage.setItem("csvfile", JSON.stringify(answer.csv));
-        sessionStorage.setItem('embeddings', answer.embeddings)
+        sessionStorage.setItem('embeddings', answer.embeddings);
+        sessionStorage.setItem('range_sim', answer.range_sim);
         console.log(answer.embeddings.length)
         console.log(sessionStorage['names']);
         this.router.navigate(['/outp']);

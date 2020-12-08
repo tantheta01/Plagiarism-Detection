@@ -89,14 +89,15 @@ class FileUploadView(APIView):
 
 
             file_path = "api_app/media/" + uname + "/" + filename
-            extracted, fnames, csv_list, embeddings = extract_and_process(file_path)
+            extracted, fnames, csv_list, embeddings, range_sim = extract_and_process(file_path)
+            print(range_sim, "is the range issimmm")
 
             dirsize = len(os.listdir("api_app/media/" + uname))
             pd.DataFrame(csv_list).to_csv("api_app/media/" + uname + '/' + str(dirsize) + '.csv')
             
             # print(extracted['f2.py,f.py']['first_file'])
-            print(csv_list)
-            return Response({'data' : extracted, 'names' : fnames, 'csv' : pd.DataFrame(csv_list), 'embeddings' : embeddings}, HTTP_200_OK)
+            # print(csv_list)
+            return Response({'data' : extracted, 'names' : fnames, 'csv' : pd.DataFrame(csv_list), 'embeddings' : embeddings, 'range_sim' : range_sim}, HTTP_200_OK)
             # return Response({'data' : DiCtNAME}, HTTP_200_OK)
             # return Response({
             #     "path": path,

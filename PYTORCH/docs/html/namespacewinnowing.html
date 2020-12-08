@@ -84,9 +84,9 @@ Functions</h2></td></tr>
 <tr class="separator:a202ce4c3e07af5737d4f2c5bcd2512f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e45b10afd17ad1bdcb95ac280816640"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewinnowing.html#a3e45b10afd17ad1bdcb95ac280816640">hashList</a> (arr)</td></tr>
 <tr class="separator:a3e45b10afd17ad1bdcb95ac280816640"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfc32bc9ce7a7a09c13c60c715921e3d"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewinnowing.html#adfc32bc9ce7a7a09c13c60c715921e3d">getFingerPrints</a> (filename)</td></tr>
-<tr class="memdesc:adfc32bc9ce7a7a09c13c60c715921e3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the tokenset of the file.  <a href="namespacewinnowing.html#adfc32bc9ce7a7a09c13c60c715921e3d">More...</a><br /></td></tr>
-<tr class="separator:adfc32bc9ce7a7a09c13c60c715921e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9deba44d8db031cfb36c4e22f8bcc6e9"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewinnowing.html#a9deba44d8db031cfb36c4e22f8bcc6e9">getFingerPrints</a> (filename, isLangSpec)</td></tr>
+<tr class="memdesc:a9deba44d8db031cfb36c4e22f8bcc6e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the tokenset of the file.  <a href="namespacewinnowing.html#a9deba44d8db031cfb36c4e22f8bcc6e9">More...</a><br /></td></tr>
+<tr class="separator:a9deba44d8db031cfb36c4e22f8bcc6e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afcaed9bfef1e0ac4baa188c432cc4987"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewinnowing.html#afcaed9bfef1e0ac4baa188c432cc4987">plagiarismCheck</a> (file1, token1, kGrams1, HL1, fpList1, fpList2)</td></tr>
 <tr class="separator:afcaed9bfef1e0ac4baa188c432cc4987"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -171,8 +171,8 @@ Functions</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="adfc32bc9ce7a7a09c13c60c715921e3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adfc32bc9ce7a7a09c13c60c715921e3d">&#9670;&nbsp;</a></span>getFingerPrints()</h2>
+<a id="a9deba44d8db031cfb36c4e22f8bcc6e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9deba44d8db031cfb36c4e22f8bcc6e9">&#9670;&nbsp;</a></span>getFingerPrints()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -181,8 +181,18 @@ Functions</h2></td></tr>
           <td class="memname">def winnowing.getFingerPrints </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td class="paramname"><em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>isLangSpec</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -190,23 +200,27 @@ Functions</h2></td></tr>
 <p>Calculate the tokenset of the file. </p>
 
 <p class="definition">Definition at line <a class="el" href="winnowing_8py_source.html#l00110">110</a> of file <a class="el" href="winnowing_8py_source.html">winnowing.py</a>.</p>
-<div class="fragment"><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keyword">def </span><a class="code" href="namespacewinnowing.html#adfc32bc9ce7a7a09c13c60c715921e3d">getFingerPrints</a>(filename):</div>
+<div class="fragment"><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keyword">def </span><a class="code" href="namespacewinnowing.html#a9deba44d8db031cfb36c4e22f8bcc6e9">getFingerPrints</a>(filename, isLangSpec):</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="stringliteral">&quot;&quot;&quot;!</span></div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="stringliteral">    @brief Calculate the tokenset of the file</span></div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="stringliteral">    &quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    token = <a class="code" href="namespacecleanUP.html#a82e773d554e0d616ec52f55aaa06f399">tokenize</a>(filename)</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    token_string = <a class="code" href="namespacecleanUP.html#aca49de92cbc0deea68120c95e485b279">toText</a>(token)</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    kGrams = <a class="code" href="namespacewinnowing.html#a8f7f592341af0fe815ea8388d18c63fe">kgrams</a>(token_string)</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    HL = <a class="code" href="namespacewinnowing.html#a3e45b10afd17ad1bdcb95ac280816640">hashList</a>(kGrams)</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    fpList = <a class="code" href="namespacewinnowing.html#a202ce4c3e07af5737d4f2c5bcd2512f2">fingerprints</a>(HL)</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordflow">return</span> (token, kGrams, HL, fpList)</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="ttc" id="anamespacecleanUP_html_a82e773d554e0d616ec52f55aaa06f399"><div class="ttname"><a href="namespacecleanUP.html#a82e773d554e0d616ec52f55aaa06f399">cleanUP.tokenize</a></div><div class="ttdeci">def tokenize(filename)</div><div class="ttdef"><b>Definition:</b> <a href="cleanUP_8py_source.html#l00005">cleanUP.py:5</a></div></div>
-<div class="ttc" id="anamespacecleanUP_html_aca49de92cbc0deea68120c95e485b279"><div class="ttname"><a href="namespacecleanUP.html#aca49de92cbc0deea68120c95e485b279">cleanUP.toText</a></div><div class="ttdeci">def toText(arr)</div><div class="ttdef"><b>Definition:</b> <a href="cleanUP_8py_source.html#l00048">cleanUP.py:48</a></div></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordflow">if</span> <span class="keywordflow">not</span> isLangSpec:</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        token = <a class="code" href="namespacecleanUP.html#a82e773d554e0d616ec52f55aaa06f399">tokenize</a>(filename)</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        token = <a class="code" href="namespacecleanUP.html#a56ee319cedb39c40bd5b3218905b3cf1">tokenize_for_java</a>(filename)</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    token_string = <a class="code" href="namespacecleanUP.html#aca49de92cbc0deea68120c95e485b279">toText</a>(token)</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    kGrams = <a class="code" href="namespacewinnowing.html#a8f7f592341af0fe815ea8388d18c63fe">kgrams</a>(token_string)</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    HL = <a class="code" href="namespacewinnowing.html#a3e45b10afd17ad1bdcb95ac280816640">hashList</a>(kGrams)</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    fpList = <a class="code" href="namespacewinnowing.html#a202ce4c3e07af5737d4f2c5bcd2512f2">fingerprints</a>(HL)</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">return</span> (token, kGrams, HL, fpList)</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="ttc" id="anamespacecleanUP_html_a56ee319cedb39c40bd5b3218905b3cf1"><div class="ttname"><a href="namespacecleanUP.html#a56ee319cedb39c40bd5b3218905b3cf1">cleanUP.tokenize_for_java</a></div><div class="ttdeci">def tokenize_for_java(filename)</div><div class="ttdef"><b>Definition:</b> <a href="cleanUP_8py_source.html#l00065">cleanUP.py:65</a></div></div>
+<div class="ttc" id="anamespacecleanUP_html_a82e773d554e0d616ec52f55aaa06f399"><div class="ttname"><a href="namespacecleanUP.html#a82e773d554e0d616ec52f55aaa06f399">cleanUP.tokenize</a></div><div class="ttdeci">def tokenize(filename)</div><div class="ttdef"><b>Definition:</b> <a href="cleanUP_8py_source.html#l00008">cleanUP.py:8</a></div></div>
+<div class="ttc" id="anamespacecleanUP_html_aca49de92cbc0deea68120c95e485b279"><div class="ttname"><a href="namespacecleanUP.html#aca49de92cbc0deea68120c95e485b279">cleanUP.toText</a></div><div class="ttdeci">def toText(arr)</div><div class="ttdef"><b>Definition:</b> <a href="cleanUP_8py_source.html#l00051">cleanUP.py:51</a></div></div>
 <div class="ttc" id="anamespacewinnowing_html_a3e45b10afd17ad1bdcb95ac280816640"><div class="ttname"><a href="namespacewinnowing.html#a3e45b10afd17ad1bdcb95ac280816640">winnowing.hashList</a></div><div class="ttdeci">def hashList(arr)</div><div class="ttdef"><b>Definition:</b> <a href="winnowing_8py_source.html#l00098">winnowing.py:98</a></div></div>
 <div class="ttc" id="anamespacewinnowing_html_a8f7f592341af0fe815ea8388d18c63fe"><div class="ttname"><a href="namespacewinnowing.html#a8f7f592341af0fe815ea8388d18c63fe">winnowing.kgrams</a></div><div class="ttdeci">def kgrams(text, k=25)</div><div class="ttdoc">Generates list of kGrams and corresponding hash value for a specific string.</div><div class="ttdef"><b>Definition:</b> <a href="winnowing_8py_source.html#l00024">winnowing.py:24</a></div></div>
-<div class="ttc" id="anamespacewinnowing_html_adfc32bc9ce7a7a09c13c60c715921e3d"><div class="ttname"><a href="namespacewinnowing.html#adfc32bc9ce7a7a09c13c60c715921e3d">winnowing.getFingerPrints</a></div><div class="ttdeci">def getFingerPrints(filename)</div><div class="ttdoc">Calculate the tokenset of the file.</div><div class="ttdef"><b>Definition:</b> <a href="winnowing_8py_source.html#l00110">winnowing.py:110</a></div></div>
+<div class="ttc" id="anamespacewinnowing_html_a9deba44d8db031cfb36c4e22f8bcc6e9"><div class="ttname"><a href="namespacewinnowing.html#a9deba44d8db031cfb36c4e22f8bcc6e9">winnowing.getFingerPrints</a></div><div class="ttdeci">def getFingerPrints(filename, isLangSpec)</div><div class="ttdoc">Calculate the tokenset of the file.</div><div class="ttdef"><b>Definition:</b> <a href="winnowing_8py_source.html#l00110">winnowing.py:110</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -478,97 +492,97 @@ Functions</h2></td></tr>
 @rtype newCode: str
 @return newCode: The content of first file with &lt;b&gt;mark&lt;b&gt; appended around every plagiarized(with respect to second file) block
 </pre> 
-<p class="definition">Definition at line <a class="el" href="winnowing_8py_source.html#l00122">122</a> of file <a class="el" href="winnowing_8py_source.html">winnowing.py</a>.</p>
-<div class="fragment"><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keyword">def </span><a class="code" href="namespacewinnowing.html#afcaed9bfef1e0ac4baa188c432cc4987">plagiarismCheck</a>(file1, token1, kGrams1, HL1, fpList1, fpList2):</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="stringliteral">&quot;&quot;&quot;!</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="stringliteral">    </span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="stringliteral">    @brief Calculates similarity between two code files</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="stringliteral">    </span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="stringliteral">    @detail The similarity is calculated as length of similar code in file1/length of file1</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="stringliteral">    </span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="stringliteral">    @type file1: str</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="stringliteral">    @param file1: name of the first file</span></div>
+<p class="definition">Definition at line <a class="el" href="winnowing_8py_source.html#l00125">125</a> of file <a class="el" href="winnowing_8py_source.html">winnowing.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="keyword">def </span><a class="code" href="namespacewinnowing.html#afcaed9bfef1e0ac4baa188c432cc4987">plagiarismCheck</a>(file1, token1, kGrams1, HL1, fpList1, fpList2):</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="stringliteral">&quot;&quot;&quot;!</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="stringliteral">    </span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="stringliteral">    @brief Calculates similarity between two code files</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="stringliteral">    </span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="stringliteral">    @detail The similarity is calculated as length of similar code in file1/length of file1</span></div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="stringliteral">    </span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="stringliteral">    @type token1: list</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="stringliteral">    @param token1: list of tokens where each token is of the form (token_text, count1, count2)</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="stringliteral">    @type file1: str</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="stringliteral">    @param file1: name of the first file</span></div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="stringliteral">    </span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="stringliteral">    @type kGrams1: list</span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="stringliteral">    @param kGrams1: list of kGrams for the first file. </span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="stringliteral">    @type token1: list</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="stringliteral">    @param token1: list of tokens where each token is of the form (token_text, count1, count2)</span></div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="stringliteral">    </span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="stringliteral">    @type HL1: list</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="stringliteral">    @param HL1: hash list of the first source code</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="stringliteral">    @type kGrams1: list</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="stringliteral">    @param kGrams1: list of kGrams for the first file. </span></div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="stringliteral">    </span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="stringliteral">    @type fpList1: list</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="stringliteral">    @param fpList1: list of fingerprints from the first file</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="stringliteral">    @type HL1: list</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="stringliteral">    @param HL1: hash list of the first source code</span></div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="stringliteral">    </span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="stringliteral">    @type fpList2: list</span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="stringliteral">    @param fpList2: list of fingerprints from the second file</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="stringliteral">    @type fpList1: list</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="stringliteral">    @param fpList1: list of fingerprints from the first file</span></div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="stringliteral">    </span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="stringliteral">    @rtype similarity: float</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="stringliteral">    @return similarity: the similarity between the two files</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="stringliteral">    @type fpList2: list</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="stringliteral">    @param fpList2: list of fingerprints from the second file</span></div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="stringliteral">    </span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="stringliteral">    @rtype newCode: str</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="stringliteral">    @return newCode: The content of first file with &lt;b&gt;mark&lt;b&gt; appended around every plagiarized(with respect to second file) block</span></div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="stringliteral">    &quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    f1 = open(file1, <span class="stringliteral">&quot;r&quot;</span>)</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    start = []   <span class="comment">#to store the start values corresponding to matching fingerprints</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    end = []   <span class="comment">#to store end values</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    code = f1.read()  <span class="comment">#original code</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    newCode = <span class="stringliteral">&quot;&quot;</span>   <span class="comment">#code with marked plagiarized content</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    points = []</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordflow">for</span> i <span class="keywordflow">in</span> fpList1:</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <span class="keywordflow">for</span> j <span class="keywordflow">in</span> fpList2:</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            <span class="keywordflow">if</span> i == j:   <span class="comment">#fingerprints match</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                flag = 0</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                match = HL1.index(i)   <span class="comment">#index of matching fingerprints in hash list, k-grams list</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                newStart = kGrams1[match][2]   <span class="comment">#start position of matched k-gram in cleaned up code</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                newEnd = kGrams1[match][3]   <span class="comment">#end position</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                <span class="keywordflow">for</span> k <span class="keywordflow">in</span> token1:</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                    <span class="keywordflow">if</span> k[2] == newStart:   <span class="comment">#linking positions in cleaned up code to original code</span></div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                        startx = k[1]</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                        flag += 1</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                    <span class="keywordflow">if</span> k[2] == newEnd:</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                        endx = k[1]</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                        flag=flag+1</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                <span class="keywordflow">if</span> flag == 2:</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                    points.append([startx, endx])</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    points.sort(key = <span class="keyword">lambda</span> x: x[0])</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    if(len(points) &gt; 1):</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        points = points[1:]</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        mergedPoints = []</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        mergedPoints.append(points[0])</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(1, len(points)):</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            last = mergedPoints[len(mergedPoints) - 1]</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            <span class="keywordflow">if</span> points[i][0] &gt;= last[0] <span class="keywordflow">and</span> points[i][0] &lt;= last[1]: <span class="comment">#merging overlapping regions</span></div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                <span class="keywordflow">if</span> points[i][1] &gt; last[1]:</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                    mergedPoints = mergedPoints[: len(mergedPoints)-1]</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                    mergedPoints.append([last[0], points[i][1]])</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                    <span class="keywordflow">pass</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                mergedPoints.append(points[i])</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        newCode = code[: mergedPoints[0][0]]</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        plagCount = 0</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(len(mergedPoints)):</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            <span class="keywordflow">if</span> mergedPoints[i][1] &gt; mergedPoints[i][0]:</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                plagCount += mergedPoints[i][1] - mergedPoints[i][0]</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                newCode = newCode + <span class="stringliteral">&#39;&lt;mark&gt;&#39;</span> + code[mergedPoints[i][0] : mergedPoints[i][1]] + <span class="stringliteral">&quot;&lt;mark&gt;&quot;</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                <span class="keywordflow">if</span> i &lt; len(mergedPoints) - 1:</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                    newCode = newCode + code[mergedPoints[i][1] : mergedPoints[i+1][0]]</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                    newCode = newCode + code[mergedPoints[i][1] :]</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        <span class="keywordflow">return</span> plagCount/len(code), newCode</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <span class="keywordflow">return</span> 0, code</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    </div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160; </div>
-<div class="ttc" id="anamespacewinnowing_html_afcaed9bfef1e0ac4baa188c432cc4987"><div class="ttname"><a href="namespacewinnowing.html#afcaed9bfef1e0ac4baa188c432cc4987">winnowing.plagiarismCheck</a></div><div class="ttdeci">def plagiarismCheck(file1, token1, kGrams1, HL1, fpList1, fpList2)</div><div class="ttdef"><b>Definition:</b> <a href="winnowing_8py_source.html#l00122">winnowing.py:122</a></div></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="stringliteral">    @rtype similarity: float</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="stringliteral">    @return similarity: the similarity between the two files</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="stringliteral">    </span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="stringliteral">    @rtype newCode: str</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="stringliteral">    @return newCode: The content of first file with &lt;b&gt;mark&lt;b&gt; appended around every plagiarized(with respect to second file) block</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    f1 = open(file1, <span class="stringliteral">&quot;r&quot;</span>)</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    start = []   <span class="comment">#to store the start values corresponding to matching fingerprints</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    end = []   <span class="comment">#to store end values</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    code = f1.read()  <span class="comment">#original code</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    newCode = <span class="stringliteral">&quot;&quot;</span>   <span class="comment">#code with marked plagiarized content</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    points = []</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordflow">for</span> i <span class="keywordflow">in</span> fpList1:</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordflow">for</span> j <span class="keywordflow">in</span> fpList2:</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            <span class="keywordflow">if</span> i == j:   <span class="comment">#fingerprints match</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                flag = 0</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                match = HL1.index(i)   <span class="comment">#index of matching fingerprints in hash list, k-grams list</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                newStart = kGrams1[match][2]   <span class="comment">#start position of matched k-gram in cleaned up code</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                newEnd = kGrams1[match][3]   <span class="comment">#end position</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                <span class="keywordflow">for</span> k <span class="keywordflow">in</span> token1:</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                    <span class="keywordflow">if</span> k[2] == newStart:   <span class="comment">#linking positions in cleaned up code to original code</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                        startx = k[1]</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                        flag += 1</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                    <span class="keywordflow">if</span> k[2] == newEnd:</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                        endx = k[1]</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                        flag=flag+1</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                <span class="keywordflow">if</span> flag == 2:</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                    points.append([startx, endx])</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    points.sort(key = <span class="keyword">lambda</span> x: x[0])</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    if(len(points) &gt; 1):</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        points = points[1:]</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        mergedPoints = []</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        mergedPoints.append(points[0])</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(1, len(points)):</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            last = mergedPoints[len(mergedPoints) - 1]</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            <span class="keywordflow">if</span> points[i][0] &gt;= last[0] <span class="keywordflow">and</span> points[i][0] &lt;= last[1]: <span class="comment">#merging overlapping regions</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                <span class="keywordflow">if</span> points[i][1] &gt; last[1]:</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                    mergedPoints = mergedPoints[: len(mergedPoints)-1]</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                    mergedPoints.append([last[0], points[i][1]])</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                    <span class="keywordflow">pass</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                mergedPoints.append(points[i])</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        newCode = code[: mergedPoints[0][0]]</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        plagCount = 0</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(len(mergedPoints)):</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            <span class="keywordflow">if</span> mergedPoints[i][1] &gt; mergedPoints[i][0]:</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                plagCount += mergedPoints[i][1] - mergedPoints[i][0]</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                newCode = newCode + <span class="stringliteral">&#39;&lt;mark&gt;&#39;</span> + code[mergedPoints[i][0] : mergedPoints[i][1]] + <span class="stringliteral">&quot;&lt;mark&gt;&quot;</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                <span class="keywordflow">if</span> i &lt; len(mergedPoints) - 1:</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                    newCode = newCode + code[mergedPoints[i][1] : mergedPoints[i+1][0]]</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                    newCode = newCode + code[mergedPoints[i][1] :]</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <span class="keywordflow">return</span> plagCount/len(code), newCode</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        <span class="keywordflow">return</span> 0, code</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    </div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
+<div class="ttc" id="anamespacewinnowing_html_afcaed9bfef1e0ac4baa188c432cc4987"><div class="ttname"><a href="namespacewinnowing.html#afcaed9bfef1e0ac4baa188c432cc4987">winnowing.plagiarismCheck</a></div><div class="ttdeci">def plagiarismCheck(file1, token1, kGrams1, HL1, fpList1, fpList2)</div><div class="ttdef"><b>Definition:</b> <a href="winnowing_8py_source.html#l00125">winnowing.py:125</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>

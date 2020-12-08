@@ -1,7 +1,7 @@
 
 <div>
   <div>
-    <div class="chart-container float-right grow:hover" style="position: absolute;left: 1000px; top: 400px; height:40vh; width:40vw; border: 3px solid #cecece; ">
+    <div class="chart-container float-right grow:hover" style="position: absolute;left: 1000px; top: 250px; height:40vh; width:40vw; border: 3px solid #cecece; ">
       <canvas baseChart  
         [datasets]="scatterChartData"
         [options]="scatterChartOptions"
@@ -11,6 +11,21 @@
     </div>
   </div>
 </div>
+
+
+<div>
+  <div>
+    <div class="chart-container float-right grow:hover" style="position: absolute;left: 1000px; top: 700px; height:40vh; width:40vw; border: 3px solid #cecece; ">
+      <canvas baseChart  
+        [datasets]="scatterChartData2"
+        [options]="scatterChartOptions2"
+        [labels]="scatterChartLabels2"
+        [chartType]="scatterChartType2">
+      </canvas>
+    </div>
+  </div>
+</div>
+
 
 <div style="padding: 100px; padding-left: 50px" >
   <mat-form-field>
@@ -30,8 +45,8 @@
 <div class="container" style="position: absolute; top: 140px; left: 50px; width: 20vw;height: 40vw; overflow-y: scroll; ">
 
   <span *ngFor="let fd of firstCode[firstFileControl.value + ',' + secondFileControl.value]['first_file'];let i=index">
-    <h1>Lauda lassaanaa</h1>
-    <pre><ng-template *ngIf="firstCode[pairname]['first_params'][i] then thenblock; else elseblock"></ng-template><ng-template #thenblock><mark>{{fd}}{{firstCode[pairname]['first_params'][i]}}</mark></ng-template><ng-template #elseblock>{{fd}}</ng-template></pre>
+   
+    <pre><ng-template *ngIf="firstCode[firstFileControl.value + ',' + secondFileControl.value]['first_params'][i] then thenblock; else elseblock"></ng-template><ng-template #thenblock><mark>{{fd}}{{firstCode[pairname]['first_params'][i]}}</mark></ng-template><ng-template #elseblock>{{fd}}</ng-template></pre>
   </span>
   
 </div>
@@ -39,12 +54,12 @@
 <div class="container" style="position: absolute; top: 140px; left: 500px; width: 20vw;height: 40vw; overflow-y: scroll; ">
 
   <span *ngFor="let fd of firstCode[firstFileControl.value + ',' + secondFileControl.value]['second_file'];let i=index">
-    <pre><ng-template *ngIf="firstCode[pairname]['second_params'][i] then thenblock; else elseblock"></ng-template><ng-template #thenblock><mark>{{fd}}</mark></ng-template><ng-template #elseblock>{{fd}}</ng-template></pre>
+    <pre><ng-template *ngIf="firstCode[firstFileControl.value + ',' + secondFileControl.value]['second_params'][i] then thenblock; else elseblock"></ng-template><ng-template #thenblock><mark>{{fd}}</mark></ng-template><ng-template #elseblock>{{fd}}</ng-template></pre>
   </span>
   
 </div>
 
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+<div class="login-wrapper" style="position: absolute; top: 60px; left: 1400px; width: 20vw;height: 10vw; " fxLayout="row" fxLayoutAlign="center center">
 <mat-card class="box">
 <mat-card-header>
 <mat-card-title>Download File</mat-card-title>

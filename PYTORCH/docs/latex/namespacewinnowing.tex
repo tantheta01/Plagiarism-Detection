@@ -13,7 +13,7 @@ def \mbox{\hyperlink{namespacewinnowing_a202ce4c3e07af5737d4f2c5bcd2512f2}{finge
 \begin{DoxyCompactList}\small\item\em Performs winnowing and computes the fingerprint from a hashlist. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespacewinnowing_a3e45b10afd17ad1bdcb95ac280816640}{hash\+List}} (arr)
 \item 
-def \mbox{\hyperlink{namespacewinnowing_adfc32bc9ce7a7a09c13c60c715921e3d}{get\+Finger\+Prints}} (filename)
+def \mbox{\hyperlink{namespacewinnowing_a9deba44d8db031cfb36c4e22f8bcc6e9}{get\+Finger\+Prints}} (filename, is\+Lang\+Spec)
 \begin{DoxyCompactList}\small\item\em Calculate the tokenset of the file. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespacewinnowing_afcaed9bfef1e0ac4baa188c432cc4987}{plagiarism\+Check}} (file1, token1, k\+Grams1, HL1, fp\+List1, fp\+List2)
 \end{DoxyCompactItemize}
@@ -85,11 +85,11 @@ Definition at line 66 of file winnowing.\+py.
 \DoxyCodeLine{97 \textcolor{comment}{\#takes k-\/gram list as input and returns a list of only hash values}}
 
 \end{DoxyCode}
-\mbox{\Hypertarget{namespacewinnowing_adfc32bc9ce7a7a09c13c60c715921e3d}\label{namespacewinnowing_adfc32bc9ce7a7a09c13c60c715921e3d}} 
+\mbox{\Hypertarget{namespacewinnowing_a9deba44d8db031cfb36c4e22f8bcc6e9}\label{namespacewinnowing_a9deba44d8db031cfb36c4e22f8bcc6e9}} 
 \index{winnowing@{winnowing}!getFingerPrints@{getFingerPrints}}
 \index{getFingerPrints@{getFingerPrints}!winnowing@{winnowing}}
 \doxysubsubsection{\texorpdfstring{getFingerPrints()}{getFingerPrints()}}
-{\footnotesize\ttfamily def winnowing.\+get\+Finger\+Prints (\begin{DoxyParamCaption}\item[{}]{filename }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def winnowing.\+get\+Finger\+Prints (\begin{DoxyParamCaption}\item[{}]{filename,  }\item[{}]{is\+Lang\+Spec }\end{DoxyParamCaption})}
 
 
 
@@ -101,18 +101,21 @@ Definition at line 110 of file winnowing.\+py.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{110 \textcolor{keyword}{def }\mbox{\hyperlink{namespacewinnowing_adfc32bc9ce7a7a09c13c60c715921e3d}{getFingerPrints}}(filename):}
+\DoxyCodeLine{110 \textcolor{keyword}{def }\mbox{\hyperlink{namespacewinnowing_a9deba44d8db031cfb36c4e22f8bcc6e9}{getFingerPrints}}(filename, isLangSpec):}
 \DoxyCodeLine{111     \textcolor{stringliteral}{"{}"{}"{}!}}
 \DoxyCodeLine{112 \textcolor{stringliteral}{    @brief Calculate the tokenset of the file}}
 \DoxyCodeLine{113 \textcolor{stringliteral}{    "{}"{}"{}}}
-\DoxyCodeLine{114     token = \mbox{\hyperlink{namespacecleanUP_a82e773d554e0d616ec52f55aaa06f399}{tokenize}}(filename)}
-\DoxyCodeLine{115     token\_string = \mbox{\hyperlink{namespacecleanUP_aca49de92cbc0deea68120c95e485b279}{toText}}(token)}
-\DoxyCodeLine{116     kGrams = \mbox{\hyperlink{namespacewinnowing_a8f7f592341af0fe815ea8388d18c63fe}{kgrams}}(token\_string)}
-\DoxyCodeLine{117     HL = \mbox{\hyperlink{namespacewinnowing_a3e45b10afd17ad1bdcb95ac280816640}{hashList}}(kGrams)}
-\DoxyCodeLine{118     fpList = \mbox{\hyperlink{namespacewinnowing_a202ce4c3e07af5737d4f2c5bcd2512f2}{fingerprints}}(HL)}
-\DoxyCodeLine{119     \textcolor{keywordflow}{return} (token, kGrams, HL, fpList)}
-\DoxyCodeLine{120 }
-\DoxyCodeLine{121 }
+\DoxyCodeLine{114     \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} isLangSpec:}
+\DoxyCodeLine{115         token = \mbox{\hyperlink{namespacecleanUP_a82e773d554e0d616ec52f55aaa06f399}{tokenize}}(filename)}
+\DoxyCodeLine{116     \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{117         token = \mbox{\hyperlink{namespacecleanUP_a56ee319cedb39c40bd5b3218905b3cf1}{tokenize\_for\_java}}(filename)}
+\DoxyCodeLine{118     token\_string = \mbox{\hyperlink{namespacecleanUP_aca49de92cbc0deea68120c95e485b279}{toText}}(token)}
+\DoxyCodeLine{119     kGrams = \mbox{\hyperlink{namespacewinnowing_a8f7f592341af0fe815ea8388d18c63fe}{kgrams}}(token\_string)}
+\DoxyCodeLine{120     HL = \mbox{\hyperlink{namespacewinnowing_a3e45b10afd17ad1bdcb95ac280816640}{hashList}}(kGrams)}
+\DoxyCodeLine{121     fpList = \mbox{\hyperlink{namespacewinnowing_a202ce4c3e07af5737d4f2c5bcd2512f2}{fingerprints}}(HL)}
+\DoxyCodeLine{122     \textcolor{keywordflow}{return} (token, kGrams, HL, fpList)}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124 }
 
 \end{DoxyCode}
 \mbox{\Hypertarget{namespacewinnowing_ae13520da715fa8db917e124124f87fb0}\label{namespacewinnowing_ae13520da715fa8db917e124124f87fb0}} 
@@ -315,98 +318,98 @@ Definition at line 48 of file winnowing.\+py.
 \end{DoxyVerb}
  
 
-Definition at line 122 of file winnowing.\+py.
+Definition at line 125 of file winnowing.\+py.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{122 \textcolor{keyword}{def }\mbox{\hyperlink{namespacewinnowing_afcaed9bfef1e0ac4baa188c432cc4987}{plagiarismCheck}}(file1, token1, kGrams1, HL1, fpList1, fpList2):}
-\DoxyCodeLine{123     \textcolor{stringliteral}{"{}"{}"{}!}}
-\DoxyCodeLine{124 \textcolor{stringliteral}{    }}
-\DoxyCodeLine{125 \textcolor{stringliteral}{    @brief Calculates similarity between two code files}}
-\DoxyCodeLine{126 \textcolor{stringliteral}{    }}
-\DoxyCodeLine{127 \textcolor{stringliteral}{    @detail The similarity is calculated as length of similar code in file1/length of file1}}
-\DoxyCodeLine{128 \textcolor{stringliteral}{    }}
-\DoxyCodeLine{129 \textcolor{stringliteral}{    @type file1: str}}
-\DoxyCodeLine{130 \textcolor{stringliteral}{    @param file1: name of the first file}}
+\DoxyCodeLine{125 \textcolor{keyword}{def }\mbox{\hyperlink{namespacewinnowing_afcaed9bfef1e0ac4baa188c432cc4987}{plagiarismCheck}}(file1, token1, kGrams1, HL1, fpList1, fpList2):}
+\DoxyCodeLine{126     \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{127 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{128 \textcolor{stringliteral}{    @brief Calculates similarity between two code files}}
+\DoxyCodeLine{129 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{130 \textcolor{stringliteral}{    @detail The similarity is calculated as length of similar code in file1/length of file1}}
 \DoxyCodeLine{131 \textcolor{stringliteral}{    }}
-\DoxyCodeLine{132 \textcolor{stringliteral}{    @type token1: list}}
-\DoxyCodeLine{133 \textcolor{stringliteral}{    @param token1: list of tokens where each token is of the form (token\_text, count1, count2)}}
+\DoxyCodeLine{132 \textcolor{stringliteral}{    @type file1: str}}
+\DoxyCodeLine{133 \textcolor{stringliteral}{    @param file1: name of the first file}}
 \DoxyCodeLine{134 \textcolor{stringliteral}{    }}
-\DoxyCodeLine{135 \textcolor{stringliteral}{    @type kGrams1: list}}
-\DoxyCodeLine{136 \textcolor{stringliteral}{    @param kGrams1: list of kGrams for the first file. }}
+\DoxyCodeLine{135 \textcolor{stringliteral}{    @type token1: list}}
+\DoxyCodeLine{136 \textcolor{stringliteral}{    @param token1: list of tokens where each token is of the form (token\_text, count1, count2)}}
 \DoxyCodeLine{137 \textcolor{stringliteral}{    }}
-\DoxyCodeLine{138 \textcolor{stringliteral}{    @type HL1: list}}
-\DoxyCodeLine{139 \textcolor{stringliteral}{    @param HL1: hash list of the first source code}}
+\DoxyCodeLine{138 \textcolor{stringliteral}{    @type kGrams1: list}}
+\DoxyCodeLine{139 \textcolor{stringliteral}{    @param kGrams1: list of kGrams for the first file. }}
 \DoxyCodeLine{140 \textcolor{stringliteral}{    }}
-\DoxyCodeLine{141 \textcolor{stringliteral}{    @type fpList1: list}}
-\DoxyCodeLine{142 \textcolor{stringliteral}{    @param fpList1: list of fingerprints from the first file}}
+\DoxyCodeLine{141 \textcolor{stringliteral}{    @type HL1: list}}
+\DoxyCodeLine{142 \textcolor{stringliteral}{    @param HL1: hash list of the first source code}}
 \DoxyCodeLine{143 \textcolor{stringliteral}{    }}
-\DoxyCodeLine{144 \textcolor{stringliteral}{    @type fpList2: list}}
-\DoxyCodeLine{145 \textcolor{stringliteral}{    @param fpList2: list of fingerprints from the second file}}
+\DoxyCodeLine{144 \textcolor{stringliteral}{    @type fpList1: list}}
+\DoxyCodeLine{145 \textcolor{stringliteral}{    @param fpList1: list of fingerprints from the first file}}
 \DoxyCodeLine{146 \textcolor{stringliteral}{    }}
-\DoxyCodeLine{147 \textcolor{stringliteral}{    @rtype similarity: float}}
-\DoxyCodeLine{148 \textcolor{stringliteral}{    @return similarity: the similarity between the two files}}
+\DoxyCodeLine{147 \textcolor{stringliteral}{    @type fpList2: list}}
+\DoxyCodeLine{148 \textcolor{stringliteral}{    @param fpList2: list of fingerprints from the second file}}
 \DoxyCodeLine{149 \textcolor{stringliteral}{    }}
-\DoxyCodeLine{150 \textcolor{stringliteral}{    @rtype newCode: str}}
-\DoxyCodeLine{151 \textcolor{stringliteral}{    @return newCode: The content of first file with <b>mark<b> appended around every plagiarized(with respect to second file) block}}
-\DoxyCodeLine{152 \textcolor{stringliteral}{}}
-\DoxyCodeLine{153 \textcolor{stringliteral}{    "{}"{}"{}}}
-\DoxyCodeLine{154     f1 = open(file1, \textcolor{stringliteral}{"{}r"{}})}
-\DoxyCodeLine{155     }
-\DoxyCodeLine{156     start = []   \textcolor{comment}{\#to store the start values corresponding to matching fingerprints}}
-\DoxyCodeLine{157     end = []   \textcolor{comment}{\#to store end values}}
-\DoxyCodeLine{158     code = f1.read()  \textcolor{comment}{\#original code}}
-\DoxyCodeLine{159     newCode = \textcolor{stringliteral}{"{}"{}}   \textcolor{comment}{\#code with marked plagiarized content}}
-\DoxyCodeLine{160     points = []}
-\DoxyCodeLine{161     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} fpList1:}
-\DoxyCodeLine{162         \textcolor{keywordflow}{for} j \textcolor{keywordflow}{in} fpList2:}
-\DoxyCodeLine{163             \textcolor{keywordflow}{if} i == j:   \textcolor{comment}{\#fingerprints match}}
-\DoxyCodeLine{164                 flag = 0}
-\DoxyCodeLine{165                 match = HL1.index(i)   \textcolor{comment}{\#index of matching fingerprints in hash list, k-\/grams list}}
-\DoxyCodeLine{166                 newStart = kGrams1[match][2]   \textcolor{comment}{\#start position of matched k-\/gram in cleaned up code}}
-\DoxyCodeLine{167                 newEnd = kGrams1[match][3]   \textcolor{comment}{\#end position}}
-\DoxyCodeLine{168                 \textcolor{keywordflow}{for} k \textcolor{keywordflow}{in} token1:}
-\DoxyCodeLine{169                     \textcolor{keywordflow}{if} k[2] == newStart:   \textcolor{comment}{\#linking positions in cleaned up code to original code}}
-\DoxyCodeLine{170                         startx = k[1]}
-\DoxyCodeLine{171                         flag += 1}
-\DoxyCodeLine{172                     \textcolor{keywordflow}{if} k[2] == newEnd:}
-\DoxyCodeLine{173                         endx = k[1]}
-\DoxyCodeLine{174                         flag=flag+1}
-\DoxyCodeLine{175                 \textcolor{keywordflow}{if} flag == 2:}
-\DoxyCodeLine{176                     points.append([startx, endx])}
-\DoxyCodeLine{177     points.sort(key = \textcolor{keyword}{lambda} x: x[0])}
-\DoxyCodeLine{178     if(len(points) > 1):}
-\DoxyCodeLine{179 }
-\DoxyCodeLine{180         points = points[1:]}
-\DoxyCodeLine{181         mergedPoints = []}
-\DoxyCodeLine{182         mergedPoints.append(points[0])}
-\DoxyCodeLine{183         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(1, len(points)):}
-\DoxyCodeLine{184             last = mergedPoints[len(mergedPoints) -\/ 1]}
-\DoxyCodeLine{185             \textcolor{keywordflow}{if} points[i][0] >= last[0] \textcolor{keywordflow}{and} points[i][0] <= last[1]: \textcolor{comment}{\#merging overlapping regions}}
-\DoxyCodeLine{186                 \textcolor{keywordflow}{if} points[i][1] > last[1]:}
-\DoxyCodeLine{187                     mergedPoints = mergedPoints[: len(mergedPoints)-\/1]}
-\DoxyCodeLine{188                     mergedPoints.append([last[0], points[i][1]])}
-\DoxyCodeLine{189                 \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{190                     \textcolor{keywordflow}{pass}}
-\DoxyCodeLine{191             \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{192                 mergedPoints.append(points[i])}
-\DoxyCodeLine{193         newCode = code[: mergedPoints[0][0]]}
-\DoxyCodeLine{194         plagCount = 0}
-\DoxyCodeLine{195         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(mergedPoints)):}
-\DoxyCodeLine{196             \textcolor{keywordflow}{if} mergedPoints[i][1] > mergedPoints[i][0]:}
-\DoxyCodeLine{197                 plagCount += mergedPoints[i][1] -\/ mergedPoints[i][0]}
-\DoxyCodeLine{198                 newCode = newCode + \textcolor{stringliteral}{'<mark>'} + code[mergedPoints[i][0] : mergedPoints[i][1]] + \textcolor{stringliteral}{"{}<mark>"{}}}
-\DoxyCodeLine{199                 \textcolor{keywordflow}{if} i < len(mergedPoints) -\/ 1:}
-\DoxyCodeLine{200                     newCode = newCode + code[mergedPoints[i][1] : mergedPoints[i+1][0]]}
-\DoxyCodeLine{201                 \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{202                     newCode = newCode + code[mergedPoints[i][1] :]}
-\DoxyCodeLine{203         \textcolor{keywordflow}{return} plagCount/len(code), newCode}
-\DoxyCodeLine{204 }
-\DoxyCodeLine{205     \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{206         \textcolor{keywordflow}{return} 0, code}
-\DoxyCodeLine{207     }
-\DoxyCodeLine{208 }
-\DoxyCodeLine{209 }
-\DoxyCodeLine{210 }
+\DoxyCodeLine{150 \textcolor{stringliteral}{    @rtype similarity: float}}
+\DoxyCodeLine{151 \textcolor{stringliteral}{    @return similarity: the similarity between the two files}}
+\DoxyCodeLine{152 \textcolor{stringliteral}{    }}
+\DoxyCodeLine{153 \textcolor{stringliteral}{    @rtype newCode: str}}
+\DoxyCodeLine{154 \textcolor{stringliteral}{    @return newCode: The content of first file with <b>mark<b> appended around every plagiarized(with respect to second file) block}}
+\DoxyCodeLine{155 \textcolor{stringliteral}{}}
+\DoxyCodeLine{156 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{157     f1 = open(file1, \textcolor{stringliteral}{"{}r"{}})}
+\DoxyCodeLine{158     }
+\DoxyCodeLine{159     start = []   \textcolor{comment}{\#to store the start values corresponding to matching fingerprints}}
+\DoxyCodeLine{160     end = []   \textcolor{comment}{\#to store end values}}
+\DoxyCodeLine{161     code = f1.read()  \textcolor{comment}{\#original code}}
+\DoxyCodeLine{162     newCode = \textcolor{stringliteral}{"{}"{}}   \textcolor{comment}{\#code with marked plagiarized content}}
+\DoxyCodeLine{163     points = []}
+\DoxyCodeLine{164     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} fpList1:}
+\DoxyCodeLine{165         \textcolor{keywordflow}{for} j \textcolor{keywordflow}{in} fpList2:}
+\DoxyCodeLine{166             \textcolor{keywordflow}{if} i == j:   \textcolor{comment}{\#fingerprints match}}
+\DoxyCodeLine{167                 flag = 0}
+\DoxyCodeLine{168                 match = HL1.index(i)   \textcolor{comment}{\#index of matching fingerprints in hash list, k-\/grams list}}
+\DoxyCodeLine{169                 newStart = kGrams1[match][2]   \textcolor{comment}{\#start position of matched k-\/gram in cleaned up code}}
+\DoxyCodeLine{170                 newEnd = kGrams1[match][3]   \textcolor{comment}{\#end position}}
+\DoxyCodeLine{171                 \textcolor{keywordflow}{for} k \textcolor{keywordflow}{in} token1:}
+\DoxyCodeLine{172                     \textcolor{keywordflow}{if} k[2] == newStart:   \textcolor{comment}{\#linking positions in cleaned up code to original code}}
+\DoxyCodeLine{173                         startx = k[1]}
+\DoxyCodeLine{174                         flag += 1}
+\DoxyCodeLine{175                     \textcolor{keywordflow}{if} k[2] == newEnd:}
+\DoxyCodeLine{176                         endx = k[1]}
+\DoxyCodeLine{177                         flag=flag+1}
+\DoxyCodeLine{178                 \textcolor{keywordflow}{if} flag == 2:}
+\DoxyCodeLine{179                     points.append([startx, endx])}
+\DoxyCodeLine{180     points.sort(key = \textcolor{keyword}{lambda} x: x[0])}
+\DoxyCodeLine{181     if(len(points) > 1):}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183         points = points[1:]}
+\DoxyCodeLine{184         mergedPoints = []}
+\DoxyCodeLine{185         mergedPoints.append(points[0])}
+\DoxyCodeLine{186         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(1, len(points)):}
+\DoxyCodeLine{187             last = mergedPoints[len(mergedPoints) -\/ 1]}
+\DoxyCodeLine{188             \textcolor{keywordflow}{if} points[i][0] >= last[0] \textcolor{keywordflow}{and} points[i][0] <= last[1]: \textcolor{comment}{\#merging overlapping regions}}
+\DoxyCodeLine{189                 \textcolor{keywordflow}{if} points[i][1] > last[1]:}
+\DoxyCodeLine{190                     mergedPoints = mergedPoints[: len(mergedPoints)-\/1]}
+\DoxyCodeLine{191                     mergedPoints.append([last[0], points[i][1]])}
+\DoxyCodeLine{192                 \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{193                     \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{194             \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{195                 mergedPoints.append(points[i])}
+\DoxyCodeLine{196         newCode = code[: mergedPoints[0][0]]}
+\DoxyCodeLine{197         plagCount = 0}
+\DoxyCodeLine{198         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(mergedPoints)):}
+\DoxyCodeLine{199             \textcolor{keywordflow}{if} mergedPoints[i][1] > mergedPoints[i][0]:}
+\DoxyCodeLine{200                 plagCount += mergedPoints[i][1] -\/ mergedPoints[i][0]}
+\DoxyCodeLine{201                 newCode = newCode + \textcolor{stringliteral}{'<mark>'} + code[mergedPoints[i][0] : mergedPoints[i][1]] + \textcolor{stringliteral}{"{}<mark>"{}}}
+\DoxyCodeLine{202                 \textcolor{keywordflow}{if} i < len(mergedPoints) -\/ 1:}
+\DoxyCodeLine{203                     newCode = newCode + code[mergedPoints[i][1] : mergedPoints[i+1][0]]}
+\DoxyCodeLine{204                 \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{205                     newCode = newCode + code[mergedPoints[i][1] :]}
+\DoxyCodeLine{206         \textcolor{keywordflow}{return} plagCount/len(code), newCode}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208     \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{209         \textcolor{keywordflow}{return} 0, code}
+\DoxyCodeLine{210     }
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213 }
 
 \end{DoxyCode}

@@ -3,165 +3,218 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+def \mbox{\hyperlink{namespacedriver_af5672ab6218cc4778af8b2a4c4e55f88}{Count\+Frequency}} (my\+\_\+list)
+\item 
 def \mbox{\hyperlink{namespacedriver_aab0487684dc0bc713cf4d087b66d4de2}{get\+Exclusive\+Similarity}} (file1, file2)
 \begin{DoxyCompactList}\small\item\em Evaluates the exclusive similarity between two files. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespacedriver_a4a9afd1da197302892e97194695e7dc5}{extract\+\_\+and\+\_\+process}} (tar\+\_\+filename)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Driver Circuit to extract tar files and pass them through prepreocessing. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacedriver_af5672ab6218cc4778af8b2a4c4e55f88}\label{namespacedriver_af5672ab6218cc4778af8b2a4c4e55f88}} 
+\index{driver@{driver}!CountFrequency@{CountFrequency}}
+\index{CountFrequency@{CountFrequency}!driver@{driver}}
+\doxysubsubsection{\texorpdfstring{CountFrequency()}{CountFrequency()}}
+{\footnotesize\ttfamily def driver.\+Count\+Frequency (\begin{DoxyParamCaption}\item[{}]{my\+\_\+list }\end{DoxyParamCaption})}
+
+
+
+Definition at line 9 of file driver.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{9 \textcolor{keyword}{def }\mbox{\hyperlink{namespacedriver_af5672ab6218cc4778af8b2a4c4e55f88}{CountFrequency}}(my\_list): }
+\DoxyCodeLine{10   }
+\DoxyCodeLine{11     \textcolor{comment}{\# Creating an empty dictionary  }}
+\DoxyCodeLine{12     freq = \{\} }
+\DoxyCodeLine{13     \textcolor{keywordflow}{for} item \textcolor{keywordflow}{in} my\_list: }
+\DoxyCodeLine{14         \textcolor{keywordflow}{if} (item \textcolor{keywordflow}{in} freq): }
+\DoxyCodeLine{15             freq[item] += 1}
+\DoxyCodeLine{16         \textcolor{keywordflow}{else}: }
+\DoxyCodeLine{17             freq[item] = 1}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19     \textcolor{keywordflow}{return} [element[1] \textcolor{keywordflow}{for} element \textcolor{keywordflow}{in} freq.items()]}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 }
+
+\end{DoxyCode}
 \mbox{\Hypertarget{namespacedriver_a4a9afd1da197302892e97194695e7dc5}\label{namespacedriver_a4a9afd1da197302892e97194695e7dc5}} 
 \index{driver@{driver}!extract\_and\_process@{extract\_and\_process}}
 \index{extract\_and\_process@{extract\_and\_process}!driver@{driver}}
 \doxysubsubsection{\texorpdfstring{extract\_and\_process()}{extract\_and\_process()}}
 {\footnotesize\ttfamily def driver.\+extract\+\_\+and\+\_\+process (\begin{DoxyParamCaption}\item[{}]{tar\+\_\+filename }\end{DoxyParamCaption})}
 
-\begin{DoxyVerb}    Driver Circuit to extract tar files and pass them through prepreocessing. 
-    Arguments : 
-    tar_filename: Complete path of the tar file. The file must extract to give the directories 'code_files' and/or 'stub_code', where the directory 
-    'code_files' contains all the files to be checked for plagiarism and the directory 'stub_code' (if present) contains a single file denoting the stub code. 
-    There is no restriction on the file names inside each directory
 
-    Return: 
-    file_similarities : a dictionary of the form (file1_name, file2_name) : {'first_file' : first_file, 'second_file' : second_file, 'similarity' : similarity }. 
-    The key tuple has been stringified for easy usage. 
-    code_files : list of files in the directory code_files
-    sorted_list : \end{DoxyVerb}
- 
 
-Definition at line 96 of file driver.\+py.
+Driver Circuit to extract tar files and pass them through prepreocessing. 
+
+Arguments \+: tar\+\_\+filename\+: Complete path of the tar file. The file must extract to give the directories \textquotesingle{}code\+\_\+files\textquotesingle{} and/or \textquotesingle{}stub\+\_\+code\textquotesingle{}, where the directory \textquotesingle{}code\+\_\+files\textquotesingle{} contains all the files to be checked for plagiarism and the directory \textquotesingle{}stub\+\_\+code\textquotesingle{} (if present) contains a single file denoting the stub code. There is no restriction on the file names inside each directory
+
+
+\begin{DoxyParams}{Parameters}
+{\em tar\+\_\+filename} & \+: path of the tar file containing code files to be checked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+file\+\_\+similarities \+: a dictionary of the form (file1\+\_\+name, file2\+\_\+name) \+: \{\textquotesingle{}first\+\_\+file\textquotesingle{} \+: first\+\_\+file, \textquotesingle{}second\+\_\+file\textquotesingle{} \+: second\+\_\+file, \textquotesingle{}similarity\textquotesingle{} \+: similarity \}. The key tuple has been stringified for easy usage. 
+
+code\+\_\+files \+: list of files in the directory code\+\_\+files 
+
+sorted\+\_\+list \+: List of file pair similarities sorted in decreasing order of similarity 
+
+embedded\+\_\+files 2 Dimentional embeddings for every file for better visualization 
+
+binned list containing the number of pairs of file similar in the bins of width 0.\+2 each 
+\end{DoxyReturn}
+
+
+Definition at line 110 of file driver.\+py.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{96 \textcolor{keyword}{def }\mbox{\hyperlink{namespacedriver_a4a9afd1da197302892e97194695e7dc5}{extract\_and\_process}}(tar\_filename):}
-\DoxyCodeLine{97     \textcolor{stringliteral}{"{}"{}"{}}}
-\DoxyCodeLine{98 \textcolor{stringliteral}{    Driver Circuit to extract tar files and pass them through prepreocessing. }}
-\DoxyCodeLine{99 \textcolor{stringliteral}{    Arguments : }}
-\DoxyCodeLine{100 \textcolor{stringliteral}{    tar\_filename: Complete path of the tar file. The file must extract to give the directories 'code\_files' and/or 'stub\_code', where the directory }}
-\DoxyCodeLine{101 \textcolor{stringliteral}{    'code\_files' contains all the files to be checked for plagiarism and the directory 'stub\_code' (if present) contains a single file denoting the stub code. }}
-\DoxyCodeLine{102 \textcolor{stringliteral}{    There is no restriction on the file names inside each directory}}
-\DoxyCodeLine{103 \textcolor{stringliteral}{}}
-\DoxyCodeLine{104 \textcolor{stringliteral}{    Return: }}
-\DoxyCodeLine{105 \textcolor{stringliteral}{    file\_similarities : a dictionary of the form (file1\_name, file2\_name) : \{'first\_file' : first\_file, 'second\_file' : second\_file, 'similarity' : similarity \}. }}
-\DoxyCodeLine{106 \textcolor{stringliteral}{    The key tuple has been stringified for easy usage. }}
-\DoxyCodeLine{107 \textcolor{stringliteral}{    code\_files : list of files in the directory code\_files}}
-\DoxyCodeLine{108 \textcolor{stringliteral}{    sorted\_list : }}
-\DoxyCodeLine{109 \textcolor{stringliteral}{    "{}"{}"{}}}
-\DoxyCodeLine{110     directory\_of\_file = \textcolor{stringliteral}{'/'}.join(folder \textcolor{keywordflow}{for} folder \textcolor{keywordflow}{in} tar\_filename.split(\textcolor{stringliteral}{'/'})[:-\/1])}
-\DoxyCodeLine{111     \textcolor{comment}{\# with open(tar\_filename) as f:}}
-\DoxyCodeLine{112     \textcolor{comment}{\#   f.extractall(directory\_of\_file)}}
-\DoxyCodeLine{113     mytar = tarfile.open(tar\_filename)}
-\DoxyCodeLine{114     mytar.extractall(directory\_of\_file)}
-\DoxyCodeLine{115     mytar.close()}
-\DoxyCodeLine{116 }
-\DoxyCodeLine{117 }
-\DoxyCodeLine{118     print(\textcolor{stringliteral}{"{}Tar file name is "{}}, tar\_filename)}
-\DoxyCodeLine{119 }
-\DoxyCodeLine{120     print(directory\_of\_file)}
-\DoxyCodeLine{121     file\_similarities = \{\}}
-\DoxyCodeLine{122 }
-\DoxyCodeLine{123     \textcolor{comment}{\# We are expecting there shall be one directory in the tar file named code\_files and one of them shall be named stub\_code if stub\_code is provided}}
-\DoxyCodeLine{124 }
-\DoxyCodeLine{125     print(os.listdir(directory\_of\_file), \textcolor{stringliteral}{"{}This is the folder presen in the directory"{}})}
-\DoxyCodeLine{126     print(\textcolor{stringliteral}{"{}directory of file is"{}}, directory\_of\_file)}
-\DoxyCodeLine{127     file1=[]}
-\DoxyCodeLine{128     file2=[]}
-\DoxyCodeLine{129     similarity=[]}
-\DoxyCodeLine{130 }
-\DoxyCodeLine{131     code\_files\_dir = directory\_of\_file + \textcolor{stringliteral}{'/code\_files'}}
-\DoxyCodeLine{132     code\_files = os.listdir(code\_files\_dir)}
-\DoxyCodeLine{133     file\_params = [\mbox{\hyperlink{namespacewinnowing_adfc32bc9ce7a7a09c13c60c715921e3d}{getFingerPrints}}(directory\_of\_file + \textcolor{stringliteral}{'/code\_files/'} + file) \textcolor{keywordflow}{for} file \textcolor{keywordflow}{in} code\_files]}
-\DoxyCodeLine{134 }
+\DoxyCodeLine{110 \textcolor{keyword}{def }\mbox{\hyperlink{namespacedriver_a4a9afd1da197302892e97194695e7dc5}{extract\_and\_process}}(tar\_filename):}
+\DoxyCodeLine{111     \textcolor{stringliteral}{"{}"{}"{}!}}
+\DoxyCodeLine{112 \textcolor{stringliteral}{    @brief Driver Circuit to extract tar files and pass them through prepreocessing. }}
+\DoxyCodeLine{113 \textcolor{stringliteral}{    Arguments : }}
+\DoxyCodeLine{114 \textcolor{stringliteral}{    tar\_filename: Complete path of the tar file. The file must extract to give the directories 'code\_files' and/or 'stub\_code', where the directory }}
+\DoxyCodeLine{115 \textcolor{stringliteral}{    'code\_files' contains all the files to be checked for plagiarism and the directory 'stub\_code' (if present) contains a single file denoting the stub code. }}
+\DoxyCodeLine{116 \textcolor{stringliteral}{    There is no restriction on the file names inside each directory}}
+\DoxyCodeLine{117 \textcolor{stringliteral}{}}
+\DoxyCodeLine{118 \textcolor{stringliteral}{    @param tar\_filename : path of the tar file containing code files to be checked}}
+\DoxyCodeLine{119 \textcolor{stringliteral}{    @return file\_similarities : a dictionary of the form (file1\_name, file2\_name) : \{'first\_file' : first\_file, 'second\_file' : second\_file, 'similarity' : similarity \}. }}
+\DoxyCodeLine{120 \textcolor{stringliteral}{    The key tuple has been stringified for easy usage. }}
+\DoxyCodeLine{121 \textcolor{stringliteral}{    @return code\_files : list of files in the directory code\_files}}
+\DoxyCodeLine{122 \textcolor{stringliteral}{    @return sorted\_list : List of file pair similarities sorted in decreasing order of similarity}}
+\DoxyCodeLine{123 \textcolor{stringliteral}{    @return embedded\_files 2 Dimentional embeddings for every file for better visualization}}
+\DoxyCodeLine{124 \textcolor{stringliteral}{    @return binned list containing the number of pairs of file similar in the bins of width 0.2 each }}
+\DoxyCodeLine{125 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{126     directory\_of\_file = \textcolor{stringliteral}{'/'}.join(folder \textcolor{keywordflow}{for} folder \textcolor{keywordflow}{in} tar\_filename.split(\textcolor{stringliteral}{'/'})[:-\/1])}
+\DoxyCodeLine{127     \textcolor{comment}{\# with open(tar\_filename) as f:}}
+\DoxyCodeLine{128     \textcolor{comment}{\#   f.extractall(directory\_of\_file)}}
+\DoxyCodeLine{129     mytar = tarfile.open(tar\_filename)}
+\DoxyCodeLine{130     mytar.extractall(directory\_of\_file)}
+\DoxyCodeLine{131     mytar.close()}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134     print(\textcolor{stringliteral}{"{}Tar file name is "{}}, tar\_filename)}
 \DoxyCodeLine{135 }
-\DoxyCodeLine{136 }
-\DoxyCodeLine{137     \textcolor{keywordflow}{if} \textcolor{stringliteral}{"{}stub\_code"{}} \textcolor{keywordflow}{in} os.listdir(directory\_of\_file):}
+\DoxyCodeLine{136     print(directory\_of\_file)}
+\DoxyCodeLine{137     file\_similarities = \{\}}
 \DoxyCodeLine{138 }
-\DoxyCodeLine{139 }
+\DoxyCodeLine{139     \textcolor{comment}{\# We are expecting there shall be one directory in the tar file named code\_files and one of them shall be named stub\_code if stub\_code is provided}}
 \DoxyCodeLine{140 }
-\DoxyCodeLine{141         stub\_code\_file = directory\_of\_file + \textcolor{stringliteral}{"{}/stub\_code/"{}} + os.listdir(directory\_of\_file + \textcolor{stringliteral}{"{}/stub\_code"{}})[0]}
-\DoxyCodeLine{142         }
-\DoxyCodeLine{143         stub\_code\_params = \mbox{\hyperlink{namespacewinnowing_adfc32bc9ce7a7a09c13c60c715921e3d}{getFingerPrints}}(stub\_code\_file)}
-\DoxyCodeLine{144 }
-\DoxyCodeLine{145 }
-\DoxyCodeLine{146         code\_files\_dir = directory\_of\_file + \textcolor{stringliteral}{'/code\_files'}}
-\DoxyCodeLine{147         code\_files = os.listdir(code\_files\_dir)}
-\DoxyCodeLine{148 }
-\DoxyCodeLine{149         code\_files\_similarity\_stub\_code = []}
-\DoxyCodeLine{150         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(code\_files)):}
-\DoxyCodeLine{151             \_, file\_com = \mbox{\hyperlink{namespacewinnowing_afcaed9bfef1e0ac4baa188c432cc4987}{plagiarismCheck}}(code\_files\_dir + \textcolor{stringliteral}{'/'} + code\_files[i], file\_params[i][0], file\_params[i][1], file\_params[i][2], file\_params[i][3], stub\_code\_params[3])}
-\DoxyCodeLine{152             code\_files\_similarity\_stub\_code.append(file\_com)}
-\DoxyCodeLine{153 }
-\DoxyCodeLine{154 }
-\DoxyCodeLine{155         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(code\_files)-\/1):}
-\DoxyCodeLine{156 }
-\DoxyCodeLine{157             \textcolor{keywordflow}{for} j \textcolor{keywordflow}{in} range(i+1, len(code\_files)):}
+\DoxyCodeLine{141     print(os.listdir(directory\_of\_file), \textcolor{stringliteral}{"{}This is the folder presen in the directory"{}})}
+\DoxyCodeLine{142     print(\textcolor{stringliteral}{"{}directory of file is"{}}, directory\_of\_file)}
+\DoxyCodeLine{143     file1=[]}
+\DoxyCodeLine{144     file2=[]}
+\DoxyCodeLine{145     similarity=[]}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147     code\_files\_dir = directory\_of\_file + \textcolor{stringliteral}{'/code\_files'}}
+\DoxyCodeLine{148     code\_files = os.listdir(code\_files\_dir)}
+\DoxyCodeLine{149     isLangSpec = code\_files[0].split(.)[-\/1] == \textcolor{stringliteral}{'java'}}
+\DoxyCodeLine{150     file\_params = [\mbox{\hyperlink{namespacewinnowing_a9deba44d8db031cfb36c4e22f8bcc6e9}{getFingerPrints}}(directory\_of\_file + \textcolor{stringliteral}{'/code\_files/'} + file, isLangSpec) \textcolor{keywordflow}{for} file \textcolor{keywordflow}{in} code\_files]}
+\DoxyCodeLine{151     freq\_fingerprints = [\mbox{\hyperlink{namespacedriver_af5672ab6218cc4778af8b2a4c4e55f88}{CountFrequency}}(param[3]) \textcolor{keywordflow}{for} param \textcolor{keywordflow}{in} file\_params]}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153     embedded\_files = list(\mbox{\hyperlink{namespaceplot_ad4f2ae0e60db1c0106d9f15894248c38}{get\_reduced\_components}}(freq\_fingerprints))}
+\DoxyCodeLine{154     embeddings = []}
+\DoxyCodeLine{155     \textcolor{keywordflow}{for} x \textcolor{keywordflow}{in} embedded\_files:}
+\DoxyCodeLine{156         embeddings.append(\{\textcolor{stringliteral}{'x'} : x[0], \textcolor{stringliteral}{'y'} : x[1]\})}
+\DoxyCodeLine{157     print(embeddings)}
 \DoxyCodeLine{158 }
-\DoxyCodeLine{159                 file1\_sim, file1\_com = \mbox{\hyperlink{namespacewinnowing_afcaed9bfef1e0ac4baa188c432cc4987}{plagiarismCheck}}(code\_files\_dir + \textcolor{stringliteral}{'/'} + code\_files[i], file\_params[i][0], file\_params[i][1], file\_params[i][2], file\_params[i][3], file\_params[j][3])}
-\DoxyCodeLine{160                 file1\_sim, file1\_com = \mbox{\hyperlink{namespacedriver_aab0487684dc0bc713cf4d087b66d4de2}{getExclusiveSimilarity}}(file1\_com, code\_files\_similarity\_stub\_code[i])}
-\DoxyCodeLine{161 }
-\DoxyCodeLine{162                 file2\_sim, file2\_com = \mbox{\hyperlink{namespacewinnowing_afcaed9bfef1e0ac4baa188c432cc4987}{plagiarismCheck}}(code\_files\_dir + \textcolor{stringliteral}{'/'} + code\_files[j], file\_params[j][0], file\_params[j][1], file\_params[j][2], file\_params[j][3], file\_params[j][3])}
-\DoxyCodeLine{163                 file2\_sim, file2\_com = \mbox{\hyperlink{namespacedriver_aab0487684dc0bc713cf4d087b66d4de2}{getExclusiveSimilarity}}(file2\_com, code\_files\_similarity\_stub\_code[j])}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161     \textcolor{keywordflow}{if} \textcolor{stringliteral}{"{}stub\_code"{}} \textcolor{keywordflow}{in} os.listdir(directory\_of\_file):}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163 }
 \DoxyCodeLine{164 }
-\DoxyCodeLine{165                 file\_similarities[(code\_files[i], code\_files[j])] = \{\textcolor{stringliteral}{"{}first\_file"{}} : file1\_com, \textcolor{stringliteral}{"{}second\_file"{}} : file2\_com, \textcolor{stringliteral}{"{}similarity"{}} : min(file1\_sim, file2\_sim)\}}
-\DoxyCodeLine{166                 file\_similarities[(code\_files[j], code\_files[i])] = \{\textcolor{stringliteral}{"{}first\_file"{}} : file2\_com, \textcolor{stringliteral}{"{}second\_file"{}} : file1\_com, \textcolor{stringliteral}{"{}similarity"{}} : min(file1\_sim, file2\_sim)\}}
-\DoxyCodeLine{167 }
-\DoxyCodeLine{168                 file1.append(code\_files[i])}
-\DoxyCodeLine{169                 file2.append(code\_files[j])}
-\DoxyCodeLine{170                 similarity.append(min(file1\_sim,file2\_sim))}
-\DoxyCodeLine{171 }
-\DoxyCodeLine{172         file\_similarities = \{\textcolor{stringliteral}{','}.join(k):v \textcolor{keywordflow}{for} (k,v) \textcolor{keywordflow}{in} sorted(file\_similarities.items(), key = \textcolor{keyword}{lambda} item : -\/1*item[1][\textcolor{stringliteral}{"{}similarity"{}}])\}}
-\DoxyCodeLine{173         shutil.rmtree(directory\_of\_file + \textcolor{stringliteral}{"{}/stub\_code"{}})}
-\DoxyCodeLine{174 }
-\DoxyCodeLine{175 }
-\DoxyCodeLine{176     \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{177         code\_files\_dir = directory\_of\_file + \textcolor{stringliteral}{'/code\_files'}}
+\DoxyCodeLine{165         stub\_code\_file = directory\_of\_file + \textcolor{stringliteral}{"{}/stub\_code/"{}} + os.listdir(directory\_of\_file + \textcolor{stringliteral}{"{}/stub\_code"{}})[0]}
+\DoxyCodeLine{166         }
+\DoxyCodeLine{167         stub\_code\_params = \mbox{\hyperlink{namespacewinnowing_a9deba44d8db031cfb36c4e22f8bcc6e9}{getFingerPrints}}(stub\_code\_file)}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170         code\_files\_dir = directory\_of\_file + \textcolor{stringliteral}{'/code\_files'}}
+\DoxyCodeLine{171         code\_files = os.listdir(code\_files\_dir)}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173         code\_files\_similarity\_stub\_code = []}
+\DoxyCodeLine{174         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(code\_files)):}
+\DoxyCodeLine{175             \_, file\_com = \mbox{\hyperlink{namespacewinnowing_afcaed9bfef1e0ac4baa188c432cc4987}{plagiarismCheck}}(code\_files\_dir + \textcolor{stringliteral}{'/'} + code\_files[i], file\_params[i][0], file\_params[i][1], file\_params[i][2], file\_params[i][3], stub\_code\_params[3])}
+\DoxyCodeLine{176             code\_files\_similarity\_stub\_code.append(file\_com)}
+\DoxyCodeLine{177 }
 \DoxyCodeLine{178 }
-\DoxyCodeLine{179         code\_files = os.listdir(code\_files\_dir)}
+\DoxyCodeLine{179         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(code\_files)-\/1):}
 \DoxyCodeLine{180 }
-\DoxyCodeLine{181         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(code\_files)-\/1):}
+\DoxyCodeLine{181             \textcolor{keywordflow}{for} j \textcolor{keywordflow}{in} range(i+1, len(code\_files)):}
 \DoxyCodeLine{182 }
-\DoxyCodeLine{183             \textcolor{keywordflow}{for} j \textcolor{keywordflow}{in} range(i+1, len(code\_files)):}
-\DoxyCodeLine{184 }
-\DoxyCodeLine{185                 file1\_sim, file1\_com = \mbox{\hyperlink{namespacewinnowing_afcaed9bfef1e0ac4baa188c432cc4987}{plagiarismCheck}}(code\_files\_dir + \textcolor{stringliteral}{'/'} + code\_files[i], file\_params[i][0], file\_params[i][1], file\_params[i][2], file\_params[i][3], file\_params[j][3])}
+\DoxyCodeLine{183                 file1\_sim, file1\_com = \mbox{\hyperlink{namespacewinnowing_afcaed9bfef1e0ac4baa188c432cc4987}{plagiarismCheck}}(code\_files\_dir + \textcolor{stringliteral}{'/'} + code\_files[i], file\_params[i][0], file\_params[i][1], file\_params[i][2], file\_params[i][3], file\_params[j][3])}
+\DoxyCodeLine{184                 file1\_sim, file1\_com = \mbox{\hyperlink{namespacedriver_aab0487684dc0bc713cf4d087b66d4de2}{getExclusiveSimilarity}}(file1\_com, code\_files\_similarity\_stub\_code[i])}
+\DoxyCodeLine{185 }
 \DoxyCodeLine{186                 file2\_sim, file2\_com = \mbox{\hyperlink{namespacewinnowing_afcaed9bfef1e0ac4baa188c432cc4987}{plagiarismCheck}}(code\_files\_dir + \textcolor{stringliteral}{'/'} + code\_files[j], file\_params[j][0], file\_params[j][1], file\_params[j][2], file\_params[j][3], file\_params[j][3])}
-\DoxyCodeLine{187 }
-\DoxyCodeLine{188                 file\_similarities[(code\_files[i], code\_files[j])] = \{\textcolor{stringliteral}{"{}first\_file"{}} : file1\_com, \textcolor{stringliteral}{"{}second\_file"{}} : file2\_com, \textcolor{stringliteral}{"{}similarity"{}} : min(file1\_sim, file2\_sim)\}}
-\DoxyCodeLine{189                 file\_similarities[(code\_files[j], code\_files[i])] = \{\textcolor{stringliteral}{"{}first\_file"{}} : file2\_com, \textcolor{stringliteral}{"{}second\_file"{}} : file1\_com, \textcolor{stringliteral}{"{}similarity"{}} : min(file1\_sim, file2\_sim)\}}
-\DoxyCodeLine{190 }
-\DoxyCodeLine{191                 file1.append(code\_files[i])}
-\DoxyCodeLine{192                 file2.append(code\_files[j])}
-\DoxyCodeLine{193                 similarity.append(min(file1\_sim,file2\_sim))}
-\DoxyCodeLine{194 }
+\DoxyCodeLine{187                 file2\_sim, file2\_com = \mbox{\hyperlink{namespacedriver_aab0487684dc0bc713cf4d087b66d4de2}{getExclusiveSimilarity}}(file2\_com, code\_files\_similarity\_stub\_code[j])}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189                 file\_similarities[(code\_files[i], code\_files[j])] = \{\textcolor{stringliteral}{"{}first\_file"{}} : file1\_com, \textcolor{stringliteral}{"{}second\_file"{}} : file2\_com, \textcolor{stringliteral}{"{}similarity"{}} : min(file1\_sim, file2\_sim)\}}
+\DoxyCodeLine{190                 file\_similarities[(code\_files[j], code\_files[i])] = \{\textcolor{stringliteral}{"{}first\_file"{}} : file2\_com, \textcolor{stringliteral}{"{}second\_file"{}} : file1\_com, \textcolor{stringliteral}{"{}similarity"{}} : min(file1\_sim, file2\_sim)\}}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192                 file1.append(code\_files[i])}
+\DoxyCodeLine{193                 file2.append(code\_files[j])}
+\DoxyCodeLine{194                 similarity.append(min(file1\_sim,file2\_sim))}
 \DoxyCodeLine{195 }
 \DoxyCodeLine{196         file\_similarities = \{\textcolor{stringliteral}{','}.join(k):v \textcolor{keywordflow}{for} (k,v) \textcolor{keywordflow}{in} sorted(file\_similarities.items(), key = \textcolor{keyword}{lambda} item : -\/1*item[1][\textcolor{stringliteral}{"{}similarity"{}}])\}}
-\DoxyCodeLine{197         \textcolor{comment}{\# print(file\_similarities["{}test2.py,test3.py"{}]["{}first\_file"{}])}}
-\DoxyCodeLine{198         }
-\DoxyCodeLine{199     shutil.rmtree(directory\_of\_file + \textcolor{stringliteral}{"{}/code\_files"{}})}
-\DoxyCodeLine{200     os.remove(tar\_filename)}
-\DoxyCodeLine{201 }
-\DoxyCodeLine{202     csv\_list = np.column\_stack([np.array(file1), np.array(file2), np.array(similarity)])}
-\DoxyCodeLine{203     sorted\_list = csv\_list[np.argsort(csv\_list[:, 2])][::-\/1]}
-\DoxyCodeLine{204     \textcolor{comment}{\# csv\_list.sort(key = lambda x: x[2], reverse = True)}}
-\DoxyCodeLine{205     print(sorted\_list)}
-\DoxyCodeLine{206     \textcolor{comment}{\# np.savetxt(directory\_of\_file + '/data.csv', sorted\_list, delimiter=',', fmt = ['\%s', '\%s', '\%s'], header = 'File 1,File 2,Similarity', comments='')}}
-\DoxyCodeLine{207 }
-\DoxyCodeLine{208     \textcolor{keywordflow}{return} file\_similarities, code\_files, sorted\_list}
-\DoxyCodeLine{209 }
-\DoxyCodeLine{210 }
-\DoxyCodeLine{211 \textcolor{comment}{\# def get\_fps\_and\_pca(tar\_filename):}}
+\DoxyCodeLine{197         shutil.rmtree(directory\_of\_file + \textcolor{stringliteral}{"{}/stub\_code"{}})}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200     \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{201         code\_files\_dir = directory\_of\_file + \textcolor{stringliteral}{'/code\_files'}}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203         code\_files = os.listdir(code\_files\_dir)}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(code\_files)-\/1):}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207             \textcolor{keywordflow}{for} j \textcolor{keywordflow}{in} range(i+1, len(code\_files)):}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209                 file1\_sim, file1\_com = \mbox{\hyperlink{namespacewinnowing_afcaed9bfef1e0ac4baa188c432cc4987}{plagiarismCheck}}(code\_files\_dir + \textcolor{stringliteral}{'/'} + code\_files[i], file\_params[i][0], file\_params[i][1], file\_params[i][2], file\_params[i][3], file\_params[j][3])}
+\DoxyCodeLine{210                 print(len(file1\_com.split(\textcolor{stringliteral}{"{}<mark>"{}})), \textcolor{stringliteral}{"{}is the similarity between the filesssssssssssssssssssss"{}})}
+\DoxyCodeLine{211                 file2\_sim, file2\_com = \mbox{\hyperlink{namespacewinnowing_afcaed9bfef1e0ac4baa188c432cc4987}{plagiarismCheck}}(code\_files\_dir + \textcolor{stringliteral}{'/'} + code\_files[j], file\_params[j][0], file\_params[j][1], file\_params[j][2], file\_params[j][3], file\_params[i][3])}
 \DoxyCodeLine{212 }
-\DoxyCodeLine{213 }
-\DoxyCodeLine{214 \textcolor{comment}{\#   directory\_of\_file = '/'.join(folder for folder in tar\_filename.split('/')[:-\/1])}}
-\DoxyCodeLine{215 \textcolor{comment}{\#   \# with open(tar\_filename) as f:}}
-\DoxyCodeLine{216 \textcolor{comment}{\#   \#   f.extractall(directory\_of\_file)}}
-\DoxyCodeLine{217 \textcolor{comment}{\#   mytar = tarfile.open(tar\_filename)}}
-\DoxyCodeLine{218 \textcolor{comment}{\#   mytar.extractall(directory\_of\_file)}}
-\DoxyCodeLine{219 \textcolor{comment}{\#   mytar.close()}}
+\DoxyCodeLine{213                 file\_similarities[(code\_files[i], code\_files[j])] = \{\textcolor{stringliteral}{"{}first\_file"{}} : file1\_com, \textcolor{stringliteral}{"{}second\_file"{}} : file2\_com, \textcolor{stringliteral}{"{}similarity"{}} : min(file1\_sim, file2\_sim)\}}
+\DoxyCodeLine{214                 file\_similarities[(code\_files[j], code\_files[i])] = \{\textcolor{stringliteral}{"{}first\_file"{}} : file2\_com, \textcolor{stringliteral}{"{}second\_file"{}} : file1\_com, \textcolor{stringliteral}{"{}similarity"{}} : min(file1\_sim, file2\_sim)\}}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216                 file1.append(code\_files[i])}
+\DoxyCodeLine{217                 file2.append(code\_files[j])}
+\DoxyCodeLine{218                 similarity.append(min(file1\_sim,file2\_sim))}
+\DoxyCodeLine{219 }
 \DoxyCodeLine{220 }
-\DoxyCodeLine{221 }
-\DoxyCodeLine{222 }
-\DoxyCodeLine{223 }
-\DoxyCodeLine{224 }
+\DoxyCodeLine{221         file\_similarities = \{\textcolor{stringliteral}{','}.join(k):v \textcolor{keywordflow}{for} (k,v) \textcolor{keywordflow}{in} sorted(file\_similarities.items(), key = \textcolor{keyword}{lambda} item : -\/1*item[1][\textcolor{stringliteral}{"{}similarity"{}}])\}}
+\DoxyCodeLine{222         \textcolor{comment}{\# print(file\_similarities["{}test2.py,test3.py"{}]["{}first\_file"{}])}}
+\DoxyCodeLine{223         }
+\DoxyCodeLine{224     shutil.rmtree(directory\_of\_file + \textcolor{stringliteral}{"{}/code\_files"{}})}
+\DoxyCodeLine{225     os.remove(tar\_filename)}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{227     csv\_list = np.column\_stack([np.array(file1), np.array(file2), np.array(similarity)])}
+\DoxyCodeLine{228     sorted\_list = csv\_list[np.argsort(csv\_list[:, 2])][::-\/1]}
+\DoxyCodeLine{229     \textcolor{comment}{\# csv\_list.sort(key = lambda x: x[2], reverse = True)}}
+\DoxyCodeLine{230     \textcolor{comment}{\# print(sorted\_list)}}
+\DoxyCodeLine{231     \textcolor{comment}{\# print(embedded\_files)}}
+\DoxyCodeLine{232     \textcolor{comment}{\# np.savetxt(directory\_of\_file + '/data.csv', sorted\_list, delimiter=',', fmt = ['\%s', '\%s', '\%s'], header = 'File 1,File 2,Similarity', comments='')}}
+\DoxyCodeLine{233     similarity = np.array(similarity)}
+\DoxyCodeLine{234     print(similarity, \textcolor{stringliteral}{"{}is similarity"{}})}
+\DoxyCodeLine{235     \textcolor{keywordflow}{return} file\_similarities, code\_files, sorted\_list, embedded\_files, [ sum((similarity >= j*0.2)*(similarity < (j+1)*0.2)) \textcolor{keywordflow}{for} j \textcolor{keywordflow}{in} range(5) ]}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237 }
+\DoxyCodeLine{238 \textcolor{comment}{\# def get\_fps\_and\_pca(tar\_filename):}}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{240 }
+\DoxyCodeLine{241 \textcolor{comment}{\#   directory\_of\_file = '/'.join(folder for folder in tar\_filename.split('/')[:-\/1])}}
+\DoxyCodeLine{242 \textcolor{comment}{\#   \# with open(tar\_filename) as f:}}
+\DoxyCodeLine{243 \textcolor{comment}{\#   \#   f.extractall(directory\_of\_file)}}
+\DoxyCodeLine{244 \textcolor{comment}{\#   mytar = tarfile.open(tar\_filename)}}
+\DoxyCodeLine{245 \textcolor{comment}{\#   mytar.extractall(directory\_of\_file)}}
+\DoxyCodeLine{246 \textcolor{comment}{\#   mytar.close()}}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249 }
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251 }
 
 \end{DoxyCode}
 \mbox{\Hypertarget{namespacedriver_aab0487684dc0bc713cf4d087b66d4de2}\label{namespacedriver_aab0487684dc0bc713cf4d087b66d4de2}} 
@@ -175,105 +228,111 @@ Definition at line 96 of file driver.\+py.
 Evaluates the exclusive similarity between two files. 
 
 ~\newline
- \begin{DoxyVerb}   Arguments : 
-   file1 : The similarity between the code and another code
-   file2 : The similarity between the code and stub code
-   Return:
-   file1_f : The similarity exclusive for the two files
-\end{DoxyVerb}
- 
 
-Definition at line 8 of file driver.\+py.
+
+
+\begin{DoxyParams}{Parameters}
+{\em file1} & \+: The similarity between the code and another code \\
+\hline
+{\em file2} & \+: The similarity between the code and stub code\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+file1\+\_\+f \+: The similarity exclusive for the two files 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file driver.\+py.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{8 \textcolor{keyword}{def }\mbox{\hyperlink{namespacedriver_aab0487684dc0bc713cf4d087b66d4de2}{getExclusiveSimilarity}}(file1, file2): }
-\DoxyCodeLine{9     \textcolor{stringliteral}{"{}"{}"{}! @brief Evaluates the exclusive similarity between two files.  }}
-\DoxyCodeLine{10 \textcolor{stringliteral}{        }}
-\DoxyCodeLine{11 \textcolor{stringliteral}{        Arguments : }}
-\DoxyCodeLine{12 \textcolor{stringliteral}{        file1 : The similarity between the code and another code}}
-\DoxyCodeLine{13 \textcolor{stringliteral}{        file2 : The similarity between the code and stub code}}
-\DoxyCodeLine{14 \textcolor{stringliteral}{        Return:}}
-\DoxyCodeLine{15 \textcolor{stringliteral}{        file1\_f : The similarity exclusive for the two files}}
-\DoxyCodeLine{16 \textcolor{stringliteral}{    "{}"{}"{}}}
-\DoxyCodeLine{17     file1\_chunks = file1.split(\textcolor{stringliteral}{"{}<mark>"{}})}
-\DoxyCodeLine{18     file2\_chunks = file2.split(\textcolor{stringliteral}{"{}<mark>"{}})}
-\DoxyCodeLine{19 }
-\DoxyCodeLine{20     y1 = file1.substr(0,6)!=\textcolor{stringliteral}{"{}<mark>"{}}}
-\DoxyCodeLine{21     y2 = file2.substr(0,6)!=\textcolor{stringliteral}{"{}<mark>"{}}}
-\DoxyCodeLine{22 }
-\DoxyCodeLine{23     file1\_ranges=[]}
-\DoxyCodeLine{24     file2\_ranges=[]}
-\DoxyCodeLine{25     f1\_start\_idx=0}
-\DoxyCodeLine{26     f2\_start\_idx=0}
-\DoxyCodeLine{27     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} len(len(file1\_chunks)):}
-\DoxyCodeLine{28         \textcolor{keywordflow}{if} i\%2 == y1:}
-\DoxyCodeLine{29             file1\_ranges.append((f1\_start\_idx, f1\_start\_idx+len(file1\_chunks[i])))}
-\DoxyCodeLine{30 }
-\DoxyCodeLine{31         f1\_start\_idx += len(file1\_chunks[i])}
-\DoxyCodeLine{32 }
-\DoxyCodeLine{33     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(file2\_chunks)):}
-\DoxyCodeLine{34         \textcolor{keywordflow}{if} i\%2 == y2:}
-\DoxyCodeLine{35             file2\_ranges.append((f2\_start\_idx, f2\_start\_idx+len(file2\_chunks[i])))}
+\DoxyCodeLine{22 \textcolor{keyword}{def }\mbox{\hyperlink{namespacedriver_aab0487684dc0bc713cf4d087b66d4de2}{getExclusiveSimilarity}}(file1, file2): }
+\DoxyCodeLine{23     \textcolor{stringliteral}{"{}"{}"{}! @brief Evaluates the exclusive similarity between two files.  }}
+\DoxyCodeLine{24 \textcolor{stringliteral}{        }}
+\DoxyCodeLine{25 \textcolor{stringliteral}{        }}
+\DoxyCodeLine{26 \textcolor{stringliteral}{        @param file1 : The similarity between the code and another code}}
+\DoxyCodeLine{27 \textcolor{stringliteral}{        @param file2 : The similarity between the code and stub code}}
+\DoxyCodeLine{28 \textcolor{stringliteral}{        }}
+\DoxyCodeLine{29 \textcolor{stringliteral}{        @return file1\_f : The similarity exclusive for the two files}}
+\DoxyCodeLine{30 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{31     file1\_chunks = file1.split(\textcolor{stringliteral}{"{}<mark>"{}})}
+\DoxyCodeLine{32     file2\_chunks = file2.split(\textcolor{stringliteral}{"{}<mark>"{}})}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     y1 = file1.substr(0,6)!=\textcolor{stringliteral}{"{}<mark>"{}}}
+\DoxyCodeLine{35     y2 = file2.substr(0,6)!=\textcolor{stringliteral}{"{}<mark>"{}}}
 \DoxyCodeLine{36 }
-\DoxyCodeLine{37         f2\_start\_idx += len(file2\_chunks[i])}
-\DoxyCodeLine{38 }
-\DoxyCodeLine{39     }
-\DoxyCodeLine{40     f2\_block=0}
-\DoxyCodeLine{41     f1\_exc\_blocks=[]}
-\DoxyCodeLine{42     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(file1\_ranges)):}
-\DoxyCodeLine{43         startx, endx = file1\_ranges[i]}
-\DoxyCodeLine{44         \textcolor{keywordflow}{while} f2\_block<len(file2\_ranges) \textcolor{keywordflow}{and} file2\_ranges[f2\_block][1] <= startx:}
-\DoxyCodeLine{45             f2\_block+=1}
-\DoxyCodeLine{46         \textcolor{keywordflow}{if} f2\_block == len(file2\_ranges):}
-\DoxyCodeLine{47             f1\_exc\_blocks += file1\_ranges[i:]}
-\DoxyCodeLine{48             \textcolor{keywordflow}{break}}
-\DoxyCodeLine{49 }
-\DoxyCodeLine{50         \textcolor{keywordflow}{elif} file2\_ranges[f2\_block][0] >= endx:}
-\DoxyCodeLine{51             f1\_exc\_blocks.append((startx, endx))}
-\DoxyCodeLine{52         \textcolor{keywordflow}{elif} file2\_ranges[f2\_block][0]>=startx:}
-\DoxyCodeLine{53             \textcolor{keywordflow}{if} endx <= file2\_ranges[f2\_block][1]:}
-\DoxyCodeLine{54                 f1\_exc\_blocks.append(startx, file2\_ranges[f2\_block][0])}
-\DoxyCodeLine{55             \textcolor{keywordflow}{elif} endx > file2\_ranges[f2\_block][1]:}
-\DoxyCodeLine{56                 \textcolor{keywordflow}{while} f2\_block < len(file2\_ranges) \textcolor{keywordflow}{and} endx > file2\_ranges[f2\_block][1]:}
-\DoxyCodeLine{57                     f1\_exc\_blocks.append(max(startx, file2\_ranges[f2\_block][0]), min(endx, file2\_ranges[f2\_block][1]))}
-\DoxyCodeLine{58                     startx=min(endx, file2\_ranges[f2\_block][1])}
-\DoxyCodeLine{59                     f2\_block+=1}
-\DoxyCodeLine{60         \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{61             \textcolor{keywordflow}{if} endx <= file2\_ranges[f2\_block][1]:}
-\DoxyCodeLine{62                 \textcolor{keywordflow}{continue}}
-\DoxyCodeLine{63             \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{64                 f1\_exc\_blocks.append((file2\_ranges[f2\_block][1], endx))}
-\DoxyCodeLine{65 }
-\DoxyCodeLine{66     merged\_ranges=[]}
-\DoxyCodeLine{67     cend=0}
-\DoxyCodeLine{68     \textcolor{keywordflow}{for} x \textcolor{keywordflow}{in} f1\_exc\_blocks:}
-\DoxyCodeLine{69         \textcolor{keywordflow}{if} x[0] < x[1]:}
-\DoxyCodeLine{70             \textcolor{keywordflow}{if} x[0]<=cend:}
-\DoxyCodeLine{71                 merged\_ranges[len(merged\_ranges)-\/1][1] = max(merged\_ranges[len(merged\_ranges)-\/1][1], x[1])}
-\DoxyCodeLine{72                 cend = merged\_ranges[len(merged\_ranges)-\/1][1]}
-\DoxyCodeLine{73             \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{74                 merged\_ranges.append(x)}
-\DoxyCodeLine{75                 cend = x[1]}
-\DoxyCodeLine{76 }
-\DoxyCodeLine{77     file1\_unmarked = \textcolor{stringliteral}{''}.join(x \textcolor{keywordflow}{for} x \textcolor{keywordflow}{in} file1\_chunks)}
-\DoxyCodeLine{78     start=0}
-\DoxyCodeLine{79     plagged=0}
-\DoxyCodeLine{80     file1\_f = file1\_unmarked[:merged\_ranges[0][0]]}
-\DoxyCodeLine{81     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(merged\_ranges)):}
-\DoxyCodeLine{82         \textcolor{keywordflow}{if} merged\_ranges[i][0] < merged\_ranges[i][1]:}
-\DoxyCodeLine{83             file1\_f = file1\_f + \textcolor{stringliteral}{"{}<mark>"{}} + file1\_unmarked[merged\_ranges[i][0] : merged\_ranges[i][1]] + \textcolor{stringliteral}{"{}<mark>"{}}}
-\DoxyCodeLine{84             plagged += merged\_ranges[i][1]-\/merged\_ranges[i][0]}
-\DoxyCodeLine{85             \textcolor{keywordflow}{if} i < len(merged\_ranges)-\/1:}
-\DoxyCodeLine{86                 file1\_f = file1\_f + file1\_unmarked[merged\_ranges[i][1] : merged\_ranges[i+1][0]]}
+\DoxyCodeLine{37     file1\_ranges=[]}
+\DoxyCodeLine{38     file2\_ranges=[]}
+\DoxyCodeLine{39     f1\_start\_idx=0}
+\DoxyCodeLine{40     f2\_start\_idx=0}
+\DoxyCodeLine{41     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} len(len(file1\_chunks)):}
+\DoxyCodeLine{42         \textcolor{keywordflow}{if} i\%2 == y1:}
+\DoxyCodeLine{43             file1\_ranges.append((f1\_start\_idx, f1\_start\_idx+len(file1\_chunks[i])))}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45         f1\_start\_idx += len(file1\_chunks[i])}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(file2\_chunks)):}
+\DoxyCodeLine{48         \textcolor{keywordflow}{if} i\%2 == y2:}
+\DoxyCodeLine{49             file2\_ranges.append((f2\_start\_idx, f2\_start\_idx+len(file2\_chunks[i])))}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51         f2\_start\_idx += len(file2\_chunks[i])}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53     }
+\DoxyCodeLine{54     f2\_block=0}
+\DoxyCodeLine{55     f1\_exc\_blocks=[]}
+\DoxyCodeLine{56     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(file1\_ranges)):}
+\DoxyCodeLine{57         startx, endx = file1\_ranges[i]}
+\DoxyCodeLine{58         \textcolor{keywordflow}{while} f2\_block<len(file2\_ranges) \textcolor{keywordflow}{and} file2\_ranges[f2\_block][1] <= startx:}
+\DoxyCodeLine{59             f2\_block+=1}
+\DoxyCodeLine{60         \textcolor{keywordflow}{if} f2\_block == len(file2\_ranges):}
+\DoxyCodeLine{61             f1\_exc\_blocks += file1\_ranges[i:]}
+\DoxyCodeLine{62             \textcolor{keywordflow}{break}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64         \textcolor{keywordflow}{elif} file2\_ranges[f2\_block][0] >= endx:}
+\DoxyCodeLine{65             f1\_exc\_blocks.append((startx, endx))}
+\DoxyCodeLine{66         \textcolor{keywordflow}{elif} file2\_ranges[f2\_block][0]>=startx:}
+\DoxyCodeLine{67             \textcolor{keywordflow}{if} endx <= file2\_ranges[f2\_block][1]:}
+\DoxyCodeLine{68                 f1\_exc\_blocks.append(startx, file2\_ranges[f2\_block][0])}
+\DoxyCodeLine{69             \textcolor{keywordflow}{elif} endx > file2\_ranges[f2\_block][1]:}
+\DoxyCodeLine{70                 \textcolor{keywordflow}{while} f2\_block < len(file2\_ranges) \textcolor{keywordflow}{and} endx > file2\_ranges[f2\_block][1]:}
+\DoxyCodeLine{71                     f1\_exc\_blocks.append(max(startx, file2\_ranges[f2\_block][0]), min(endx, file2\_ranges[f2\_block][1]))}
+\DoxyCodeLine{72                     startx=min(endx, file2\_ranges[f2\_block][1])}
+\DoxyCodeLine{73                     f2\_block+=1}
+\DoxyCodeLine{74         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{75             \textcolor{keywordflow}{if} endx <= file2\_ranges[f2\_block][1]:}
+\DoxyCodeLine{76                 \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{77             \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{78                 f1\_exc\_blocks.append((file2\_ranges[f2\_block][1], endx))}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80     merged\_ranges=[]}
+\DoxyCodeLine{81     cend=0}
+\DoxyCodeLine{82     \textcolor{keywordflow}{for} x \textcolor{keywordflow}{in} f1\_exc\_blocks:}
+\DoxyCodeLine{83         \textcolor{keywordflow}{if} x[0] < x[1]:}
+\DoxyCodeLine{84             \textcolor{keywordflow}{if} x[0]<=cend:}
+\DoxyCodeLine{85                 merged\_ranges[len(merged\_ranges)-\/1][1] = max(merged\_ranges[len(merged\_ranges)-\/1][1], x[1])}
+\DoxyCodeLine{86                 cend = merged\_ranges[len(merged\_ranges)-\/1][1]}
 \DoxyCodeLine{87             \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{88                 file1\_f = file1\_f + file1\_unmarked[merged\_ranges[i][1] : ]}
-\DoxyCodeLine{89     \textcolor{keywordflow}{return} plagged/len(file1\_unmarked), file1\_f}
+\DoxyCodeLine{88                 merged\_ranges.append(x)}
+\DoxyCodeLine{89                 cend = x[1]}
 \DoxyCodeLine{90 }
-\DoxyCodeLine{91 }
-\DoxyCodeLine{92 }
-\DoxyCodeLine{93 }
-\DoxyCodeLine{94 }
-\DoxyCodeLine{95 }
+\DoxyCodeLine{91     file1\_unmarked = \textcolor{stringliteral}{''}.join(x \textcolor{keywordflow}{for} x \textcolor{keywordflow}{in} file1\_chunks)}
+\DoxyCodeLine{92     start=0}
+\DoxyCodeLine{93     plagged=0}
+\DoxyCodeLine{94     file1\_f = file1\_unmarked[:merged\_ranges[0][0]]}
+\DoxyCodeLine{95     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(len(merged\_ranges)):}
+\DoxyCodeLine{96         \textcolor{keywordflow}{if} merged\_ranges[i][0] < merged\_ranges[i][1]:}
+\DoxyCodeLine{97             file1\_f = file1\_f + \textcolor{stringliteral}{"{}<mark>"{}} + file1\_unmarked[merged\_ranges[i][0] : merged\_ranges[i][1]] + \textcolor{stringliteral}{"{}<mark>"{}}}
+\DoxyCodeLine{98             plagged += merged\_ranges[i][1]-\/merged\_ranges[i][0]}
+\DoxyCodeLine{99             \textcolor{keywordflow}{if} i < len(merged\_ranges)-\/1:}
+\DoxyCodeLine{100                 file1\_f = file1\_f + file1\_unmarked[merged\_ranges[i][1] : merged\_ranges[i+1][0]]}
+\DoxyCodeLine{101             \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{102                 file1\_f = file1\_f + file1\_unmarked[merged\_ranges[i][1] : ]}
+\DoxyCodeLine{103     \textcolor{keywordflow}{return} plagged/len(file1\_unmarked), file1\_f}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109 }
 
 \end{DoxyCode}

@@ -22,11 +22,11 @@ def CountFrequency(my_list):
 def getExclusiveSimilarity(file1, file2): 
 	"""! @brief Evaluates the exclusive similarity between two files.  
 	 	
-		Arguments : 
-		file1 : The similarity between the code and another code
-		file2 : The similarity between the code and stub code
-		Return:
-		file1_f : The similarity exclusive for the two files
+		
+		@param file1 : The similarity between the code and another code
+		@param file2 : The similarity between the code and stub code
+		
+		@return file1_f : The similarity exclusive for the two files
 	"""
 	file1_chunks = file1.split("<mark>")
 	file2_chunks = file2.split("<mark>")
@@ -108,18 +108,20 @@ def getExclusiveSimilarity(file1, file2):
 
 
 def extract_and_process(tar_filename):
-	"""
-	Driver Circuit to extract tar files and pass them through prepreocessing. 
+	"""!
+	@brief Driver Circuit to extract tar files and pass them through prepreocessing. 
 	Arguments : 
 	tar_filename: Complete path of the tar file. The file must extract to give the directories 'code_files' and/or 'stub_code', where the directory 
 	'code_files' contains all the files to be checked for plagiarism and the directory 'stub_code' (if present) contains a single file denoting the stub code. 
 	There is no restriction on the file names inside each directory
 
-	Return: 
-	file_similarities : a dictionary of the form (file1_name, file2_name) : {'first_file' : first_file, 'second_file' : second_file, 'similarity' : similarity }. 
+	@param tar_filename : path of the tar file containing code files to be checked
+	@return file_similarities : a dictionary of the form (file1_name, file2_name) : {'first_file' : first_file, 'second_file' : second_file, 'similarity' : similarity }. 
 	The key tuple has been stringified for easy usage. 
-	code_files : list of files in the directory code_files
-	sorted_list : 
+	@return code_files : list of files in the directory code_files
+	@return sorted_list : List of file pair similarities sorted in decreasing order of similarity
+	@return embedded_files 2 Dimentional embeddings for every file for better visualization
+	@return binned list containing the number of pairs of file similar in the bins of width 0.2 each 
 	"""
 	directory_of_file = '/'.join(folder for folder in tar_filename.split('/')[:-1])
 	# with open(tar_filename) as f:
@@ -144,10 +146,15 @@ def extract_and_process(tar_filename):
 
 	code_files_dir = directory_of_file + '/code_files'
 	code_files = os.listdir(code_files_dir)
-	file_params = [getFingerPrints(directory_of_file + '/code_files/' + file) for file in code_files]
+	isLangSpec = code_files[0].split('.')[-1] == 'java'
+	file_params = [getFingerPrints(directory_of_file + '/code_files/' + file, isLangSpec) for file in code_files]
 	freq_fingerprints = [CountFrequency(param[3]) for param in file_params]
-	embedded_files = get_reduced_components(freq_fingerprints)
-	print(embedded_files)
+
+	embedded_files = list(get_reduced_components(freq_fingerprints))
+	embeddings = []
+	for x in embedded_files:
+		embeddings.append({'x' : x[0], 'y' : x[1]})
+	print(embeddings)
 
 
 
@@ -220,10 +227,12 @@ def extract_and_process(tar_filename):
 	csv_list = np.column_stack([np.array(file1), np.array(file2), np.array(similarity)])
 	sorted_list = csv_list[np.argsort(csv_list[:, 2])][::-1]
 	# csv_list.sort(key = lambda x: x[2], reverse = True)
-	print(sorted_list)
-	# np.savetxt(directory_of_file + '/data.csv', sorted_list, delimiter=',', fmt = ['%s', '%s', '%s'], header = 'File 1,File 2,Similarity', comments='')
-
-	return file_similarities, code_files, sorted_list, embedded_files
+	# print(sorted_list)
+	# print(embedded_files)
+	# np.savetxt(directory_of_file + '/data.csv', sorted_list, delimiter=',', fmt = ['%s', '%s', '%s'], header = 'File 1,File 2,Similarity', comments='')	
+	similarity = np.array(similarity)
+	print(similarity, "is similarity")
+	return file_similarities, code_files, sorted_list, embedded_files, [ sum((similarity >= j*0.2)*(similarity < (j+1)*0.2)) for j in range(5) ]
 
 
 # def get_fps_and_pca(tar_filename):

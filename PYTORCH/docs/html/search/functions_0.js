@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['extract_5fand_5fprocess_23',['extract_and_process',['../namespacedriver.html#a4a9afd1da197302892e97194695e7dc5',1,'driver']]]
+  ['countfrequency_30',['CountFrequency',['../namespacedriver.html#af5672ab6218cc4778af8b2a4c4e55f88',1,'driver']]]
 ];

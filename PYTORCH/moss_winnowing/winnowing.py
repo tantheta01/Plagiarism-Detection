@@ -107,11 +107,14 @@ def hashList(arr):
     return HL
 
 
-def getFingerPrints(filename):
+def getFingerPrints(filename, isLangSpec):
     """!
     @brief Calculate the tokenset of the file
     """
-    token = tokenize(filename)
+    if not isLangSpec:
+        token = tokenize(filename)
+    else:
+        token = tokenize_for_java(filename)
     token_string = toText(token)
     kGrams = kgrams(token_string)
     HL = hashList(kGrams)

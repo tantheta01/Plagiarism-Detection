@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['plagiarismcheck_31',['plagiarismCheck',['../namespacewinnowing.html#afcaed9bfef1e0ac4baa188c432cc4987',1,'winnowing']]]
+  ['minindex_39',['minIndex',['../namespacewinnowing.html#a538426530c9a7edf9d4f0857d2ede3e7',1,'winnowing']]]
 ];

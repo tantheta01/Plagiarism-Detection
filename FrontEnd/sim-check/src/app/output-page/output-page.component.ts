@@ -1,4 +1,4 @@
-/*We need to add a download to this chart*/
+ /*We need to add a download to this chart*/
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ChartDataSets, ChartType, ChartOptions } from 'chart.js';
@@ -26,7 +26,7 @@ export class OutputPageComponent implements OnInit {
   public pairname: string = this.firstFileControl.value + ',' + this.secondFileControl.value;
 
   
-  public scatterChartLabels: Label[] = ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'];
+  public scatterChartLabels: Label[] = this.fnames;
 
 
   public scatterChartData: ChartDataSets[] = [
@@ -47,7 +47,55 @@ export class OutputPageComponent implements OnInit {
     responsive: true,
     title : {
       display : true,
-      text: "The chart of my dreams",
+      text: "File Embeddings",
+    },
+    tooltips: {
+         callbacks: {
+            label: function(tooltipItem, data) {
+               var label = data.labels[tooltipItem.index];
+               return label + ': (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+            }
+         }
+      },
+      scales: {
+        xAxes: [{
+            /* Your xAxes options here */
+        }, {
+            position: 'top',
+            ticks: {
+                display: false
+            },
+            gridLines: {
+                display: false,
+                drawTicks: false
+            }
+        }],
+        yAxes: [{
+            /* Your yAxes options here */
+        }, {
+            position: 'right',
+            ticks: {
+                display: false
+            },
+            gridLines: {
+                display: false,
+                drawTicks: false
+            }
+        }]
+    }
+  };
+
+
+  public scatterChartLabels2: Label[];
+  
+
+  public scatterChartData2: ChartDataSets[];
+  public scatterChartType2: ChartType = 'bar';
+  public scatterChartOptions2: ChartOptions = {
+    responsive: true,
+    title : {
+      display : true,
+      text: "Number of pairs V/S Similarity",
     },
     tooltips: {
          callbacks: {
@@ -89,17 +137,43 @@ export class OutputPageComponent implements OnInit {
 
   constructor(private sanitizer: DomSanitizer) { }
   ngOnInit(){
-    console.log(sessionStorage['embeddings'][0])
+    // console.log(sessionStorage['embeddings'])
+    var J = sessionStorage['embeddings'].split(',')
+    var detaa = [];
+    for(var i=0;i<J.length;i=i+2){
+      detaa.push({
+        x : parseFloat(J[i]),
+        y : parseFloat(J[i+1])
+      });
+    }
+    this.scatterChartData = [
+          {
+            data : detaa,
+            label: 'SeriesA',
+            pointRadius: 10
+          },
+    ];
+    J = sessionStorage['range_sim'].split(',')
+    detaa = []
+    for(var i=0;i<J.length;i++){
+      detaa.push(parseFloat(J[i]));
+    }
+    this.scatterChartLabels2 = ['less than 0.2', 'between 0.2 and 0.4', 'between 0.4 and 0.6', 'between 0.6 and 0.8', 'more than 0.8'];
+    this.scatterChartData2 = [{data: detaa, label: 'Number of Files'}]
+
+
+
+
     console.log("bhodaaaa")
     const data = sessionStorage['csvfile'];
     const blob = new Blob([data], {​​​​​​​​ type: 'application/octet-stream' }​​​​​​​​);
     this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
 
 
-    console.log("Init occurs");
-    console.log(this.firstCode['f2.py,f.py']["first_file"]);
+    // console.log("Init occurs");
+    // console.log(this.firstCode['f2.py,f.py']["first_file"]);
 
-    console.log(this.fnames);
+    // console.log(this.fnames);
 
     for (var i = 0; i < this.file_keys.length; ++i) {
       var fCdd = this.firstCode[this.file_keys[i]]['first_file'];
@@ -107,24 +181,27 @@ export class OutputPageComponent implements OnInit {
       if (fCdd.substring(0, 6) == "<mark>") {
         var j=1;
         var bstring = fCdd.split("<mark>");
-        console.log(bstring.length)
-        console.log("is the BString length of the shitttttt")
+        // console.log(bstring.length)
+        // console.log("is the BString length of the shitttttt")
         var bits=[];
-        console.log("The length of Bstring is");
-        console.log(bstring.length);
+        // console.log("The length of Bstring is");
+        // console.log(bstring.length);
         for(var k=0;k<bstring.length;k++){
           bits.push(j);
           j ^= 1;
         }
         this.firstCode[this.file_keys[i]]['first_file'] = bstring;
         this.firstCode[this.file_keys[i]]['first_params'] = bits;
+        // console.log(bits.length);
+        // console.log("IS the length of bits")
+        // console.log(this.file_keys[i]);
       }
       else{
         var j=0;
         var bstring = fCdd.split("<mark>");
-        console.log("The length of Bstring hereere is");
-        console.log(bstring.length);
-        console.log(this.file_keys[i]);
+        // console.log("The length of Bstring hereere is");
+        // console.log(bstring.length);
+        // console.log(this.file_keys[i]);
         // console.log(bstring);
         var bits=[];
         for(var k=0;k<bstring.length;k++){
@@ -133,6 +210,9 @@ export class OutputPageComponent implements OnInit {
         }
         this.firstCode[this.file_keys[i]]['first_file'] = bstring;
         this.firstCode[this.file_keys[i]]['first_params'] = bits;
+        // console.log(bits.length);
+        // console.log("IS the length of bits")
+        // console.log(this.file_keys[i]);
       }
       fCdd = this.firstCode[this.file_keys[i]]['second_file'];
       if (fCdd.substring(0, 6) == "<mark>") {
@@ -145,6 +225,9 @@ export class OutputPageComponent implements OnInit {
         }
         this.firstCode[this.file_keys[i]]['second_file'] = bstring;
         this.firstCode[this.file_keys[i]]['second_params'] = bits;
+        // console.log(bits.length);
+        // console.log("IS the length of bits")
+        // console.log(this.file_keys[i]);
       }
       else{
         var j=0;
@@ -156,6 +239,9 @@ export class OutputPageComponent implements OnInit {
         }
         this.firstCode[this.file_keys[i]]['second_file'] = bstring;
         this.firstCode[this.file_keys[i]]['second_params'] = bits;
+        // console.log(bits.length);
+        // console.log("IS the length of bits");
+        // console.log(this.file_keys[i]);
       }
     }
 

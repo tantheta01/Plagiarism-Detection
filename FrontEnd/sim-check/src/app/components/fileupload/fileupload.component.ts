@@ -41,6 +41,7 @@ export class FileUploadComponent implements OnInit {
     
     this.commus.fileUpload(this.formGroup.controls['file'].value).subscribe({
       next: answer => {
+        console.log("Oyeeeeee")
         console.log(answer.data[Object.keys(answer.data)[0]]);
         console.log(JSON.stringify(answer.csv))
         

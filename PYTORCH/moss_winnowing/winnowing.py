@@ -113,6 +113,8 @@ def getFingerPrints(filename, isLangSpec):
     """!
     @brief Calculate the tokenset of the file
     """
+    print("Haan bccccc")
+    print(filename)
     if not isLangSpec:
         token = tokenize(filename)
     else:
@@ -204,7 +206,7 @@ def plagiarismCheck(file1, token1, kGrams1, HL1, fpList1, fpList2):
                     newCode = newCode + code[mergedPoints[i][1] : mergedPoints[i+1][0]]
                 else:
                     newCode = newCode + code[mergedPoints[i][1] :]
-        return plagCount/len(code), newCode
+        return plagCount/len(toText(token1)), newCode
 
     else:
         return 0, code

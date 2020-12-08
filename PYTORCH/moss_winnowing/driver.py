@@ -33,15 +33,15 @@ def getExclusiveSimilarity(file1, file2):
 	file1_chunks = file1.split("<mark>")
 	file2_chunks = file2.split("<mark>")
 
-	y1 = file1.substr(0,6)!="<mark>"
-	y2 = file2.substr(0,6)!="<mark>"
+	y1 = file1[:6]!="<mark>"
+	y2 = file2[:6]!="<mark>"
 
 	file1_ranges=[]
 	file2_ranges=[]
 	f1_start_idx=0
 	f2_start_idx=0
 
-	for i in len(len(file1_chunks)):
+	for i in range(len(file1_chunks)):
 		if i%2 == y1:
 			file1_ranges.append((f1_start_idx, f1_start_idx+len(file1_chunks[i])))
 
@@ -68,10 +68,10 @@ def getExclusiveSimilarity(file1, file2):
 			f1_exc_blocks.append((startx, endx))
 		elif file2_ranges[f2_block][0]>=startx:
 			if endx <= file2_ranges[f2_block][1]:
-				f1_exc_blocks.append(startx, file2_ranges[f2_block][0])
+				f1_exc_blocks.append((startx, file2_ranges[f2_block][0]))
 			elif endx > file2_ranges[f2_block][1]:
 				while f2_block < len(file2_ranges) and endx > file2_ranges[f2_block][1]:
-					f1_exc_blocks.append(max(startx, file2_ranges[f2_block][0]), min(endx, file2_ranges[f2_block][1]))
+					f1_exc_blocks.append((max(startx, file2_ranges[f2_block][0]), min(endx, file2_ranges[f2_block][1])))
 					startx=min(endx, file2_ranges[f2_block][1])
 					f2_block+=1
 		else:
@@ -94,6 +94,10 @@ def getExclusiveSimilarity(file1, file2):
 	file1_unmarked = ''.join(x for x in file1_chunks)
 	start=0
 	plagged=0
+	print("hahahahaha")
+	if len(merged_ranges) == 0:
+		return 0, file1
+	print(merged_ranges[0][0], len(file1_unmarked))
 	file1_f = file1_unmarked[:merged_ranges[0][0]]
 	for i in range(len(merged_ranges)):
 		if merged_ranges[i][0] < merged_ranges[i][1]:
@@ -126,7 +130,7 @@ def extract_and_process(tar_filename):
 	mytar = tarfile.open(tar_filename)
 	mytar.extractall(directory_of_file)
 	mytar.close()
-
+	directory_of_file = directory_of_file+'/code_files'
 	# print("Tar file name is ", tar_filename)
 	# print(directory_of_file)
 
@@ -142,7 +146,13 @@ def extract_and_process(tar_filename):
 	code_files = os.listdir(code_files_dir)
 	print(code_files)
 	print("These are the motherfucking code files")
-	isLangSpec = code_files[0].split('.')[-1] == 'java'
+	x = code_files[0].split()
+	if x[len(x)-1]=='java':
+		isLangSpec=1
+	else:
+		isLangSpec=0
+	# isLangSpec = code_files[0].split('.')[-1] == 'java'
+	print(isLangSpec, "is the languageeee")
 	file_params = [getFingerPrints(directory_of_file + '/code_files/' + file, isLangSpec) for file in code_files]
 	freq_fingerprints = [CountFrequency(param[3]) for param in file_params]
 	embedded_files = get_reduced_components(freq_fingerprints)
@@ -153,7 +163,7 @@ def extract_and_process(tar_filename):
 	if "stub_code" in os.listdir(directory_of_file):
 
 		stub_code_file = directory_of_file + "/stub_code/" + os.listdir(directory_of_file + "/stub_code")[0]
-		stub_code_params = getFingerPrints(stub_code_file)
+		stub_code_params = getFingerPrints(stub_code_file, isLangSpec)
 
 		code_files_dir = directory_of_file + '/code_files'
 		code_files = os.listdir(code_files_dir)
@@ -208,7 +218,8 @@ def extract_and_process(tar_filename):
 
 		file_similarities = {','.join(k):v for (k,v) in sorted(file_similarities.items(), key = lambda item : -1*item[1]["similarity"])}
 		
-	shutil.rmtree(directory_of_file + "/code_files")
+	shutil.rmtree(directory_of_file)
+
 	os.remove(tar_filename)
 
 	csv_list = np.column_stack([np.array(file1), np.array(file2), np.array(similarity)])

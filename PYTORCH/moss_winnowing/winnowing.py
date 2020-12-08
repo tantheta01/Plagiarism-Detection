@@ -71,13 +71,13 @@ def fingerprints(arr, winSize = 4):
 
     @detail For every window length subarray of the hash list take the leftmost minimum in the list if it is not alreasy taken
 
-    @type arr: list
+    
     @param arr: The hashlist for which the fingerprint is to be computed
 
-    @type winSize: int
+    
     @param winSize: The size of the window for winnowing. 
 
-    @rtype fingerprintList: list
+    
     @return fingerprintList: List of hash values in the fingerprint of the array    
     """
 

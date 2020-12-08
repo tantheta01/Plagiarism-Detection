@@ -21,11 +21,11 @@ def CountFrequency(my_list):
 
 def getExclusiveSimilarity(file1, file2): 
 
-	"""! @brief Evaluates the exclusive similarity between two files.  
-	 	
+	"""! @brief Evaluates the exclusive similarity between two files i.e. ignoring the similarity with stub code  
+	 	This computes the overall set difference between (fileA-fileB)similarity and (fileA-stub_code)similarity. 
 		
-		@param file1 : The similarity between the code and another code
-		@param file2 : The similarity between the code and stub code
+		@param file1 : The similarity between the code and another code (fileA-fileB) similarity
+		@param file2 : The similarity between the code and stub code (fileA-stub_code) similarity
 		
 		@return file1_f : The similarity exclusive for the two files
 	"""

@@ -17,8 +17,8 @@ def get_reduced_components(data):
 
 	sc = StandardScaler()
 	data = np.vstack(tuple(data))
-	print(data[0,:2], "hi")
-	print(data[2,:], "hi")
+	# print(data[0,:2], "hi")
+	# print(data[2,:], "hi")
 	
 	# print(data.shape)
 	# data = np.array(data)
@@ -26,19 +26,19 @@ def get_reduced_components(data):
 
 	if data.shape[0] < data.shape[1]:
 		data = data[:, :data.shape[0]]
-	print(data[0,:2], "hi")
-	print(data[2,:], "hi")
+	# print(data[0,:2], "hi")
+	# print(data[2,:], "hi")
 	if data.shape[1] > 15:
 		pca = PCA(n_components=30)
 		data = pca.fir_transform(data)
-	print(data[0,:2], "hi")
-	print(data[2,:], "hi")
+	# print(data[0,:2], "hi")
+	# print(data[2,:], "hi")
 	data = sc.fit_transform(data)
-	print(data[0,:2], "hi")
-	print(data[2,:], "hi")
+	# print(data[0,:2], "hi")
+	# print(data[2,:], "hi")
 
 	data = TSNE().fit_transform(data)
-	print(data[0,:2], "hi")
-	print(data[2,:], "hi")
+	# print(data[0,:2], "hi")
+	# print(data[2,:], "hi")
 	return data
 

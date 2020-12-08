@@ -2,6 +2,7 @@ import numpy as np
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from sklearn.manifold import TSNE
+
 def get_reduced_components(data):
 	"""!
 	@brief Calculates the lower dimentional embedding of the input data
@@ -40,7 +41,4 @@ def get_reduced_components(data):
 	print(data[0,:2], "hi")
 	print(data[2,:], "hi")
 	return data
-
-
-
 

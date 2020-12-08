@@ -1,4 +1,5 @@
 # This file shall have the functions to hash and perform winnowing for the input file strings
+
 import hashlib
 import sys
 
@@ -22,7 +23,6 @@ if __name__ == '__main__':
 	fnum = 0
 	findex = -1
 	
-
 	for i in range(50):
 		if h[i] >= fnum:
 			findex = i
@@ -44,10 +44,6 @@ if __name__ == '__main__':
 			ourList.append(fnum)
 
 
-
-
 	with open(sys.argv[2],'w') as g:
 		g.write(str(getHashes(string)))
 
-
-		# print("bc   ", findex, k)

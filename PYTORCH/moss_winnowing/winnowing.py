@@ -34,6 +34,7 @@ def kgrams(text, k = 25):
     @rtype kgrams: list
     @return kgrams: List of 4-tuples. The length of the list is equal to the number of kGrams of the string. Each element in the list is a 4-tuple - (kgram, hash_value, start_index, end_index)
     """
+
     tokenList = list(text)
     n = len(tokenList)
     kgrams = []
@@ -53,6 +54,7 @@ def minIndex(arr):
 
     @rtype minI: int
     """
+
     minI = 0
     minV = arr[0]
     n = len(arr)
@@ -76,9 +78,9 @@ def fingerprints(arr, winSize = 4):
     @param winSize: The size of the window for winnowing. 
 
     @rtype fingerprintList: list
-    @return fingerprintList: List of hash values in the fingerprint of the array
-    
+    @return fingerprintList: List of hash values in the fingerprint of the array    
     """
+
     arrLen = len(arr)
     prevMin = 0
     currMin = 0
@@ -97,9 +99,9 @@ def fingerprints(arr, winSize = 4):
 #takes k-gram list as input and returns a list of only hash values
 def hashList(arr):
     """!
-    
     @param arr : list of 4-tuples containing (k_gram, hash value, start_index, end_index)
     """
+
     HL = []
     for i in arr:
         HL.append(i[1])
@@ -124,7 +126,6 @@ def getFingerPrints(filename, isLangSpec):
 
 def plagiarismCheck(file1, token1, kGrams1, HL1, fpList1, fpList2):
     """!
-    
     @brief Calculates similarity between two code files
     
     @detail The similarity is calculated as length of similar code in file1/length of file1
@@ -152,8 +153,8 @@ def plagiarismCheck(file1, token1, kGrams1, HL1, fpList1, fpList2):
     
     @rtype newCode: str
     @return newCode: The content of first file with <b>mark<b> appended around every plagiarized(with respect to second file) block
-
     """
+    
     f1 = open(file1, "r")
     
     start = []   #to store the start values corresponding to matching fingerprints
@@ -208,6 +209,3 @@ def plagiarismCheck(file1, token1, kGrams1, HL1, fpList1, fpList2):
     else:
         return 0, code
     
-
-
-

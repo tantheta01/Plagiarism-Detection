@@ -14,7 +14,6 @@ class ChangePasswordSerializer(serializers.Serializer):
     new_password = serializers.CharField(required=True)
 
     
-
 class UserCreateSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:

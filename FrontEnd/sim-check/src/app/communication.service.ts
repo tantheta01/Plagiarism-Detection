@@ -10,7 +10,6 @@ import { catchError, map } from "rxjs/operators";
 import { Router } from '@angular/router';
 
 
-
 const httpOptions = {
   headers: new HttpHeaders({ "Content-Type": "application/json"}), 
 };
@@ -56,7 +55,6 @@ export class CommunicationService {
 		}, httpOptions);
 	}
 
-
 	changepass(oldpass : string, newpass : string): Observable<any>{
 		if (sessionStorage['token'] != null) {
 			const httpOptions_ = { headers: new HttpHeaders({ "Content-Type" : "application/json", "Authorization" : "Token " + sessionStorage['token']})}
@@ -72,8 +70,8 @@ export class CommunicationService {
 	navigateToLogin() {
 		this.router.navigate(['/login']);
 	}
+
 	fileUpload(file: any): Observable<any> {
-		console.log("baat toh hai bhai")
 		var httpOptions1 = {
 			headers: new HttpHeaders({ 
 			  // "Content-Type": 'multipart/form-data',
@@ -88,7 +86,5 @@ export class CommunicationService {
 		//   .map(() => { return true; })
 		//   .catch((e) => this.handleError(e));
 	}
-
-	
 
 }

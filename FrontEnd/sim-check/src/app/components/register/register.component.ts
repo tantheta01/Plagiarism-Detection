@@ -55,8 +55,7 @@ export class RegisterComponent implements OnInit {
           error: error => {
             Swal.fire("Oops", "There was an error", "error");
           }
-        }
-        )
+        })
       }
     }
     else Swal.fire("Oops", "Submission Failed", "error");

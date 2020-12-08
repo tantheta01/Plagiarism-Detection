@@ -206,7 +206,7 @@ def plagiarismCheck(file1, token1, kGrams1, HL1, fpList1, fpList2):
                     newCode = newCode + code[mergedPoints[i][1] : mergedPoints[i+1][0]]
                 else:
                     newCode = newCode + code[mergedPoints[i][1] :]
-        return plagCount/len(toText(token1)), newCode
+        return plagCount/len(code), newCode
 
     else:
         return 0, code
